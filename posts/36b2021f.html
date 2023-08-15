@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL之玩转DML | 划水艺术家</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="划水艺术家">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="划水艺术家 一个分享技术与生活的博客">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2021-12-12 00:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":false,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null},"localsearch":{"preload":true,"path":"/search.xml"}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/docker/" style="font-size: 0.8rem; color: #d3d3d3">docker<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">容器<sup>2</sup></a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.8rem; color: #d3d3d3">运维<sup>3</sup></a>
+                        
+                            <a href="/tags/Linux/" style="font-size: 0.8rem; color: #d3d3d3">Linux<sup>3</sup></a>
+                        
+                            <a href="/tags/Java/" style="font-size: 0.8rem; color: #d3d3d3">Java<sup>31</sup></a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">后端<sup>22</sup></a>
+                        
+                            <a href="/tags/JavaWeb/" style="font-size: 0.8rem; color: #d3d3d3">JavaWeb<sup>4</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.8rem; color: #d3d3d3">数据库<sup>14</sup></a>
+                        
+                            <a href="/tags/redis/" style="font-size: 0.8rem; color: #d3d3d3">redis<sup>1</sup></a>
+                        
+                            <a href="/tags/sql/" style="font-size: 0.8rem; color: #d3d3d3">sql<sup>10</sup></a>
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">前端<sup>6</sup></a>
+                        
+                            <a href="/tags/vue/" style="font-size: 0.8rem; color: #d3d3d3">vue<sup>5</sup></a>
+                        
+                            <a href="/tags/javascript/" style="font-size: 0.8rem; color: #d3d3d3">javascript<sup>7</sup></a>
+                        
+                            <a href="/tags/SpringBoot/" style="font-size: 0.8rem; color: #d3d3d3">SpringBoot<sup>2</sup></a>
+                        
+                            <a href="/tags/spring/" style="font-size: 0.8rem; color: #d3d3d3">spring<sup>15</sup></a>
+                        
+                            <a href="/tags/ajax/" style="font-size: 0.8rem; color: #d3d3d3">ajax<sup>1</sup></a>
+                        
+                            <a href="/tags/json/" style="font-size: 0.8rem; color: #d3d3d3">json<sup>1</sup></a>
+                        
+                            <a href="/tags/jdbc/" style="font-size: 0.8rem; color: #d3d3d3">jdbc<sup>1</sup></a>
+                        
+                            <a href="/tags/flask/" style="font-size: 0.8rem; color: #d3d3d3">flask<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 0.8rem; color: #d3d3d3">微服务<sup>2</sup></a>
+                        
+                            <a href="/tags/python/" style="font-size: 0.8rem; color: #d3d3d3">python<sup>1</sup></a>
+                        
+                            <a href="/tags/Nacos/" style="font-size: 0.8rem; color: #d3d3d3">Nacos<sup>1</sup></a>
+                        
+                            <a href="/tags/mybatis/" style="font-size: 0.8rem; color: #d3d3d3">mybatis<sup>1</sup></a>
+                        
+                            <a href="/tags/nginx/" style="font-size: 0.8rem; color: #d3d3d3">nginx<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">服务器<sup>2</sup></a>
+                        
+                            <a href="/tags/html/" style="font-size: 0.8rem; color: #d3d3d3">html<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 0.8rem; color: #d3d3d3">消息队列<sup>1</sup></a>
+                        
+                            <a href="/tags/RabbitMQ/" style="font-size: 0.8rem; color: #d3d3d3">RabbitMQ<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.8rem; color: #d3d3d3">分布式<sup>1</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/gitee/" style="font-size: 0.8rem; color: #d3d3d3">gitee<sup>1</sup></a>
+                        
+                            <a href="/tags/github/" style="font-size: 0.8rem; color: #d3d3d3">github<sup>1</sup></a>
+                        
+                            <a href="/tags/mysql/" style="font-size: 0.8rem; color: #d3d3d3">mysql<sup>5</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.8rem; color: #d3d3d3">数据结构<sup>9</sup></a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.8rem; color: #d3d3d3">网络<sup>1</sup></a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.8rem; color: #d3d3d3">算法<sup>3</sup></a>
+                        
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 0.8rem; color: #d3d3d3">排序<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 0.8rem; color: #d3d3d3">图论<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/05/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/05</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/04/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/04</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/11/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/11</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">27</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+                    
+            <div class="console-btn-item" id="consoleMusic" onclick="acrylic.musicToggle()" title="音乐开关"><a class="music-switch"><i class="fas fa-music"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/docker/" style="font-size: 1em; color: #d3d3d3">docker
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">容器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1em; color: #d3d3d3">运维
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Linux/" style="font-size: 1em; color: #d3d3d3">Linux
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Java/" style="font-size: 1em; color: #d3d3d3">Java
+                        <sup>31</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">后端
+                        <sup>22</sup>
+                    </a>
+                
+                    <a href="/tags/JavaWeb/" style="font-size: 1em; color: #d3d3d3">JavaWeb
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1em; color: #d3d3d3">数据库
+                        <sup>14</sup>
+                    </a>
+                
+                    <a href="/tags/redis/" style="font-size: 1em; color: #d3d3d3">redis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/sql/" style="font-size: 1em; color: #d3d3d3">sql
+                        <sup>10</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">前端
+                        <sup>6</sup>
+                    </a>
+                
+                    <a href="/tags/vue/" style="font-size: 1em; color: #d3d3d3">vue
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/javascript/" style="font-size: 1em; color: #d3d3d3">javascript
+                        <sup>7</sup>
+                    </a>
+                
+                    <a href="/tags/SpringBoot/" style="font-size: 1em; color: #d3d3d3">SpringBoot
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/spring/" style="font-size: 1em; color: #d3d3d3">spring
+                        <sup>15</sup>
+                    </a>
+                
+                    <a href="/tags/ajax/" style="font-size: 1em; color: #d3d3d3">ajax
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/json/" style="font-size: 1em; color: #d3d3d3">json
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/jdbc/" style="font-size: 1em; color: #d3d3d3">jdbc
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/flask/" style="font-size: 1em; color: #d3d3d3">flask
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1em; color: #d3d3d3">微服务
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/python/" style="font-size: 1em; color: #d3d3d3">python
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Nacos/" style="font-size: 1em; color: #d3d3d3">Nacos
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mybatis/" style="font-size: 1em; color: #d3d3d3">mybatis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/nginx/" style="font-size: 1em; color: #d3d3d3">nginx
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">服务器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/html/" style="font-size: 1em; color: #d3d3d3">html
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1em; color: #d3d3d3">消息队列
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/RabbitMQ/" style="font-size: 1em; color: #d3d3d3">RabbitMQ
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1em; color: #d3d3d3">分布式
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/gitee/" style="font-size: 1em; color: #d3d3d3">gitee
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/github/" style="font-size: 1em; color: #d3d3d3">github
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mysql/" style="font-size: 1em; color: #d3d3d3">mysql
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1em; color: #d3d3d3">数据结构
+                        <sup>9</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1em; color: #d3d3d3">网络
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1em; color: #d3d3d3">算法
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1em; color: #d3d3d3">排序
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1em; color: #d3d3d3">图论
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">TBlog</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">SQL之玩转DML</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="search-button">
+        <a class="site-page social-icon search" title="站内搜索"
+            href="javascript:void(0);" rel="external nofollow">
+            <i class="fas fa-magnifying-glass" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">数据库</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/sql/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">sql</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">SQL之玩转DML</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2022-10-31T20:54:36+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为西安">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>西安</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><p>DML（Data Manipulation Language、数据操作语言），用于添加、删除、更新和查询数据库记录，并检查数据完整性。</p>
+<ul>
+<li>主要的语句关键字包括 INSERT 、 DELETE 、 UPDATE 、 SELECT 等。</li>
+<li>因为查询语句使用的非常的频繁，所以很多人把查询语句单拎出来一类：DQL（数据查询语言）。因此文本只对DML中的增、删、改做描述，关于 SELECT 详情可见<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51938362/article/details/127386748"> SQL之玩转SELECT</a></li>
+</ul>
+<p><strong>储备工作，建表</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> emp1(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> 		id <span class="type">INT</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> 		`name` <span class="type">VARCHAR</span>(<span class="number">15</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> 		hire_date <span class="type">DATE</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> 		salary <span class="keyword">DOUBLE</span>(<span class="number">10</span>,<span class="number">2</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> );</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.31</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">DESC</span> emp1;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+--------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> Field     <span class="operator">|</span> Type         <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+--------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> id        <span class="operator">|</span> <span class="type">int</span>(<span class="number">11</span>)      <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> name      <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">15</span>)  <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> hire_date <span class="operator">|</span> <span class="type">date</span>         <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> salary    <span class="operator">|</span> <span class="keyword">double</span>(<span class="number">10</span>,<span class="number">2</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+--------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">FROM</span> emp1;</span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="二、插入数据"><a href="#二、插入数据" class="headerlink" title="二、插入数据"></a>二、插入数据</h1><h2 id="1-VALUES的方式添加"><a href="#1-VALUES的方式添加" class="headerlink" title="1. VALUES的方式添加"></a>1. VALUES的方式添加</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span>、为表的所有字段按默认顺序插入数据</span><br><span class="line"># 正确的 注意：一定要按照声明的字段的先后顺序添加</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp1</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="string">&#x27;Tom&#x27;</span>,<span class="string">&#x27;2000-12-21&#x27;</span>,<span class="number">3400</span>); </span><br><span class="line"># 错误的</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp1</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>,<span class="number">3400</span>,<span class="string">&#x27;2000-12-21&#x27;</span>,<span class="string">&#x27;Jerry&#x27;</span>);</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span>、指明要添加的字段 （推荐）</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp1(id,hire_date,salary,`name`)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="string">&#x27;1999-09-09&#x27;</span>,<span class="number">4000</span>,<span class="string">&#x27;Jerry&#x27;</span>);</span><br><span class="line"># 说明：没有进行赋值的hire_date 的值为 <span class="keyword">null</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp1(id,salary,`name`)</span><br><span class="line"><span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="number">4500</span>,<span class="string">&#x27;shk&#x27;</span>);</span><br><span class="line"></span><br><span class="line"># <span class="number">3</span>、同时插入多条记录 （推荐）</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp1(id,NAME,salary)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">4</span>,<span class="string">&#x27;Jim&#x27;</span>,<span class="number">5000</span>),</span><br><span class="line">(<span class="number">5</span>,<span class="string">&#x27;TYT&#x27;</span>,<span class="number">5500</span>);</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<ul>
+<li><code>VALUES</code> 也可以写成 <code>VALUE</code> ，但是<code>VALUES</code>是标准写法。</li>
+<li>字符和日期型数据应包含在单引号中。</li>
+</ul>
+</blockquote>
+<h2 id="2-将查询结果插入到表中"><a href="#2-将查询结果插入到表中" class="headerlink" title="2. 将查询结果插入到表中"></a>2. 将查询结果插入到表中</h2><p>INSERT还可以将SELECT语句查询的结果插入到表中，此时不需要把每一条记录的值一个一个输入，只需要使用一条INSERT语句和一条SELECT语句组成的组合语句即可快速地从一个或多个表中向一个表中插入多行。</p>
+<ul>
+<li>基本语法格式如下：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 目标表名</span><br><span class="line">(tar_column1 [, tar_column2, …, tar_columnn])</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">(src_column1 [, src_column2, …, src_columnn])</span><br><span class="line"><span class="keyword">FROM</span> 源表名</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="keyword">condition</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 INSERT 语句中加入子查询</li>
+<li>不必书写 VALUES 子句</li>
+<li>子查询中的值列表应与 INSERT 子句中的列名对应</li>
+</ul>
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 查询的字段一定要与添加到的表的字段一一对应</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp1(id,NAME,salary,hire_date)</span><br><span class="line"><span class="keyword">SELECT</span> employee_id,last_name,salary,hire_date  </span><br><span class="line"><span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">WHERE</span> department_id <span class="keyword">IN</span> (<span class="number">60</span>,<span class="number">70</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="三、修改数据"><a href="#三、修改数据" class="headerlink" title="三、修改数据"></a>三、修改数据</h1><ul>
+<li>使用 UPDATE 语句更新数据。语法如下：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name</span><br><span class="line"><span class="keyword">SET</span> column1<span class="operator">=</span>value1, column2<span class="operator">=</span>value2, … , columnn<span class="operator">=</span>valuen</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="keyword">condition</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以一次更新多条数据</li>
+<li>如果需要回滚数据，需要保证在DML前，进行设置：<code>SET AUTOCOMMIT = FALSE</code></li>
+</ul>
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 使用 <span class="keyword">WHERE</span> 子句指定需要更新的数据</span><br><span class="line"><span class="keyword">UPDATE</span> employees</span><br><span class="line"><span class="keyword">SET</span> department_id <span class="operator">=</span> <span class="number">70</span></span><br><span class="line"><span class="keyword">WHERE</span> employee_id <span class="operator">=</span> <span class="number">113</span>;</span><br><span class="line"></span><br><span class="line"># 如果省略 <span class="keyword">WHERE</span> 子句，则表中的所有数据都将被更新</span><br><span class="line"><span class="keyword">UPDATE</span> copy_emp</span><br><span class="line"><span class="keyword">SET</span> department_id <span class="operator">=</span> <span class="number">110</span>;</span><br><span class="line"></span><br><span class="line"># 修改数据时，是可能存在不成功的情况的。（可能是由于约束的影响造成的）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="四、删除数据"><a href="#四、删除数据" class="headerlink" title="四、删除数据"></a>四、删除数据</h1><ul>
+<li>使用 DELETE 语句从表中删除数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> tabel_name </span><br><span class="line">[<span class="keyword">WHERE</span> <span class="keyword">condition</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 使用 <span class="keyword">WHERE</span> 子句删除指定的记录。</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> emp1</span><br><span class="line"><span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"># 如果省略 <span class="keyword">WHERE</span> 子句，则表中的全部数据将被删除</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> emp1;</span><br><span class="line"></span><br><span class="line"># 在删除数据时，也有可能因为约束的影响，导致删除失败</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>DML操作默认情况下，执行完以后都会自动提交数据。</li>
+<li>如果希望执行完以后不自动提交数据，则需要使用 <code>SET autocommit = FALSE</code>，详情可见 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51938362/article/details/127436559?csdn_share_tail=%7B%22type%22:%22blog%22,%22rType%22:%22article%22,%22rId%22:%22127436559%22,%22source%22:%22qq_51938362%22%7D">DCL中 COMMIT 与 ROLLBACK 的使用</a></li>
+</ul>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="http://example.com/posts/36b2021f.html">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "http://example.com/posts/36b2021f.html");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=SQL之玩转DML&amp;url=http://example.com/posts/36b2021f.html&amp;pic=https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                数据库
+                                <span class="tagsPageCount">14</span>
+                            </a>
+                        
+                            <a href="/tags/sql/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                sql
+                                <span class="tagsPageCount">10</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>SQL之玩转DML</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/posts/36b2021f.html">http://example.com/posts/36b2021f.html</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">划水艺术家</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/posts/106f1f3a.html">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">MySQL-变量、流程控制与游标</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/posts/442d16e2.html">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">MySQL-存储过程与函数</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/acrylic.png" onerror="this.onerror=null;this.src='/img/acrylic.png'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                tangyitao
+            </div>
+            <div class="author-info__description">这有关于<b>开发</b>、<b>技术</b>相关的问题和看法。<br>相信你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/tang-yt" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:tangyt2406@163.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-text">一、概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">二、插入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-VALUES%E7%9A%84%E6%96%B9%E5%BC%8F%E6%B7%BB%E5%8A%A0"><span class="toc-text">1. VALUES的方式添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B0%86%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E6%8F%92%E5%85%A5%E5%88%B0%E8%A1%A8%E4%B8%AD"><span class="toc-text">2. 将查询结果插入到表中</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="toc-text">三、修改数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-text">四、删除数据</span></a></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                    <img
+                        alt="DCL中COMMIT与ROLLBACK的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/b873a1b0.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                        DCL中COMMIT与ROLLBACK的使用
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                    <img
+                        alt="SpringBoot热部署"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815132418.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/75ee909c.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                        SpringBoot热部署
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/36b478da.html" title="Java经典排序">
+                    <img
+                        alt="Java经典排序"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143240.gif">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/36b478da.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/36b478da.html" title="Java经典排序">
+                        Java经典排序
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                    <img
+                        alt="Docker-Dockerfile"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/e3a7e431.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                        Docker-Dockerfile
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                    <img
+                        alt="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815125552.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/fe26ac5e.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                        谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/tang-yt" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="mailto:tangyt2406@163.com" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://music.163.com" rel="external nofollow noopener" title="网易云">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">服务</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://51.la/" title="51la统计" rel="noopener external nofollow noreferrer noopener">51la统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://tongji.baidu.com/" title="百度统计" rel="noopener external nofollow noreferrer noopener">百度统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://ql.tianli0.top/" title="TianliCDN" rel="noopener external nofollow noreferrer noopener">TianliCDN</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2021 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">tangyitao</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+    
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css">
+
+    
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script>
+
+    
+<script src="/lib/meting.min.js"></script>
+
+    <script>
+        var meting_api = "https://music.startly.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+    </script>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+    <div id="local-search">
+    <div class="search-dialog">
+        <nav class="search-nav">
+            <span class="search-dialog-title">搜索</span>
+            <button class="search-close-button">
+                <i class="fas fa-times"></i>
+            </button>
+        </nav>
+        <div id="loading-database">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <span>加载中</span>
+        </div>
+        <div class="search-wrap">
+            <div class="search-box">
+                <input class="search-box-input" placeholder="输入关键词快速查找" type="text" id="search-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+            </div>
+            <div id="loading-status"></div>
+            <div id="search-results"></div>
+        </div>
+    </div>
+    <div id="search-mask"></div>
+</div>
+    
+<link rel="stylesheet" href="/css/search/local-search.css">
+
+    
+<script src="/js/extend/search/local-search.js"></script>
+
+
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+</html>
+<script>const posts=["posts/b873a1b0.html","posts/75ee909c.html","posts/36b478da.html","posts/e3a7e431.html","posts/fe26ac5e.html","posts/d0edc1ed.html","posts/b6c3d8dd.html","posts/49fbbc1.html","posts/30ab1de7.html","posts/5696223f.html","posts/78beed92.html","posts/e770b956.html","posts/106f1f3a.html","posts/36b2021f.html","posts/442d16e2.html","posts/56431718.html","posts/72090044.html","posts/10c232a9.html","posts/7ec55fd4.html","posts/9acb5cb3.html","posts/689338cf.html","posts/78033e99.html","posts/7c236f69.html","posts/fdb654f7.html","posts/fde62576.html","posts/4906c062.html","posts/71d3dda2.html","posts/44d90ad5.html","posts/97b300c3.html","posts/2077d398.html","posts/b634f675.html","posts/5a112392.html","posts/d75d39a7.html","posts/6abf1536.html","posts/964f8f69.html","posts/dcd9e6db.html","posts/92a4644d.html","posts/1bdcf24b.html","posts/75330943.html","posts/f3c7bc8f.html","posts/839af433.html","posts/94962b3f.html","posts/7856357f.html","posts/2606c6a9.html","posts/91f012d1.html","posts/6c2ee665.html","posts/ee40a19d.html","posts/26f88c40.html","posts/a5005a49.html","posts/9542c7f4.html","posts/47d2f7a2.html","posts/bb085914.html","posts/4e57a7dc.html","posts/62f2aa05.html","posts/a6592200.html","posts/303fc3a3.html","posts/e15cda61.html","posts/917a39c3.html","posts/4369ac96.html","posts/7f6e5a2.html"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java数据结构-线性表 | 划水艺术家</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="划水艺术家">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="划水艺术家 一个分享技术与生活的博客">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2021-12-12 00:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":false,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null},"localsearch":{"preload":true,"path":"/search.xml"}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/docker/" style="font-size: 0.8rem; color: #d3d3d3">docker<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">容器<sup>2</sup></a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.8rem; color: #d3d3d3">运维<sup>3</sup></a>
+                        
+                            <a href="/tags/Linux/" style="font-size: 0.8rem; color: #d3d3d3">Linux<sup>3</sup></a>
+                        
+                            <a href="/tags/Java/" style="font-size: 0.8rem; color: #d3d3d3">Java<sup>31</sup></a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">后端<sup>22</sup></a>
+                        
+                            <a href="/tags/JavaWeb/" style="font-size: 0.8rem; color: #d3d3d3">JavaWeb<sup>4</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.8rem; color: #d3d3d3">数据库<sup>14</sup></a>
+                        
+                            <a href="/tags/redis/" style="font-size: 0.8rem; color: #d3d3d3">redis<sup>1</sup></a>
+                        
+                            <a href="/tags/sql/" style="font-size: 0.8rem; color: #d3d3d3">sql<sup>10</sup></a>
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">前端<sup>6</sup></a>
+                        
+                            <a href="/tags/vue/" style="font-size: 0.8rem; color: #d3d3d3">vue<sup>5</sup></a>
+                        
+                            <a href="/tags/javascript/" style="font-size: 0.8rem; color: #d3d3d3">javascript<sup>7</sup></a>
+                        
+                            <a href="/tags/SpringBoot/" style="font-size: 0.8rem; color: #d3d3d3">SpringBoot<sup>2</sup></a>
+                        
+                            <a href="/tags/spring/" style="font-size: 0.8rem; color: #d3d3d3">spring<sup>15</sup></a>
+                        
+                            <a href="/tags/ajax/" style="font-size: 0.8rem; color: #d3d3d3">ajax<sup>1</sup></a>
+                        
+                            <a href="/tags/json/" style="font-size: 0.8rem; color: #d3d3d3">json<sup>1</sup></a>
+                        
+                            <a href="/tags/jdbc/" style="font-size: 0.8rem; color: #d3d3d3">jdbc<sup>1</sup></a>
+                        
+                            <a href="/tags/flask/" style="font-size: 0.8rem; color: #d3d3d3">flask<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 0.8rem; color: #d3d3d3">微服务<sup>2</sup></a>
+                        
+                            <a href="/tags/python/" style="font-size: 0.8rem; color: #d3d3d3">python<sup>1</sup></a>
+                        
+                            <a href="/tags/Nacos/" style="font-size: 0.8rem; color: #d3d3d3">Nacos<sup>1</sup></a>
+                        
+                            <a href="/tags/mybatis/" style="font-size: 0.8rem; color: #d3d3d3">mybatis<sup>1</sup></a>
+                        
+                            <a href="/tags/nginx/" style="font-size: 0.8rem; color: #d3d3d3">nginx<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">服务器<sup>2</sup></a>
+                        
+                            <a href="/tags/html/" style="font-size: 0.8rem; color: #d3d3d3">html<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 0.8rem; color: #d3d3d3">消息队列<sup>1</sup></a>
+                        
+                            <a href="/tags/RabbitMQ/" style="font-size: 0.8rem; color: #d3d3d3">RabbitMQ<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.8rem; color: #d3d3d3">分布式<sup>1</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/gitee/" style="font-size: 0.8rem; color: #d3d3d3">gitee<sup>1</sup></a>
+                        
+                            <a href="/tags/github/" style="font-size: 0.8rem; color: #d3d3d3">github<sup>1</sup></a>
+                        
+                            <a href="/tags/mysql/" style="font-size: 0.8rem; color: #d3d3d3">mysql<sup>5</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.8rem; color: #d3d3d3">数据结构<sup>9</sup></a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.8rem; color: #d3d3d3">网络<sup>1</sup></a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.8rem; color: #d3d3d3">算法<sup>3</sup></a>
+                        
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 0.8rem; color: #d3d3d3">排序<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 0.8rem; color: #d3d3d3">图论<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/05/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/05</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/04/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/04</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/11/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/11</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">27</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+                    
+            <div class="console-btn-item" id="consoleMusic" onclick="acrylic.musicToggle()" title="音乐开关"><a class="music-switch"><i class="fas fa-music"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/docker/" style="font-size: 1em; color: #d3d3d3">docker
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">容器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1em; color: #d3d3d3">运维
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Linux/" style="font-size: 1em; color: #d3d3d3">Linux
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Java/" style="font-size: 1em; color: #d3d3d3">Java
+                        <sup>31</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">后端
+                        <sup>22</sup>
+                    </a>
+                
+                    <a href="/tags/JavaWeb/" style="font-size: 1em; color: #d3d3d3">JavaWeb
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1em; color: #d3d3d3">数据库
+                        <sup>14</sup>
+                    </a>
+                
+                    <a href="/tags/redis/" style="font-size: 1em; color: #d3d3d3">redis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/sql/" style="font-size: 1em; color: #d3d3d3">sql
+                        <sup>10</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">前端
+                        <sup>6</sup>
+                    </a>
+                
+                    <a href="/tags/vue/" style="font-size: 1em; color: #d3d3d3">vue
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/javascript/" style="font-size: 1em; color: #d3d3d3">javascript
+                        <sup>7</sup>
+                    </a>
+                
+                    <a href="/tags/SpringBoot/" style="font-size: 1em; color: #d3d3d3">SpringBoot
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/spring/" style="font-size: 1em; color: #d3d3d3">spring
+                        <sup>15</sup>
+                    </a>
+                
+                    <a href="/tags/ajax/" style="font-size: 1em; color: #d3d3d3">ajax
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/json/" style="font-size: 1em; color: #d3d3d3">json
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/jdbc/" style="font-size: 1em; color: #d3d3d3">jdbc
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/flask/" style="font-size: 1em; color: #d3d3d3">flask
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1em; color: #d3d3d3">微服务
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/python/" style="font-size: 1em; color: #d3d3d3">python
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Nacos/" style="font-size: 1em; color: #d3d3d3">Nacos
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mybatis/" style="font-size: 1em; color: #d3d3d3">mybatis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/nginx/" style="font-size: 1em; color: #d3d3d3">nginx
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">服务器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/html/" style="font-size: 1em; color: #d3d3d3">html
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1em; color: #d3d3d3">消息队列
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/RabbitMQ/" style="font-size: 1em; color: #d3d3d3">RabbitMQ
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1em; color: #d3d3d3">分布式
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/gitee/" style="font-size: 1em; color: #d3d3d3">gitee
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/github/" style="font-size: 1em; color: #d3d3d3">github
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mysql/" style="font-size: 1em; color: #d3d3d3">mysql
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1em; color: #d3d3d3">数据结构
+                        <sup>9</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1em; color: #d3d3d3">网络
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1em; color: #d3d3d3">算法
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1em; color: #d3d3d3">排序
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1em; color: #d3d3d3">图论
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">TBlog</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">Java数据结构-线性表</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="search-button">
+        <a class="site-page social-icon search" title="站内搜索"
+            href="javascript:void(0);" rel="external nofollow">
+            <i class="fas fa-magnifying-glass" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815142510.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/Java/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">Java</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">数据结构</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">Java数据结构-线性表</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2022-10-11T14:11:44+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为西安">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>西安</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>线性表是最基本、最简单、也是最常用的一种数据结构。一个线性表是n个具有相同特性的数据元素的有限序列。<br><strong>前驱元素：</strong><br>若A元素在B元素的前面，则称A为B的前驱元素<br><strong>后继元素：</strong><br>若B元素在A元素的后面，则称B为A的后继元素</p>
+<blockquote>
+<p><strong>线性表的特征：</strong><br>数据元素之间具有一种“一对一”的逻辑关系。</p>
+<ol>
+<li>第一个数据元素没有前驱，这个数据元素被称为头结点；</li>
+<li>最后一个数据元素没有后继，这个数据元素被称为尾结点；</li>
+<li>除了第一个和最后一个数据元素外，其他数据元素有且仅有一个前驱和一个后继。 如果把线性表用数学语言来定义，则可以表示为(a1,…ai-1,ai,ai+1,…an)，ai-1领先于ai,ai领先于ai+1，称ai-1是ai的前驱元素，ai+1是ai的后继元素</li>
+</ol>
+</blockquote>
+<p><strong>线性表的分类：</strong><br>线性表中数据存储的方式可以是顺序存储，也可以是链式存储，按照数据的存储方式不同，可以把线性表分为顺序表和链表。</p>
+<hr>
+<h1 id="二、顺序表实现"><a href="#二、顺序表实现" class="headerlink" title="二、顺序表实现"></a>二、顺序表实现</h1><p> 顺序表是计算机内存中以数组的形式保存的线性表，线性表的顺序存储是指用一组地址连续的存储单元，依次存储线性表中的各个元素，使得线性表中在逻辑结构上相邻的数据元素存储在相邻的物理存储单元中，即通过数据元素物理存储的相邻关系来反映数据元素之间逻辑上的相邻关系。<br> <img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143008.png" alt="  "><strong>顺序表API设计</strong><br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143010.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    顺序表的实现</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SequenceList</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Iterable</span>&lt;T&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 存储元素的数组</span></span><br><span class="line">    <span class="keyword">private</span> T[] elements;</span><br><span class="line">    <span class="comment">// 记录当前顺序表中的元素个数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> N;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SequenceList</span><span class="params">(<span class="type">int</span> capacity)</span>&#123;</span><br><span class="line">        <span class="comment">// 初始化数组</span></span><br><span class="line">        <span class="built_in">this</span>.elements = (T[]) <span class="keyword">new</span> <span class="title class_">Object</span>[capacity];</span><br><span class="line">        <span class="comment">// 初始化长度</span></span><br><span class="line">        <span class="built_in">this</span>.N = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将一个线性表置为空表</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">clear</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.N = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断当前线性表是否为空表</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> N == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取线性表的长度</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">length</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取指定位置的元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">(<span class="type">int</span> i)</span>&#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">return</span> elements[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向线型表中添加元素t</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(T t)</span>&#123;</span><br><span class="line">        <span class="comment">// 当前容量已不足，准备扩容，此处设定扩大 2 倍</span></span><br><span class="line">        <span class="keyword">if</span> (N == elements.length)&#123;</span><br><span class="line">            resize(<span class="number">2</span> * elements.length);</span><br><span class="line">        &#125;</span><br><span class="line">        elements[N++] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在 i 索引处插入元素t</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(<span class="type">int</span> i, T t)</span>&#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (N == elements.length)&#123;</span><br><span class="line">            resize(<span class="number">2</span> * elements.length);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 先把i索引处的元素及其后面的元素依次向后移动一位</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> N; index &gt; i; index--)&#123;</span><br><span class="line">            elements[index] = elements[index-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 再把t元素放到i索引处即可</span></span><br><span class="line">        elements[i] = t;</span><br><span class="line">        <span class="comment">// 元素个数+1</span></span><br><span class="line">        N ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除指定位置i处的元素，并返回该元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">remove</span><span class="params">(<span class="type">int</span> i)</span>&#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 记录索引i处的值</span></span><br><span class="line">        <span class="type">T</span> <span class="variable">current</span> <span class="operator">=</span> elements[i];</span><br><span class="line">        <span class="comment">// 索引i后面元素依次向前移动一位即可</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> i; index &lt; N - <span class="number">1</span>; index++)&#123;</span><br><span class="line">            elements[index] = elements[index + <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 元素个数-1</span></span><br><span class="line">        N --;</span><br><span class="line">        <span class="keyword">if</span> (N &lt; elements.length / <span class="number">4</span>)&#123;</span><br><span class="line">            resize(elements.length / <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> current;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找t元素第一次出现的位置</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">indexOf</span><span class="params">(T t)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (elements[i].equals(t))&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据参数newSize，重置 elements 的大小</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">resize</span><span class="params">(<span class="type">int</span> newSize)</span>&#123;</span><br><span class="line">        <span class="comment">// 定义一个临时数组，指向原数组</span></span><br><span class="line">        T[] temp = elements;</span><br><span class="line">        <span class="comment">// 创建新数组</span></span><br><span class="line">        elements = (T[])<span class="keyword">new</span> <span class="title class_">Object</span>[newSize];</span><br><span class="line">        <span class="comment">//把原数组的数据拷贝到新数组即可</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            elements[i] = temp[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	重写iterator方法 实现顺序表的遍历</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterator&lt;T&gt; <span class="title function_">iterator</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyIterator</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">MyIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> cusor;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">MyIterator</span><span class="params">()</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.cusor = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> cusor &lt; N;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> elements[cusor++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="三、链表"><a href="#三、链表" class="headerlink" title="三、链表"></a>三、链表</h1><p>链表是一种物理存储单元上非连续，非顺序的存储结构，其物理结构不能只管的表示数据元素的逻辑结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列的节点(链表中的每一个元素称为节点)组成，结点可以在运行时动态产生。</p>
+<p><strong>节点API设计</strong><br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143014.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">结点类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">	<span class="comment">// 存储数据</span></span><br><span class="line">	T item;</span><br><span class="line">	<span class="comment">// 下一个结点</span></span><br><span class="line">	Node next;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T item, Node next)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.item = item;</span><br><span class="line">		<span class="built_in">this</span>.next = next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-单向链表实现"><a href="#1-单向链表实现" class="headerlink" title="1.  单向链表实现"></a>1.  单向链表实现</h2><p>单向链表是链表的一种，它由多个结点组成，每个结点都由一个数据域和一个指针域组成，数据域用来存储数据，指针域用来指向其后继结点。链表的头结点的数据域不存储数据，指针域指向第一个真正存储数据的结点。<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143016.png" alt="  "><br><strong>单向链表API设计</strong></p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143018.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LinkList</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Iterable</span>&lt;T&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     结点类</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        <span class="comment">// 存储数据</span></span><br><span class="line">        T item;</span><br><span class="line">        <span class="comment">// 下一个结点</span></span><br><span class="line">        Node next;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T item, Node next)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.item = item;</span><br><span class="line">            <span class="built_in">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录头结点</span></span><br><span class="line">    <span class="keyword">private</span> Node head;</span><br><span class="line">    <span class="comment">// 记录链表的长度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> N;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LinkList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化头结点 头结点不存放值, 只记录下一节点的地址</span></span><br><span class="line">        <span class="built_in">this</span>.head = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="literal">null</span>,<span class="literal">null</span>);</span><br><span class="line">        <span class="comment">// 初始化元素个数</span></span><br><span class="line">        <span class="built_in">this</span>.N = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清空链表</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">clear</span><span class="params">()</span> &#123;</span><br><span class="line">        head.next = <span class="literal">null</span>;</span><br><span class="line">        <span class="built_in">this</span>.N = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取链表的长度</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">length</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断链表是否为空</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> N == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取指定位置 i 处 （i 从 0 开始）的元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 通过循环,从头结点开始往后找，依次找 i 次，就可以找到对应的元素</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; i; index++)&#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向链表中添加元素t</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(T t)</span> &#123;</span><br><span class="line">        <span class="comment">// 找到尾结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">while</span>(node.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 创建新结点，保存元素t</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(t, <span class="literal">null</span>);</span><br><span class="line">        <span class="comment">// 让当前最后一个结点指向新结点</span></span><br><span class="line">        node.next = newNode;</span><br><span class="line">        <span class="comment">// 元素的个数+1</span></span><br><span class="line">        N ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向指定位置 i 处 （i 从 0 开始），添加元素t</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(<span class="type">int</span> i, T t)</span> &#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 找到 i 位置前一个结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">pre</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; i; index++)&#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 找到 i 位置的结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">curr</span> <span class="operator">=</span> pre.next;</span><br><span class="line">        <span class="comment">// 创建新结点，并且新结点需要指向原来i位置的结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(t, curr);</span><br><span class="line">        <span class="comment">// 原来 i 位置的前一个节点指向新结点即可</span></span><br><span class="line">        pre.next = newNode;</span><br><span class="line">        <span class="comment">// 元素的个数+1</span></span><br><span class="line">        N ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除指定位置 i 处 （i 从 0 开始）的元素，并返回被删除的元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">remove</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 找到i位置的前一个节点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">pre</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; i; index++)&#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// i 位置的结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">curr</span> <span class="operator">=</span> pre.next;</span><br><span class="line">        <span class="comment">// 找到i位置的下一个结点</span></span><br><span class="line">        <span class="comment">// i位置的前一个结点指向 i位置的下一个结点</span></span><br><span class="line">        pre.next = curr.next;</span><br><span class="line">        <span class="comment">// 元素个数-1</span></span><br><span class="line">        N--;</span><br><span class="line">        <span class="keyword">return</span> curr.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找元素t在链表中第一次出现的位置</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">indexOf</span><span class="params">(T t)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (t == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 从头结点开始，依次找到每一个结点，取出item，和t比较，如果相同，就找到了</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; node.next != <span class="literal">null</span>; i++)&#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">            <span class="keyword">if</span> (t.equals(node.item))&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterator&lt;T&gt; <span class="title function_">iterator</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyIterator</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">MyIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Node node;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">MyIterator</span><span class="params">()</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.node = head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> node.next != <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">            <span class="keyword">return</span> node.item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-双向链表实现"><a href="#2-双向链表实现" class="headerlink" title="2. 双向链表实现"></a>2. 双向链表实现</h2><p>双向链表也叫双向表，是链表的一种，它由多个节点组成，每个结点都由一个数据域和两个指针域组成，数据域用来存储数据，其中一个指针域用来指向其后继结点，另一个指针域用来指向其前驱结点。链表的头结点的数据域不存储数据，指向前驱结点的指针域值为null，指向后继结点的指针域指向第一个真正存储数据的结点。</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143022.png" alt="  "><br>按照面向对象的思想，我们需要设计一个类，来描述结点这个事物。由于结点是属于链表的，所以我们把结点类作为链表类的一个内部类来实现。</p>
+<p><strong>结点API设计</strong></p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143024.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">结点类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 存储数据</span></span><br><span class="line">	<span class="keyword">public</span> T item;</span><br><span class="line">	<span class="comment">// 指向上一个结点</span></span><br><span class="line">	<span class="keyword">public</span> Node pre;</span><br><span class="line">	<span class="comment">// 指向下一个结点</span></span><br><span class="line">	<span class="keyword">public</span> Node next;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T item, Node pre, Node next)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.item = item;</span><br><span class="line">		<span class="built_in">this</span>.pre = pre;</span><br><span class="line">		<span class="built_in">this</span>.next = next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>双向链表API设计</strong><br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143027.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DoubleLinkList</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Iterable</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首结点</span></span><br><span class="line">    <span class="keyword">private</span> Node head;</span><br><span class="line">    <span class="comment">// 尾结点</span></span><br><span class="line">    <span class="keyword">private</span> Node last;</span><br><span class="line">    <span class="comment">// 链表的长度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> N;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 结点类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T item, Node pre, Node next)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.item = item;</span><br><span class="line">            <span class="built_in">this</span>.pre = pre;</span><br><span class="line">            <span class="built_in">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 存储数据</span></span><br><span class="line">        <span class="keyword">public</span> T item;</span><br><span class="line">        <span class="comment">// 指向上一个结点</span></span><br><span class="line">        <span class="keyword">public</span> Node pre;</span><br><span class="line">        <span class="comment">// 指向下一个结点</span></span><br><span class="line">        <span class="keyword">public</span> Node next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DoubleLinkList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化头结点和尾结点</span></span><br><span class="line">        <span class="built_in">this</span>.head = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="literal">null</span>,<span class="literal">null</span>,<span class="literal">null</span>);</span><br><span class="line">        <span class="built_in">this</span>.last = <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 初始化元素个数</span></span><br><span class="line">        <span class="built_in">this</span>.N = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清空链表</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">clear</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.head.next = <span class="literal">null</span>;</span><br><span class="line">        <span class="built_in">this</span>.head.pre = <span class="literal">null</span>;</span><br><span class="line">        <span class="built_in">this</span>.head.item = <span class="literal">null</span>;</span><br><span class="line">        <span class="built_in">this</span>.last = <span class="literal">null</span>;</span><br><span class="line">        <span class="built_in">this</span>.N = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取链表长度</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">length</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断链表是否为空</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> N == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取第一个元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getFirst</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">return</span> head.next.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取最后一个元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getLast</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">return</span> last.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 插入元素t</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(T t)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            <span class="comment">// 如果链表为空：</span></span><br><span class="line">            <span class="comment">// 创建新的结点</span></span><br><span class="line">            <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(t, head, <span class="literal">null</span>);</span><br><span class="line">            <span class="comment">// 让新节点赋值尾结点</span></span><br><span class="line">            last = newNode;</span><br><span class="line">            <span class="comment">// 让头结点指向尾结点</span></span><br><span class="line">            head.next = last;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果链表不为空</span></span><br><span class="line">            <span class="comment">// 创建新的结点</span></span><br><span class="line">            <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(t, last, <span class="literal">null</span>);</span><br><span class="line">            <span class="comment">// 尾结点指向新结点</span></span><br><span class="line">            last.next = newNode;</span><br><span class="line">            <span class="comment">// 让新节点赋值尾结点</span></span><br><span class="line">            last = newNode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 元素个数+1</span></span><br><span class="line">        N ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向指定位置 i 处 （i 从 0 开始），添加元素t</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(<span class="type">int</span> i,T t)</span>&#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 找到 i 位置的前一个结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">pre</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; i; index++)&#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 找到 i 位置的结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">curr</span> <span class="operator">=</span> pre.next;</span><br><span class="line">        <span class="comment">// 创建新结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(t, pre, curr);</span><br><span class="line">        <span class="comment">// 让 i 位置的前一个结点指向新结点</span></span><br><span class="line">        pre.next = newNode;</span><br><span class="line">        <span class="comment">// 让 i 位置的下一个结点指向新节点</span></span><br><span class="line">        curr.pre = newNode;</span><br><span class="line">        <span class="comment">// 元素个数+1</span></span><br><span class="line">        N ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取指定位置 i 处 （i 从 0 开始）的元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">(<span class="type">int</span> i)</span>&#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; i; index++)&#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 找到元素t在链表中第一次出现的位置</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">indexOf</span><span class="params">(T t)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (t == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; node.next != <span class="literal">null</span>; i++)&#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">            <span class="keyword">if</span> (t.equals(node.item))&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除指定位置 i 处 （i 从 0 开始）的元素，并返回被删除的元素</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">remove</span><span class="params">(<span class="type">int</span> i)</span>&#123;</span><br><span class="line">        <span class="comment">// 安全性校验</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= N)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 找到i位置的前一个结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">pre</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; i; index++)&#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 找到 i 位置的结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">curr</span> <span class="operator">=</span> pre.next;</span><br><span class="line">        <span class="comment">// 让 i 位置的前一个结点指向 i 位置的下一个结点</span></span><br><span class="line">        pre.next = curr.next;</span><br><span class="line">        <span class="comment">// 让 i 位置的下一个结点指向 i 位置的前一个结点</span></span><br><span class="line">        curr.next.pre = pre;</span><br><span class="line">        <span class="comment">// 元素的个数-1</span></span><br><span class="line">        N --;</span><br><span class="line">        <span class="keyword">return</span> curr.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterator&lt;T&gt; <span class="title function_">iterator</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyIterator</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">MyIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Node node;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">MyIterator</span><span class="params">()</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.node = head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> node.next != <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">            <span class="keyword">return</span> node.item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="3-单链表反转问题"><a href="#3-单链表反转问题" class="headerlink" title="3. 单链表反转问题"></a>3. 单链表反转问题</h2><p>单链表反转，这里介绍4种方法。</p>
+<h3 id="①-通过栈实现"><a href="#①-通过栈实现" class="headerlink" title="① 通过栈实现"></a>① 通过栈实现</h3><blockquote>
+<h2 id="基本思想：1-先让链表所有结点入栈2-依次出栈，再使用尾插法重新插入"><a href="#基本思想：1-先让链表所有结点入栈2-依次出栈，再使用尾插法重新插入" class="headerlink" title="基本思想：1. 先让链表所有结点入栈2. 依次出栈，再使用尾插法重新插入"></a><strong>基本思想：</strong><br>1. 先让链表所有结点入栈<br>2. 依次出栈，再使用尾插法重新插入</h2><p>这种方法思路简单易于理解。但空间复杂度与时间复杂度均为o(n)，不建议使用</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverse</span><span class="params">()</span>&#123;</span><br><span class="line">	LinkedList&lt;Node&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">	<span class="type">Node</span> <span class="variable">cur</span> <span class="operator">=</span> head.next;</span><br><span class="line">	<span class="comment">// 链表所有结点入栈</span></span><br><span class="line">	<span class="keyword">while</span> (cur != <span class="literal">null</span>)&#123;</span><br><span class="line">		list.add(cur);</span><br><span class="line">		cur = cur.next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 使用尾插法重新插入</span></span><br><span class="line">	<span class="type">Node</span> <span class="variable">tail</span> <span class="operator">=</span> head;</span><br><span class="line">	<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> list.size() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (index &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="type">Node</span> <span class="variable">pop</span> <span class="operator">=</span> list.get(index --);</span><br><span class="line">		tail.next = pop;</span><br><span class="line">		tail = pop;</span><br><span class="line">		tail.next = <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="②-头插法"><a href="#②-头插法" class="headerlink" title="② 头插法"></a>② 头插法</h3><p>大致思想就是把结点依次放到头节点的下一个位置。为什么头插可以实现链表的反转呢？试想一下，我们把链表的每个节点（头节点除外），按顺序一个一个地放到头节点的后面，那么不就可以实现链表的反转了吗？（如图所示）<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143032.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverse</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">Node</span> <span class="variable">cur</span> <span class="operator">=</span> head.next;</span><br><span class="line">	head.next = <span class="literal">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (cur != <span class="literal">null</span>)&#123;</span><br><span class="line">		<span class="comment">// 临时变量存储下一个元素</span></span><br><span class="line">		<span class="type">Node</span> <span class="variable">temp</span> <span class="operator">=</span> cur.next;</span><br><span class="line">		<span class="comment">// 开始头插</span></span><br><span class="line">		cur.next = head.next;</span><br><span class="line">		head.next = cur;</span><br><span class="line">		cur = temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="③-三指针法"><a href="#③-三指针法" class="headerlink" title="③ 三指针法"></a>③ 三指针法</h3><p><strong>三指针：</strong></p>
+<ul>
+<li>Node cur : 记录当前的节点;</li>
+<li>Node pre : 记录当前节点的上一个节点;</li>
+<li>Node next: 记录当前节点的下一个节点（即剩下的节点）;</li>
+</ul>
+<p>在链表反转的过程中，我们只要让当前节点 cur 指向上一个节点 pre ，是不是就大体上实现了这两个节点的反转了?<br>当我们 cur 指向pre 后，我们让上一个节点 pre 的位置移到 cur 这里，再把 cur 移到它下一个节点，那怎么记录它下一个节点呢，我们之前不是用 next来记录的吗，就让 cur 移到 next 的位置就行了。<br>这样依次循环下去，最后再把头节点指向 pre 就行了，就实现了链表的反转了。</p>
+<p>我先将代码放在这里，等会再结合代码做个案例讲解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverse</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">Node</span> <span class="variable">pre</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	<span class="type">Node</span> <span class="variable">cur</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	<span class="type">Node</span> <span class="variable">next</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	cur = head.next;</span><br><span class="line">	<span class="keyword">while</span> (cur != <span class="literal">null</span>)&#123;</span><br><span class="line">		next = cur.next;</span><br><span class="line">		cur.next = pre;</span><br><span class="line">		pre = cur;</span><br><span class="line">		cur = next;</span><br><span class="line">	&#125;</span><br><span class="line">	head.next = pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>案例：</strong><br>现有一组链表，如下所示：<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143038.png" alt="  "></p>
+<p>首先，我们将 cur 赋值为 head.next 即 1 处。<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143040.png" alt="  "><br>现在开始进入第一次循环，经过第一次循环后，链表就变为了以下情况<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143042.png" alt="  "><br>进行第二次循环，链表情况如下<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143044.png" alt="  "><br>现在最后一次循环，链表变为如下<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143047.png" alt="  "><br>再执行最后一步，让 head.next 指向 pre<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143049.png" alt="  "><br>到这里，反转就结束了</p>
+</blockquote>
+<h3 id="④-递归"><a href="#④-递归" class="headerlink" title="④ 递归"></a>④ 递归</h3><blockquote>
+<p><strong>基本思想：</strong></p>
+<ol>
+<li>反转入口从 head.next 开始，通过递归，如果当前结点有下一个结点，就继续递归调用反转函数，直到最后一个结点，让头结点指向最后一个结点。</li>
+<li>其他结点：让后一个结点指向前一个结点</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用来反转整个链表</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">reverse</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="comment">// 判断当前链表是否为空链表，如果是空链表，则结束运行，如果不是，则调用重载的reverse方法完成反转</span></span><br><span class="line">	<span class="keyword">if</span> (isEmpty())</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	reverse(head.next);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反转指定的结点 curr，并把反转后的结点返回</span></span><br><span class="line"><span class="keyword">public</span> Node <span class="title function_">reverse</span><span class="params">(Node curr)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (curr.next == <span class="literal">null</span>)&#123;</span><br><span class="line">		head.next = curr;</span><br><span class="line">		<span class="keyword">return</span> curr;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 递归的反转当前结点curr的下一个结点；返回值就是链表反转后，当前结点的上一个结点</span></span><br><span class="line">	<span class="type">Node</span> <span class="variable">pre</span> <span class="operator">=</span> reverse(curr.next);</span><br><span class="line">	<span class="comment">// 让返回的结点的下一个结点变为当前结点curr；</span></span><br><span class="line">	pre.next = curr;</span><br><span class="line">	<span class="comment">// 把当前结点的下一个结点变为null</span></span><br><span class="line">	curr.next = <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">return</span> curr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>个人感觉最好理解的还是使用栈以及头插法最容易理解，三指法是性能最佳的，递归是最难理解的。</p>
+<h2 id="4-快慢指针问题"><a href="#4-快慢指针问题" class="headerlink" title="4. 快慢指针问题"></a>4. 快慢指针问题</h2><p>快慢指针指的是定义两个指针，这两个指针的移动速度一快一慢，以此来制造出自己想要的差值，这个差值可以让我们找到链表上相应的结点。一般情况下，快指针的移动步长为慢指针的两倍。</p>
+<h3 id="①-中间值问题"><a href="#①-中间值问题" class="headerlink" title="① 中间值问题"></a>① 中间值问题</h3><p>利用快慢指针，我们把一个链表看成一个跑道，假设a的速度是b的两倍，那么当a跑完全程后，b刚好跑一半，依次来达到找到中间结点的目的。<br>如下图：最开始，slow和fast指针都指向链表的第一个结点，然后slow每次移动一个指针，fast每次移动两个指针<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143100.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FastSlowTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 创建结点</span></span><br><span class="line">        Node&lt;String&gt; first = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;aa&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; second = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;bb&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; third = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;cc&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; fourth = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;dd&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; fifth = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;ee&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; six = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;ff&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; seven = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;gg&quot;</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 完成结点之间的指向</span></span><br><span class="line">        first.next = second;</span><br><span class="line">        second.next = third;</span><br><span class="line">        third.next = fourth;</span><br><span class="line">        fourth.next = fifth;</span><br><span class="line">        fifth.next = six;</span><br><span class="line">        six.next = seven;</span><br><span class="line">        <span class="comment">// 查找中间值</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">mid</span> <span class="operator">=</span> getMid(first);</span><br><span class="line">        System.out.println(<span class="string">&quot;中间值为：&quot;</span>+mid);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> first 链表的首结点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 链表的中间结点的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getMid</span><span class="params">(Node&lt;String&gt; first)</span> &#123;</span><br><span class="line">        <span class="comment">// 定义快慢指针</span></span><br><span class="line">        Node&lt;String&gt; fast = first;</span><br><span class="line">        Node&lt;String&gt; slow = first;</span><br><span class="line">        <span class="comment">//使用两个指针遍历链表，当快指针指向的结点没有下一个结点了，就可以结束了，结束之后，慢指针指向的结点就是中间值</span></span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">null</span> &amp;&amp; fast.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 变化fast的值和slow的值</span></span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 结点类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span>&lt;T&gt; &#123;</span><br><span class="line">        <span class="comment">// 存储数据</span></span><br><span class="line">        T item;</span><br><span class="line">        <span class="comment">// 下一个结点</span></span><br><span class="line">        Node next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T item, Node next)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.item = item;</span><br><span class="line">            <span class="built_in">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="②-判断单向链表是否有环"><a href="#②-判断单向链表是否有环" class="headerlink" title="② 判断单向链表是否有环"></a>② 判断单向链表是否有环</h3><p>使用快慢指针的思想，还是把链表比作一条跑道，链表中有环，那么这条跑道就是一条圆环跑道，在一条圆环跑道中，两个人有速度差，那么迟早两个人会相遇，只要相遇那么就说明有环。<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143106.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CircleListCheckTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 创建结点</span></span><br><span class="line">        Node&lt;String&gt; first = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;aa&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; second = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;bb&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; third = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;cc&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; fourth = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;dd&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; fifth = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;ee&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; six = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;ff&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">        Node&lt;String&gt; seven = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;String&gt;(<span class="string">&quot;gg&quot;</span>, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 完成结点之间的指向</span></span><br><span class="line">        first.next = second;</span><br><span class="line">        second.next = third;</span><br><span class="line">        third.next = fourth;</span><br><span class="line">        fourth.next = fifth;</span><br><span class="line">        fifth.next = six;</span><br><span class="line">        six.next = seven;</span><br><span class="line">        <span class="comment">// 产生环</span></span><br><span class="line">        seven.next = third;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断链表是否有环</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">circle</span> <span class="operator">=</span> isCircle(first);</span><br><span class="line">        System.out.println(<span class="string">&quot;first链表中是否有环：&quot;</span> + circle);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断链表中是否有环</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> first 链表首结点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> ture为有环，false为无环</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">isCircle</span><span class="params">(Node&lt;String&gt; first)</span> &#123;</span><br><span class="line">        <span class="comment">// 定义快慢指针</span></span><br><span class="line">        Node&lt;String&gt; fast = first;</span><br><span class="line">        Node&lt;String&gt; slow = first;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历链表，如果快慢指针指向了同一个结点，那么证明有环</span></span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">null</span> &amp;&amp; fast.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 变换fast和slow</span></span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (fast.equals(slow))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 结点类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span>&lt;T&gt; &#123;</span><br><span class="line">        <span class="comment">// 存储数据</span></span><br><span class="line">        T item;</span><br><span class="line">        <span class="comment">// 下一个结点</span></span><br><span class="line">        Node next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T item, Node next)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.item = item;</span><br><span class="line">            <span class="built_in">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-循环链表问题"><a href="#5-循环链表问题" class="headerlink" title="5. 循环链表问题"></a>5. 循环链表问题</h2><p>循环链表，顾名思义，链表整体要形成一个圆环状，在单向链表中，最后一个结点的指针为null，不指向任何结点，因为没有下一个元素了。要实现循环链表，我们只需要让单向链表的最后一个结点的指针指向头结点即可。</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143110.png" alt="  "></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// 构建节点</span></span><br><span class="line">		Node&lt;Integer&gt; first = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;Integer&gt;(<span class="number">1</span>,<span class="literal">null</span>);</span><br><span class="line">		Node&lt;Integer&gt; second = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;Integer&gt;(<span class="number">2</span>,<span class="literal">null</span>);</span><br><span class="line">		Node&lt;Integer&gt; third = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;Integer&gt;(<span class="number">3</span>,<span class="literal">null</span>);</span><br><span class="line">		Node&lt;Integer&gt; fourth = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;Integer&gt;(4null);</span><br><span class="line">		Node&lt;Integer&gt; fifth = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;Integer&gt;(5null;</span><br><span class="line">		Node&lt;Integer&gt; sixth = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;Integer&gt;(6null);</span><br><span class="line">		Node&lt;Integer&gt; seventh = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;Integer&gt;(7null);</span><br><span class="line">		                                </span><br><span class="line">		<span class="comment">// 构建单链表</span></span><br><span class="line">		first.next = second;</span><br><span class="line">		second.next = third;</span><br><span class="line">		third.next = fourth;</span><br><span class="line">		fourth.next = fifth;</span><br><span class="line">		fifth.next = sixth;</span><br><span class="line">		sixth.next = seventh;</span><br><span class="line">		                                </span><br><span class="line">		<span class="comment">// 构建循环链表，让最后一个结点指向第一个结点</span></span><br><span class="line">		seventh.next = firth;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="①-约瑟夫问题"><a href="#①-约瑟夫问题" class="headerlink" title="① 约瑟夫问题"></a>① 约瑟夫问题</h3><p>已知 n 个人（以编号 1，2，3，…，n 分别表示）围坐在一张圆桌周围，从编号为 k 的人开始顺时针报数，数到 m 的那个人出列；他的下一个人又从 1 还是顺时针开始报数，数到 m 的那个人又出列；依次重复下去，要求找到最后出列的那个人?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JosephTest</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解决约瑟夫问题</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> peopleCount 人总数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> start  从谁开始 取值范围 [1, peopleCount]</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> m  报数报到几</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 最后出列的人的号数 取值范围 [1, peopleCount]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">josephSolve</span><span class="params">(<span class="type">int</span> peopleCount, <span class="type">int</span> start, <span class="type">int</span> m)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建循环链表，包含 peopleCount 个结点，分别存储 1 ~ peopleCount 之间的值</span></span><br><span class="line">        <span class="comment">// 用来记录头结点</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">head</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 使用尾插法建立循环链表</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">tail</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= peopleCount; i++)&#123;</span><br><span class="line">            <span class="comment">// 如果是第一个结点</span></span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">1</span>)&#123;</span><br><span class="line">                head = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;&gt;(i,<span class="literal">null</span>);</span><br><span class="line">                tail = head;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 如果不是第一个结点</span></span><br><span class="line">            <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>&lt;&gt;(i, <span class="literal">null</span>);</span><br><span class="line">            tail.next = newNode;</span><br><span class="line">            tail = newNode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 建立循环</span></span><br><span class="line">        tail.next = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 记录每次遍历拿到的结点，从第 start 个人开始</span></span><br><span class="line">        Node&lt;Integer&gt; node = head;</span><br><span class="line">        <span class="keyword">while</span> (-- start &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// count计数器，模拟报数</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 记录当前结点的上一个结点</span></span><br><span class="line">        <span class="comment">// 遍历循环链表</span></span><br><span class="line">        Node&lt;Integer&gt; last = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(node != node.next)&#123;</span><br><span class="line">            <span class="comment">// 模拟报数</span></span><br><span class="line">            count ++;</span><br><span class="line">            <span class="keyword">if</span> (count == m)&#123;</span><br><span class="line">                <span class="comment">// 如果是 m ，则把当前结点删除调用，打印当前结点，重置 count=0，让当前结点node后移</span></span><br><span class="line">                last.next = node.next;</span><br><span class="line">                System.out.print(node.item + <span class="string">&quot;,&quot;</span>);</span><br><span class="line">                count = <span class="number">0</span>;</span><br><span class="line">                node = node.next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//如果不是m，让last变为当前结点，让当前结点后移；</span></span><br><span class="line">                last = node;</span><br><span class="line">                node = node.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> josephSolve(<span class="number">5</span>, <span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">        <span class="comment">//打印最后一个元素</span></span><br><span class="line">        System.out.println(<span class="string">&quot;\n\n 最后出列的人为： &quot;</span> + k);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 结点类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span>&lt;T&gt; &#123;</span><br><span class="line">        <span class="comment">// 存储数据</span></span><br><span class="line">        T item;</span><br><span class="line">        <span class="comment">// 下一个结点</span></span><br><span class="line">        Node next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T item, Node next)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.item = item;</span><br><span class="line">            <span class="built_in">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="http://example.com/posts/fde62576.html">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "http://example.com/posts/fde62576.html");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=Java数据结构-线性表&amp;url=http://example.com/posts/fde62576.html&amp;pic=https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815142510.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/Java/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                Java
+                                <span class="tagsPageCount">31</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                数据结构
+                                <span class="tagsPageCount">9</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>Java数据结构-线性表</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/posts/fde62576.html">http://example.com/posts/fde62576.html</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">划水艺术家</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/posts/fdb654f7.html">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">Java数据结构-树</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/posts/4906c062.html">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">Java数据结构-栈与队列</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/acrylic.png" onerror="this.onerror=null;this.src='/img/acrylic.png'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                tangyitao
+            </div>
+            <div class="author-info__description">这有关于<b>开发</b>、<b>技术</b>相关的问题和看法。<br>相信你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/tang-yt" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:tangyt2406@163.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%AE%9E%E7%8E%B0"><span class="toc-text">二、顺序表实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%93%BE%E8%A1%A8"><span class="toc-text">三、链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0"><span class="toc-text">1.  单向链表实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0"><span class="toc-text">2. 双向链表实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8F%8D%E8%BD%AC%E9%97%AE%E9%A2%98"><span class="toc-text">3. 单链表反转问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E9%80%9A%E8%BF%87%E6%A0%88%E5%AE%9E%E7%8E%B0"><span class="toc-text">① 通过栈实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%EF%BC%9A1-%E5%85%88%E8%AE%A9%E9%93%BE%E8%A1%A8%E6%89%80%E6%9C%89%E7%BB%93%E7%82%B9%E5%85%A5%E6%A0%882-%E4%BE%9D%E6%AC%A1%E5%87%BA%E6%A0%88%EF%BC%8C%E5%86%8D%E4%BD%BF%E7%94%A8%E5%B0%BE%E6%8F%92%E6%B3%95%E9%87%8D%E6%96%B0%E6%8F%92%E5%85%A5"><span class="toc-text">基本思想：1. 先让链表所有结点入栈2. 依次出栈，再使用尾插法重新插入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E5%A4%B4%E6%8F%92%E6%B3%95"><span class="toc-text">② 头插法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2-%E4%B8%89%E6%8C%87%E9%92%88%E6%B3%95"><span class="toc-text">③ 三指针法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A3-%E9%80%92%E5%BD%92"><span class="toc-text">④ 递归</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98"><span class="toc-text">4. 快慢指针问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E4%B8%AD%E9%97%B4%E5%80%BC%E9%97%AE%E9%A2%98"><span class="toc-text">① 中间值问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E5%88%A4%E6%96%AD%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E6%9C%89%E7%8E%AF"><span class="toc-text">② 判断单向链表是否有环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98"><span class="toc-text">5. 循环链表问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98"><span class="toc-text">① 约瑟夫问题</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                    <img
+                        alt="DCL中COMMIT与ROLLBACK的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/b873a1b0.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                        DCL中COMMIT与ROLLBACK的使用
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                    <img
+                        alt="SpringBoot热部署"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815132418.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/75ee909c.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                        SpringBoot热部署
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/36b478da.html" title="Java经典排序">
+                    <img
+                        alt="Java经典排序"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143240.gif">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/36b478da.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/36b478da.html" title="Java经典排序">
+                        Java经典排序
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                    <img
+                        alt="Docker-Dockerfile"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/e3a7e431.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                        Docker-Dockerfile
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                    <img
+                        alt="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815125552.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/fe26ac5e.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                        谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/tang-yt" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="mailto:tangyt2406@163.com" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://music.163.com" rel="external nofollow noopener" title="网易云">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">服务</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://51.la/" title="51la统计" rel="noopener external nofollow noreferrer noopener">51la统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://tongji.baidu.com/" title="百度统计" rel="noopener external nofollow noreferrer noopener">百度统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://ql.tianli0.top/" title="TianliCDN" rel="noopener external nofollow noreferrer noopener">TianliCDN</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2021 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">tangyitao</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+    
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css">
+
+    
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script>
+
+    
+<script src="/lib/meting.min.js"></script>
+
+    <script>
+        var meting_api = "https://music.startly.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+    </script>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+    <div id="local-search">
+    <div class="search-dialog">
+        <nav class="search-nav">
+            <span class="search-dialog-title">搜索</span>
+            <button class="search-close-button">
+                <i class="fas fa-times"></i>
+            </button>
+        </nav>
+        <div id="loading-database">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <span>加载中</span>
+        </div>
+        <div class="search-wrap">
+            <div class="search-box">
+                <input class="search-box-input" placeholder="输入关键词快速查找" type="text" id="search-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+            </div>
+            <div id="loading-status"></div>
+            <div id="search-results"></div>
+        </div>
+    </div>
+    <div id="search-mask"></div>
+</div>
+    
+<link rel="stylesheet" href="/css/search/local-search.css">
+
+    
+<script src="/js/extend/search/local-search.js"></script>
+
+
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+</html>
+<script>const posts=["posts/b873a1b0.html","posts/75ee909c.html","posts/36b478da.html","posts/e3a7e431.html","posts/fe26ac5e.html","posts/d0edc1ed.html","posts/b6c3d8dd.html","posts/49fbbc1.html","posts/30ab1de7.html","posts/5696223f.html","posts/78beed92.html","posts/e770b956.html","posts/106f1f3a.html","posts/36b2021f.html","posts/442d16e2.html","posts/56431718.html","posts/72090044.html","posts/10c232a9.html","posts/7ec55fd4.html","posts/9acb5cb3.html","posts/689338cf.html","posts/78033e99.html","posts/7c236f69.html","posts/fdb654f7.html","posts/fde62576.html","posts/4906c062.html","posts/71d3dda2.html","posts/44d90ad5.html","posts/97b300c3.html","posts/2077d398.html","posts/b634f675.html","posts/5a112392.html","posts/d75d39a7.html","posts/6abf1536.html","posts/964f8f69.html","posts/dcd9e6db.html","posts/92a4644d.html","posts/1bdcf24b.html","posts/75330943.html","posts/f3c7bc8f.html","posts/839af433.html","posts/94962b3f.html","posts/7856357f.html","posts/2606c6a9.html","posts/91f012d1.html","posts/6c2ee665.html","posts/ee40a19d.html","posts/26f88c40.html","posts/a5005a49.html","posts/9542c7f4.html","posts/47d2f7a2.html","posts/bb085914.html","posts/4e57a7dc.html","posts/62f2aa05.html","posts/a6592200.html","posts/303fc3a3.html","posts/e15cda61.html","posts/917a39c3.html","posts/4369ac96.html","posts/7f6e5a2.html"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>

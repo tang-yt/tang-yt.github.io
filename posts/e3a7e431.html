@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docker-Dockerfile | 划水艺术家</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="划水艺术家">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="划水艺术家 一个分享技术与生活的博客">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2021-12-12 00:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":false,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null},"localsearch":{"preload":true,"path":"/search.xml"}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/docker/" style="font-size: 0.8rem; color: #d3d3d3">docker<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">容器<sup>2</sup></a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.8rem; color: #d3d3d3">运维<sup>3</sup></a>
+                        
+                            <a href="/tags/Linux/" style="font-size: 0.8rem; color: #d3d3d3">Linux<sup>3</sup></a>
+                        
+                            <a href="/tags/Java/" style="font-size: 0.8rem; color: #d3d3d3">Java<sup>31</sup></a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">后端<sup>22</sup></a>
+                        
+                            <a href="/tags/JavaWeb/" style="font-size: 0.8rem; color: #d3d3d3">JavaWeb<sup>4</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.8rem; color: #d3d3d3">数据库<sup>14</sup></a>
+                        
+                            <a href="/tags/redis/" style="font-size: 0.8rem; color: #d3d3d3">redis<sup>1</sup></a>
+                        
+                            <a href="/tags/sql/" style="font-size: 0.8rem; color: #d3d3d3">sql<sup>10</sup></a>
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">前端<sup>6</sup></a>
+                        
+                            <a href="/tags/vue/" style="font-size: 0.8rem; color: #d3d3d3">vue<sup>5</sup></a>
+                        
+                            <a href="/tags/javascript/" style="font-size: 0.8rem; color: #d3d3d3">javascript<sup>7</sup></a>
+                        
+                            <a href="/tags/SpringBoot/" style="font-size: 0.8rem; color: #d3d3d3">SpringBoot<sup>2</sup></a>
+                        
+                            <a href="/tags/spring/" style="font-size: 0.8rem; color: #d3d3d3">spring<sup>15</sup></a>
+                        
+                            <a href="/tags/ajax/" style="font-size: 0.8rem; color: #d3d3d3">ajax<sup>1</sup></a>
+                        
+                            <a href="/tags/json/" style="font-size: 0.8rem; color: #d3d3d3">json<sup>1</sup></a>
+                        
+                            <a href="/tags/jdbc/" style="font-size: 0.8rem; color: #d3d3d3">jdbc<sup>1</sup></a>
+                        
+                            <a href="/tags/flask/" style="font-size: 0.8rem; color: #d3d3d3">flask<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 0.8rem; color: #d3d3d3">微服务<sup>2</sup></a>
+                        
+                            <a href="/tags/python/" style="font-size: 0.8rem; color: #d3d3d3">python<sup>1</sup></a>
+                        
+                            <a href="/tags/Nacos/" style="font-size: 0.8rem; color: #d3d3d3">Nacos<sup>1</sup></a>
+                        
+                            <a href="/tags/mybatis/" style="font-size: 0.8rem; color: #d3d3d3">mybatis<sup>1</sup></a>
+                        
+                            <a href="/tags/nginx/" style="font-size: 0.8rem; color: #d3d3d3">nginx<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">服务器<sup>2</sup></a>
+                        
+                            <a href="/tags/html/" style="font-size: 0.8rem; color: #d3d3d3">html<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 0.8rem; color: #d3d3d3">消息队列<sup>1</sup></a>
+                        
+                            <a href="/tags/RabbitMQ/" style="font-size: 0.8rem; color: #d3d3d3">RabbitMQ<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.8rem; color: #d3d3d3">分布式<sup>1</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/gitee/" style="font-size: 0.8rem; color: #d3d3d3">gitee<sup>1</sup></a>
+                        
+                            <a href="/tags/github/" style="font-size: 0.8rem; color: #d3d3d3">github<sup>1</sup></a>
+                        
+                            <a href="/tags/mysql/" style="font-size: 0.8rem; color: #d3d3d3">mysql<sup>5</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.8rem; color: #d3d3d3">数据结构<sup>9</sup></a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.8rem; color: #d3d3d3">网络<sup>1</sup></a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.8rem; color: #d3d3d3">算法<sup>3</sup></a>
+                        
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 0.8rem; color: #d3d3d3">排序<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 0.8rem; color: #d3d3d3">图论<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/05/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/05</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/04/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/04</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/11/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/11</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">27</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+                    
+            <div class="console-btn-item" id="consoleMusic" onclick="acrylic.musicToggle()" title="音乐开关"><a class="music-switch"><i class="fas fa-music"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/docker/" style="font-size: 1em; color: #d3d3d3">docker
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">容器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1em; color: #d3d3d3">运维
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Linux/" style="font-size: 1em; color: #d3d3d3">Linux
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Java/" style="font-size: 1em; color: #d3d3d3">Java
+                        <sup>31</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">后端
+                        <sup>22</sup>
+                    </a>
+                
+                    <a href="/tags/JavaWeb/" style="font-size: 1em; color: #d3d3d3">JavaWeb
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1em; color: #d3d3d3">数据库
+                        <sup>14</sup>
+                    </a>
+                
+                    <a href="/tags/redis/" style="font-size: 1em; color: #d3d3d3">redis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/sql/" style="font-size: 1em; color: #d3d3d3">sql
+                        <sup>10</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">前端
+                        <sup>6</sup>
+                    </a>
+                
+                    <a href="/tags/vue/" style="font-size: 1em; color: #d3d3d3">vue
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/javascript/" style="font-size: 1em; color: #d3d3d3">javascript
+                        <sup>7</sup>
+                    </a>
+                
+                    <a href="/tags/SpringBoot/" style="font-size: 1em; color: #d3d3d3">SpringBoot
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/spring/" style="font-size: 1em; color: #d3d3d3">spring
+                        <sup>15</sup>
+                    </a>
+                
+                    <a href="/tags/ajax/" style="font-size: 1em; color: #d3d3d3">ajax
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/json/" style="font-size: 1em; color: #d3d3d3">json
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/jdbc/" style="font-size: 1em; color: #d3d3d3">jdbc
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/flask/" style="font-size: 1em; color: #d3d3d3">flask
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1em; color: #d3d3d3">微服务
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/python/" style="font-size: 1em; color: #d3d3d3">python
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Nacos/" style="font-size: 1em; color: #d3d3d3">Nacos
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mybatis/" style="font-size: 1em; color: #d3d3d3">mybatis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/nginx/" style="font-size: 1em; color: #d3d3d3">nginx
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">服务器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/html/" style="font-size: 1em; color: #d3d3d3">html
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1em; color: #d3d3d3">消息队列
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/RabbitMQ/" style="font-size: 1em; color: #d3d3d3">RabbitMQ
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1em; color: #d3d3d3">分布式
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/gitee/" style="font-size: 1em; color: #d3d3d3">gitee
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/github/" style="font-size: 1em; color: #d3d3d3">github
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mysql/" style="font-size: 1em; color: #d3d3d3">mysql
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1em; color: #d3d3d3">数据结构
+                        <sup>9</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1em; color: #d3d3d3">网络
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1em; color: #d3d3d3">算法
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1em; color: #d3d3d3">排序
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1em; color: #d3d3d3">图论
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">TBlog</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">Docker-Dockerfile</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="search-button">
+        <a class="site-page social-icon search" title="站内搜索"
+            href="javascript:void(0);" rel="external nofollow">
+            <i class="fas fa-magnifying-glass" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/docker/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">docker</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/%E5%AE%B9%E5%99%A8/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">容器</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/%E8%BF%90%E7%BB%B4/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">运维</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/Linux/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">Linux</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">Docker-Dockerfile</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2023-05-15T13:29:12+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为西安">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>西安</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h1 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h1><h2 id="1-什么是Dockerfile"><a href="#1-什么是Dockerfile" class="headerlink" title="1. 什么是Dockerfile"></a>1. 什么是Dockerfile</h2><p>Dockerfile 是一个用来<strong>构建镜像的文本文件</strong>，包含了一条条构建镜像所需的指令和说明。</p>
+<blockquote>
+<ul>
+<li>Dockerfile 是一个文本文件</li>
+<li>包含了一条条的指令</li>
+<li>每一条指令构建一层，基于基础镜像，最终构建出一个新的镜像</li>
+<li>对于开发人员：可以为开发团队提供一个完全一致的开发环境</li>
+<li>对于测试人员：可以直接拿开发时所构建的镜像或者通过Dockerfile文件 构建一个新的镜像开始工作了</li>
+<li>对于运维人员：在部署时，可以实现应用的无缝移植</li>
+</ul>
+</blockquote>
+<p>常见的镜像在<a target="_blank" rel="noopener" href="https://hub.docker.com/">DockerHub</a>就能找到，但是我们自己写的项目就必须自己构建镜像了。<br>dockerFile是用来构建docker镜像的文件！命令参数脚本！</p>
+<p>构建自定义的镜像时，并不需要一个个文件去拷贝，打包。</p>
+<p>我们只需要告诉Docker，我们的镜像的组成，需要哪些BaseImage、需要拷贝什么文件、需要安装什么依赖、启动脚本是什么，将来Docker会帮助我们构建镜像。</p>
+<p>而要自定义镜像，就必须先了解镜像的结构才行。</p>
+<h2 id="2-镜像结构"><a href="#2-镜像结构" class="headerlink" title="2. 镜像结构"></a>2. 镜像结构</h2><p>镜像是将应用程序及其需要的系统函数库、环境、配置、依赖打包而成。</p>
+<p>我们以MySQL为例，来看看镜像的组成结构：<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133026.png" alt="  "></p>
+<p>简单来说，镜像就是在系统函数库、运行环境基础上，添加应用程序文件、配置文件、依赖文件等组合，然后编写好启动脚本打包在一起形成的文件。</p>
+<p>我们要构建镜像，其实就是实现上述打包的过程。</p>
+<h2 id="3-约定"><a href="#3-约定" class="headerlink" title="3. 约定"></a>3. 约定</h2><ul>
+<li>Dockerfile中所用的所有文件一定要和Dockerfile文件在<strong>同一级父目录</strong>下，可以为Dockerfile父目录的子目录</li>
+<li>Dockerfile中相对路径默认都是Dockerfile所在的目录</li>
+<li>Dockerfile中一定要惜字如金，能写到一行的指令，一定要写到一行，原因是分层构建，联合挂载这个特性。Dockerfile中每一条指令被视为一层</li>
+</ul>
+<hr>
+<h1 id="二、Dockerfile常用指令"><a href="#二、Dockerfile常用指令" class="headerlink" title="二、Dockerfile常用指令"></a>二、Dockerfile常用指令</h1><p><strong>Dockerfile</strong>就是一个文本文件，其中包含一个个的**指令(Instruction)**，用指令来说明要执行什么操作来构建镜像。每一个指令都会形成一层Layer。</p>
+<p>网上找到一张很有意思的图，我将它放在这。</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133032.png" alt="  "></p>
+<hr>
+<h2 id="1-FROM"><a href="#1-FROM" class="headerlink" title="1. FROM"></a>1. FROM</h2><p>基础镜像，定制的镜像都是基于 <code>FROM</code> 的镜像。并且<strong>必须是第一条指令</strong>。</p>
+<p>如果不以任何镜像为基础，那么写法为：<code>FROM scratch</code>。</p>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FROM &lt;image&gt;</span><br><span class="line">FROM &lt;image&gt;:&lt;tag&gt;</span><br><span class="line">FROM &lt;image&gt;@&lt;digest&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：</span></span><br><span class="line">tag或digest是可选的，如果不使用这两个值时，会使用latest版本的基础镜像</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM mysql:5.7</span><br><span class="line"><span class="comment"># 若不以任何镜像为基础</span></span><br><span class="line">FROM scratch</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-MAINTAINER"><a href="#2-MAINTAINER" class="headerlink" title="2. MAINTAINER"></a>2. MAINTAINER</h2><p>镜像是谁写的， 姓名+邮箱。可以只写一个。</p>
+<p><strong>新版Docker中将弃用，并使用<code>LABEL</code>指明</strong>。</p>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MAINTAINER &lt;name&gt;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只写名字</span></span><br><span class="line">MAINTAINER tyt</span><br><span class="line"><span class="comment"># 只写邮箱</span></span><br><span class="line">MAINTAINER 273@qq.com</span><br><span class="line"><span class="comment"># 名字 + 邮箱</span></span><br><span class="line">MAINTAINER tyt&lt;273@qq.com&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-LABEL"><a href="#3-LABEL" class="headerlink" title="3. LABEL"></a>3. LABEL</h2><p><code>LABEL</code> 指令用来给镜像添加一些元数据（metadata），以键值对的形式。通俗点说就是为镜像指定标签。</p>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; ...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LABEL org.opencontainers.image.authors=<span class="string">&quot;tyt&quot;</span> version=<span class="string">&quot;1.0&quot;</span> label1=<span class="string">&quot;l1&quot;</span> </span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="4-RUN"><a href="#4-RUN" class="headerlink" title="4. RUN"></a>4. RUN</h2><p> <strong>镜像构建</strong>的时候需要运行的命令。有以下2种格式：</p>
+<ul>
+<li><strong>shell 格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RUN &lt;命令行命令&gt;</span><br><span class="line"><span class="comment"># &lt;命令行命令&gt; 等同于，在终端操作的 shell 命令。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>exec格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RUN [<span class="string">&quot;可执行文件或命令&quot;</span>, <span class="string">&quot;参数1&quot;</span>, <span class="string">&quot;参数2&quot;</span>, ...]</span><br><span class="line"><span class="comment"># RUN [&quot;./test.php&quot;, &quot;dev&quot;, &quot;offline&quot;] 等价于 RUN ./test.php dev offline</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line">RUN [<span class="string">&quot;/etc/execfile&quot;</span>, <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;arg1&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以上执行会创建 3 层镜像。可简化为以下格式：</span></span><br><span class="line"></span><br><span class="line">RUN yum -y install vim \</span><br><span class="line">	&amp;&amp; RUN yum -y install net-tools \</span><br><span class="line">	&amp;&amp; RUN [<span class="string">&quot;/etc/execfile&quot;</span>, <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;arg1&quot;</span>]</span><br><span class="line">	</span><br><span class="line"><span class="comment"># 如上，以 &amp;&amp; 符号连接命令，这样执行后，只会创建 1 层镜像。</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong><br><code>RUN</code>指令创建的中间镜像会被缓存，并会在下次构建中使用。如果不想使用这些缓存镜像，可以在构建时指定<code>--no-cache</code>参数，如：<code>docker build --no-cache</code></p>
+</blockquote>
+<h2 id="5-CMD"><a href="#5-CMD" class="headerlink" title="5.  CMD"></a>5.  CMD</h2><p>类似于 <code>RUN</code> 指令，用于运行程序，但二者运行的时间点不同:</p>
+<blockquote>
+<ul>
+<li><code>CMD</code> 在<code>docker run</code> 时运行。</li>
+<li><code>RUN</code> 在<code>docker build</code>时运行。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>作用</strong></p>
+<ul>
+<li>为启动的容器指定默认要运行的程序，程序运行结束，容器也就结束。</li>
+<li><code>CMD</code> 指令指定的程序可被 <code>docker run</code> 命令行参数中指定要运行的程序所覆盖。</li>
+</ul>
+<p><strong>注意</strong></p>
+<ul>
+<li>如果 Dockerfile 中如果存在多个 <code>CMD</code> 指令，仅<strong>最后一个生效</strong>。</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 格式1：执行可执行文件或命令</span></span><br><span class="line">CMD [<span class="string">&quot;&lt;可执行文件或命令&gt;&quot;</span>,<span class="string">&quot;&lt;param1&gt;&quot;</span>,<span class="string">&quot;&lt;param2&gt;&quot;</span>,...] </span><br><span class="line"><span class="comment"># 格式2：执行 shell 内部命令</span></span><br><span class="line">CMD &lt;shell命令&gt; </span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式3：该写法是为 ENTRYPOINT 指令指定的程序提供默认参数</span></span><br><span class="line"><span class="comment"># 注意，待会下面会提到</span></span><br><span class="line">CMD [<span class="string">&quot;&lt;param1&gt;&quot;</span>,<span class="string">&quot;&lt;param2&gt;&quot;</span>,...]  </span><br><span class="line"></span><br><span class="line">推荐使用第一种格式，执行过程比较明确。</span><br><span class="line">第二种格式实际上在运行的过程中也会自动转换成第一种格式运行，</span><br><span class="line">并且默认可执行文件是 sh, 即 /bin/bash</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line">CMD <span class="built_in">ls</span> -a </span><br><span class="line">会转换为</span><br><span class="line">CMD [<span class="string">&quot;ls&quot;</span>, <span class="string">&quot;-a&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行可执行文件或命令</span></span><br><span class="line">CMD [<span class="string">&quot;/usr/bin/wc&quot;</span>,<span class="string">&quot;--help&quot;</span>]</span><br><span class="line"><span class="comment"># 执行 shell 内部命令</span></span><br><span class="line">CMD <span class="built_in">echo</span> <span class="string">&quot;This is a test.&quot;</span> | <span class="built_in">wc</span> -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 ENTRYPOINT 指令指定的程序提供默认参数</span></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-c&quot;</span>]</span><br><span class="line">CMD [<span class="string">&quot;/etc/nginx/nginx.conf&quot;</span>]</span><br><span class="line"></span><br><span class="line">默认执行时，运行以下命令</span><br><span class="line">nginx -c /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="6-ENTRYPOINT"><a href="#6-ENTRYPOINT" class="headerlink" title="6. ENTRYPOINT"></a>6. ENTRYPOINT</h2><p>类似于 <code>CMD</code> 指令，<strong>运行时机相同，都是在<code>docker run</code>执行</strong>，但其不会被 <code>docker run</code> 的命令行参数指定的指令所覆盖，而且这些命令行参数会被当作参数追加到 <code>ENTRYPOINT</code> 指令指定的程序。（具体谁被覆盖、谁被追加可看下方<strong>镜像构建实战</strong>中的 <strong>验证CMD 和ENTRYPOINT区别</strong>）。</p>
+<blockquote>
+<p><strong>CMD与ENTRYPOINT不同点</strong></p>
+<ul>
+<li><code>ENTRYPOINT</code>不会被运行的command覆盖，而<code>CMD</code>则会被覆盖。但是, 如果运行 <code>docker run</code> 时使用了 <code>--entrypoint</code> 选项，将覆盖 <code>ENTRYPOINT</code> 指令指定的程序。</li>
+</ul>
+<p><strong>ENTRYPOINT优点</strong></p>
+<ul>
+<li>在执行 <code>docker run</code> 的时候可以指定 <code>ENTRYPOINT</code> 运行所需的参数。</li>
+</ul>
+<p><strong>注意</strong></p>
+<ul>
+<li>如果 Dockerfile 中如果存在多个 <code>ENTRYPOINT</code> 指令，仅最后一个生效。</li>
+<li>如果我们在Dockerfile种同时写了<code>ENTRYPOINT</code>和<code>CMD</code>，并且<code>CMD</code>指令<strong>不是一个完整的可执行命令</strong>，那么<code>CMD</code>指定的内容将会作为<code>ENTRYPOINT</code>的参数</li>
+<li>如果我们在Dockerfile种同时写了<code>ENTRYPOINT</code>和<code>CMD</code>，并且<code>CMD</code><strong>是一个完整的指令</strong>，那么它们两个会互相覆盖，谁在最后谁生效</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行可执行文件</span></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;&lt;可执行文件或命令&gt;&quot;</span>,<span class="string">&quot;&lt;param1&gt;&quot;</span>,<span class="string">&quot;&lt;param2&gt;&quot;</span>,...] </span><br><span class="line"><span class="comment"># 执行 shell 内部命令</span></span><br><span class="line">ENTRYPOINT &lt;shell命令&gt; </span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<p>假设已通过 Dockerfile 构建了 nginx:test 镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx</span><br><span class="line">ENTRYPOINT [<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-c&quot;</span>]    <span class="comment"># 定参</span></span><br><span class="line">CMD [<span class="string">&quot;/etc/nginx/nginx.conf&quot;</span>] <span class="comment"># 变参 </span></span><br><span class="line"></span><br><span class="line">-----------------------------------------------</span><br><span class="line"></span><br><span class="line">不传参运行</span><br><span class="line">docker run nginx:<span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">容器内会默认运行以下命令，启动主进程</span><br><span class="line">nginx -c /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">-----------------------------------------------</span><br><span class="line"></span><br><span class="line">传参运行</span><br><span class="line">docker run  nginx:<span class="built_in">test</span> -c /etc/nginx/my.conf</span><br><span class="line"></span><br><span class="line">容器内会默认运行以下命令，启动主进程(/etc/nginx/my.conf:假设容器内已有此文件)</span><br><span class="line">nginx -c /etc/nginx/my.conf</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>对于上述提到的ENTRYPOINT和CMD同时存在时举例</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMD指令不是一个完整的可执行命令</span></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-c&quot;</span>]   </span><br><span class="line">CMD [<span class="string">&quot;/etc/nginx/nginx.conf&quot;</span>] </span><br><span class="line"></span><br><span class="line"><span class="comment"># 那么CMD指定的内容将会作为ENTRYPOINT的参数</span></span><br><span class="line"><span class="comment"># 容器内会默认运行以下命令</span></span><br><span class="line">nginx -c /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="comment"># CMD指令是一个完整的可执行命令</span></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-c&quot;</span>]   </span><br><span class="line">CMD [<span class="string">&quot;ls&quot;</span>, <span class="string">&quot;-a&quot;</span>] </span><br><span class="line"></span><br><span class="line"><span class="comment"># 那么它们两个会互相覆盖，谁在最后谁生效</span></span><br><span class="line"><span class="comment"># 容器内会默认运行以下命令</span></span><br><span class="line"><span class="built_in">ls</span> -a</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="7-COPY"><a href="#7-COPY" class="headerlink" title="7. COPY"></a>7. COPY</h2><p>复制指令，从<strong>本地主机</strong>复制文件或者目录到容器里指定路径。</p>
+<blockquote>
+<p><strong>注意</strong></p>
+<ul>
+<li>目标路径是绝对路径，或相对于 <code>WORKDIR</code> 的路径，源将在目标容器内复制到该路径中</li>
+<li><code>--chown</code> 仅适用于 linux 上的 dockerfile，在 window 上没有用户、组的概念</li>
+<li><strong>源文件一定要和Dockerfile文件在同一级父目录下，或者为Dockerfile父目录的子目录</strong></li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">COPY [--<span class="built_in">chown</span>=&lt;user&gt;:&lt;group&gt;] &lt;源路径1&gt;...  &lt;目标路径&gt;</span><br><span class="line"><span class="comment"># 用于支持包含空格的路径</span></span><br><span class="line">COPY [--<span class="built_in">chown</span>=&lt;user&gt;:&lt;group&gt;] [<span class="string">&quot;&lt;源路径1&gt;&quot;</span>,...  <span class="string">&quot;&lt;目标路径&gt;&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将所有 hom 开头的文件复制到镜像文件系统的 /mydir/ 目录下</span></span><br><span class="line">COPY hom* /mydir/           </span><br><span class="line"><span class="comment"># ? 匹配 0 或 1 个字符，比如会把 home.txt 文件复制到 /mydir/ 目录下</span></span><br><span class="line">COPY hom?.txt /mydir/      </span><br><span class="line"><span class="comment"># 复制名为 arr[0].txt 的文件到镜像文件系统的 /mydir/ 目录下</span></span><br><span class="line">COPY arr[[]0].txt /mydir/</span><br><span class="line"><span class="comment"># 复制 &quot;file1&quot; 到 `WORKDIR`/relativeDir/</span></span><br><span class="line">COPY file1 relativeDir/       </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-ADD"><a href="#8-ADD" class="headerlink" title="8. ADD"></a>8. ADD</h2><p><code>ADD</code> 指令和 <code>COPY</code> 的使用格类似（同样需求下，官方推荐使用 <code>COPY</code>）。功能也类似，不同之处如下：</p>
+<blockquote>
+<ul>
+<li><code>ADD</code> 支持添加远程 url 和自动提取压缩格式的文件，<code>COPY</code> 只允许从本机中复制文件</li>
+<li><code>COPY</code> 支持从其他构建阶段中复制源文件（<code>--from</code>）</li>
+<li>根据官方 Dockerfile 最佳实践，除非真的需要从远程 url 添加文件或自动提取压缩文件才用 <code>ADD</code>，其他情况一律使用 <code>COPY</code></li>
+</ul>
+</blockquote>
+<h2 id="9-ENV"><a href="#9-ENV" class="headerlink" title="9. ENV"></a>9. ENV</h2><p>设置环境变量，定义了环境变量，那么在后续的指令中，就可以使用这个环境变量。</p>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置一个变量</span></span><br><span class="line">ENV &lt;key&gt; &lt;value&gt;</span><br><span class="line"><span class="comment"># 设置多个变量</span></span><br><span class="line">ENV &lt;key1&gt;=&lt;value1&gt; &lt;key2&gt;=&lt;value2&gt;...</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置 myInfo 一个变量</span></span><br><span class="line">ENV myInfo tyt 20 boy</span><br><span class="line"><span class="comment"># 设置多个变量</span></span><br><span class="line">ENV name=tyt age=20 sex=boy</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>在Dockerfile中使用变量的方式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$varname</span></span><br><span class="line"><span class="variable">$&#123;varname&#125;</span></span><br><span class="line"><span class="variable">$&#123;varname:-default value&#125;</span></span><br><span class="line">$(varname:+default value&#125; </span><br><span class="line"></span><br><span class="line">第一种和第二种相同 </span><br><span class="line">第三种表示当变量不存在使用-号后面的值 </span><br><span class="line">第四种表示当变量存在时使用+号后面的值</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dockerfile</span></span><br><span class="line">FROM centos</span><br><span class="line">ENV name TYT</span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">&quot;第一种格式变量存在 <span class="variable">$name</span>&quot;</span></span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">&quot;第一种格式变量不存在 <span class="variable">$username</span>&quot;</span></span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">&quot;第二种格式变量存在 <span class="variable">$&#123;name&#125;</span>&quot;</span></span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">&quot;第二种格式变量不存在 <span class="variable">$&#123;username&#125;</span>&quot;</span></span><br><span class="line">RUN [<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;echo 第三种格式变量存在 <span class="variable">$&#123;name:-HSYSJ&#125;</span>&quot;</span>]</span><br><span class="line">RUN [<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;echo 第三种格式变量不存在 <span class="variable">$&#123;username:-HSYSJ&#125;</span>&quot;</span>]</span><br><span class="line">RUN [<span class="string">&quot;sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;echo 第四种格式变量存在 <span class="variable">$&#123;name:+HSYSJ&#125;</span>&quot;</span>]</span><br><span class="line">RUN [<span class="string">&quot;sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;echo 第四种格式变量不存在 <span class="variable">$&#123;username:+HSYSJ&#125;</span>&quot;</span>]</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">第一种格式 TYT</span><br><span class="line">第一种格式变量不存在</span><br><span class="line">第二种格式 TYT</span><br><span class="line">第二种格式变量不存在</span><br><span class="line">第三种格式变量存在 TYT</span><br><span class="line">第三种格式变量不存在 HSYSJ</span><br><span class="line">第四种格式变量存在 HSYSJ</span><br><span class="line">第四种格式变量不存在</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">由以上可知</span><br><span class="line">第一种、第二种、第四种在变量不存在时都无法解析</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="10-EXPOSE"><a href="#10-EXPOSE" class="headerlink" title="10. EXPOSE"></a>10. EXPOSE</h2><p>声明端口配置。</p>
+<blockquote>
+<p><strong>作用</strong> </p>
+<ul>
+<li>帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射。 </li>
+<li>在运行时使用随机端口映射时，也就是<code>docker run -P</code> 时，会自动随机映射 <code>EXPOSE</code> 的端口。</li>
+</ul>
+<p><strong>注意</strong> </p>
+<ul>
+<li><code>EXPOSE</code> 并不会让容器的端口访问到主机。要使其可访问，需要在<code>docker run</code>运行容器时通过<code>-p</code>来发布这些端口，或通过<code>-P</code>参数来发布<code>EXPOSE</code>导出的所有端口。 </li>
+<li>如果没有暴露端口，后期也可以通过 <code>-p 宿主机端口:容器端口</code> 方式映射端口，但是不能通过 <code>-P</code> 形式映射。</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE &lt;端口1&gt; [&lt;端口2&gt;...]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE 80 443</span><br><span class="line">EXPOSE 8080    </span><br><span class="line">EXPOSE 11211/tcp 11211/udp</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="11-VOLUME"><a href="#11-VOLUME" class="headerlink" title="11. VOLUME"></a>11. VOLUME</h2><p>定义匿名挂载数据卷。在启动容器时忘记挂载数据卷，会自动挂载到匿名卷。</p>
+<blockquote>
+<p><strong>作用</strong></p>
+<ul>
+<li>避免重要的数据，因容器重启而丢失，这是非常致命的。</li>
+<li>避免容器不断变大。</li>
+</ul>
+<p><strong>注意</strong><br>一个卷可以存在于一个或多个容器的指定目录，该目录可以绕过联合文件系统，并具有以下功能：</p>
+<ul>
+<li>卷可以容器间共享和重用</li>
+<li>容器并不一定要和其它容器共享卷</li>
+<li>修改卷后会立即生效</li>
+<li>对卷的修改不会对镜像产生影响</li>
+<li>卷会一直存在，直到没有任何容器在使用它</li>
+<li>在启动容器 <code>docker run</code> 的时候，我们可以通过 <code>-v</code> 参数修改挂载点</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VOLUME [<span class="string">&quot;&lt;路径1&gt;&quot;</span>, <span class="string">&quot;&lt;路径2&gt;&quot;</span>...]</span><br><span class="line">VOLUME &lt;路径&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VOLUME /data</span><br><span class="line">VOLUME [<span class="string">&quot;/var/www&quot;</span>, <span class="string">&quot;/var/log/apache2&quot;</span>, <span class="string">&quot;/etc/apache2&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="12-WORKDIR"><a href="#12-WORKDIR" class="headerlink" title="12. WORKDIR"></a>12. WORKDIR</h2><p>指定工作目录。用 <code>WORKDIR</code> 指定的工作目录，会在构建镜像的每一层中都存在。以后各层的当前目录就被改为指定的目录，如该目录不存在，<code>WORKDIR</code> 会帮你建立目录。</p>
+<p><code>docker build</code> 构建镜像过程中的，每一个 <code>RUN</code> 命令都是新建的一层。只有通过 <code>WORKDIR</code> 创建的目录才会一直存在。</p>
+<blockquote>
+<p><strong>注意</strong></p>
+<ul>
+<li>通过<code>WORKDIR</code>设置工作目录后，Dockerfile中其后的命令<code>RUN</code>、<code>CMD</code>、<code>ENTRYPOINT</code>、<code>ADD</code>、<code>COPY</code> 等命令都会在该目录下执行。在使用<code>docker run</code>运行容器时，可以通过<code>-w</code>参数覆盖构建时所设置的工作目录。</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WORKDIR &lt;工作目录路径&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FROM centos</span><br><span class="line"><span class="comment"># 此时工作目录为/a</span></span><br><span class="line">WORKDIR /a</span><br><span class="line">RUN <span class="built_in">pwd</span> <span class="comment"># 输出 /a</span></span><br><span class="line"><span class="comment"># 此时工作目录为/a/b</span></span><br><span class="line">WORKDIR b</span><br><span class="line">RUN <span class="built_in">pwd</span> <span class="comment"># 输出 /a/b</span></span><br><span class="line"><span class="comment"># 此时工作目录为/a/b/c</span></span><br><span class="line">WORKDIR c</span><br><span class="line">RUN <span class="built_in">pwd</span> <span class="comment"># 输出 /a/b/c</span></span><br><span class="line"><span class="comment"># 此时工作目录为/d</span></span><br><span class="line">WORKDIR /d</span><br><span class="line">RUN <span class="built_in">pwd</span> <span class="comment"># 输出 /d</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="13-USER"><a href="#13-USER" class="headerlink" title="13. USER"></a>13. USER</h2><p>用于指定执行后续命令的用户和用户组，这边只是切换后续命令执行的用户（<strong>用户和用户组必须提前已经存在</strong>）。</p>
+<blockquote>
+<p><strong>注意</strong></p>
+<ul>
+<li>使用<code>USER</code>指定用户后，Dockerfile中其后的命令<code>RUN</code>、<code>CMD</code>、<code>ENTRYPOINT</code>都将使用该用户。镜像构建完成后，通过<code>docker run</code>运行容器时，可以通过<code>-u</code>参数来覆盖所指定的用户。使用这个命令一定要确认容器中拥有这个用户，并且拥有足够权限</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USER &lt;用户名&gt;[:&lt;用户组&gt;]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USER tyt</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="14-ARG"><a href="#14-ARG" class="headerlink" title="14. ARG"></a>14. ARG</h2><p>构建参数，与 <code>ENV</code> 作用一致。不过作用域不一样。<code>ARG</code> 设置的环境变量仅对 Dockerfile 内有效，也就是说只有 <code>docker build</code> 的过程中有效，构建好的镜像内不存在此环境变量。</p>
+<p>构建命令 <code>docker build</code> 中可以用 <code>--build-arg &lt;参数名&gt;=&lt;值&gt;</code> 来覆盖。</p>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ARG &lt;参数名&gt;[=&lt;默认值&gt;]</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们可以定义一个或多个参数</span></span><br><span class="line">ARG username</span><br><span class="line">ARG password</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以给参数一个默认值</span></span><br><span class="line">ARG username=tyt</span><br><span class="line">ARG password=123</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="15-ONBUILD"><a href="#15-ONBUILD" class="headerlink" title="15. ONBUILD"></a>15. ONBUILD</h2><p>用于延迟构建命令的执行。简单的说，就是 Dockerfile 里用 ONBUILD 指定的命令，在本次构建镜像的过程中不会执行（假设镜像为 test-build）。当有新的 Dockerfile 使用了之前构建的镜像 <code>FROM test-build</code> ，这时执行新镜像的 Dockerfile 构建时候，会执行 test-build 的 Dockerfile 里的 <code>ONBUILD</code> 指定的命令。</p>
+<ul>
+<li><strong>格式</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ONBUILD &lt;其它指令&gt;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>例子</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例如当前镜像 A</span></span><br><span class="line">ONBUILD RUN <span class="built_in">ls</span> -al</span><br><span class="line"><span class="comment"># 这个 ls -al 命令不会在A镜像构建或启动的时候执行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时镜像 B 是基于镜像 A 构建的</span></span><br><span class="line"><span class="comment"># 那么这个ls -al 命令会在镜像 B 构建的时候被执行。</span></span><br></pre></td></tr></table></figure>
+
+
+<p>更新详细语法说明，请参考<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder">官网文档</a></p>
+<hr>
+<h1 id="三、镜像制作步骤"><a href="#三、镜像制作步骤" class="headerlink" title="三、镜像制作步骤"></a>三、镜像制作步骤</h1><p><strong>构建步骤</strong></p>
+<ol>
+<li><p>编写一个dockerFile文件</p>
+</li>
+<li><p>使用 <code>docker build</code> 构建成为一个镜像</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f dockerfile文件路径 -t 镜像名:[tag] .</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p><code>docker run</code> 运行镜像</p>
+</li>
+<li><p><code>docker push</code> 发布镜像（DockerHub、阿里云镜像）</p>
+</li>
+</ol>
+<hr>
+<h1 id="四、镜像构建实战"><a href="#四、镜像构建实战" class="headerlink" title="四、镜像构建实战"></a>四、镜像构建实战</h1><h2 id="1-验证CMD-和ENTRYPOINT区别"><a href="#1-验证CMD-和ENTRYPOINT区别" class="headerlink" title="1. 验证CMD 和ENTRYPOINT区别"></a>1. 验证CMD 和ENTRYPOINT区别</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CMD         <span class="comment"># 指定这个容器启动的时候要运行的命令，仅最后一个生效，可被替代</span></span><br><span class="line">ENTRYPOINT  <span class="comment"># 指定这个容器启动的时候要运行的命令，仅最后一个生效，可以追加命令</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>测试CMD</strong></li>
+</ul>
+<p>① 编写 dockerfile 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ2vc7ujcalf4qilxwke3nZ dockerfile]<span class="comment"># vim cmd-test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于 centos</span></span><br><span class="line">FROM centos</span><br><span class="line"><span class="comment"># 设置容器启动的时候执行 ls -a</span></span><br><span class="line">CMD [<span class="string">&quot;ls&quot;</span>, <span class="string">&quot;-a&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>② 构建成为一个镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f cmd-test -t cmd-test:1 .</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133049.png" alt="  "></p>
+<p>③ 运行容器测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dokcer run -it cmd-test:1</span><br></pre></td></tr></table></figure>
+
+<p><code>docker run</code>运行， 发现我们的<code>ls -a</code> 命令生效</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133052.png" alt="  "><br>现在，如果我们想要使用 <code>ls -al</code> 命令，却报错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ2vc7ujcalf4qilxwke3nZ dockerfile]<span class="comment"># docker run -it cmd-test:1 -l</span></span><br><span class="line">docker: Error response from daemon: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: <span class="built_in">exec</span>: <span class="string">&quot;-l&quot;</span>: executable file not found <span class="keyword">in</span> <span class="variable">$PATH</span>: unknown.</span><br><span class="line">ERRO[0000] error waiting <span class="keyword">for</span> container: context canceled</span><br></pre></td></tr></table></figure>
+
+<p>这是因为当我们添加了 <code>-l</code> 参数后，<code>-l</code>替换了<code>CMD[&quot;ls&quot;, &quot;-a&quot;]</code>命令， <code>-l</code>不是命令，所以报错了。如果我们想要追加一个<code>-l</code>，就可以考虑使用<code>ENTRYPOINT</code>。</p>
+<ul>
+<li><strong>测试ENTRYPOINT</strong></li>
+</ul>
+<p>① 编写 dockerfile 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ2vc7ujcalf4qilxwke3nZ dockerfile]<span class="comment"># vim point-test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于 centos</span></span><br><span class="line">FROM centos</span><br><span class="line"><span class="comment"># 设置容器启动的时候执行 ls -a</span></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;ls&quot;</span>, <span class="string">&quot;-a&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>② 构建成为一个镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f point-test -t point-test:1 .</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133057.png" alt="  "></p>
+<p>③ 运行容器测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dokcer run -it point-test:1</span><br></pre></td></tr></table></figure>
+
+
+<p><code>docker run</code>运行， 与 CMD相同，发现我们的<code>ls -a</code> 命令生效</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133059.png" alt="  "><br>现在，我们追加一个 <code>-l</code> 参数</p>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133102.png" alt="  "></p>
+<p>我们的追加命令， 是直接拼接到<code>ENTRYPOINT</code>命令的后面，即 <code>ls -al</code></p>
+<h2 id="2-基于centos构建Java项目"><a href="#2-基于centos构建Java项目" class="headerlink" title="2. 基于centos构建Java项目"></a>2. 基于centos构建Java项目</h2><ul>
+<li><strong>编写 dockerfile 文件</strong> （此处我命名为 <code>demo-df</code>）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定基础镜像</span></span><br><span class="line">FROM centos</span><br><span class="line"><span class="comment"># 配置环境变量，JDK的安装目录</span></span><br><span class="line">ENV JAVA_DIR=/usr/local</span><br><span class="line"><span class="comment"># 指定工作目录</span></span><br><span class="line">WORKDIR /tmp</span><br><span class="line"><span class="comment"># 拷贝jdk和java项目的包，这两个文件都在 demo-df 同目录</span></span><br><span class="line">COPY ./jdk8.tar.gz <span class="variable">$JAVA_DIR</span>/</span><br><span class="line"><span class="comment"># 会将 springboot-demo.jar 复制到容器内 /tmp目录下,并命名为 app.jar</span></span><br><span class="line">COPY ./springboot-demo.jar app.jar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装JDK</span></span><br><span class="line">RUN <span class="built_in">cd</span> <span class="variable">$JAVA_DIR</span> \</span><br><span class="line"> &amp;&amp; tar -xf ./jdk8.tar.gz \</span><br><span class="line"> &amp;&amp; <span class="built_in">mv</span> ./jdk1.8.0_144 ./java8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line">ENV JAVA_HOME=<span class="variable">$JAVA_DIR</span>/java8</span><br><span class="line">ENV PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line">EXPOSE 8080</span><br><span class="line"><span class="comment"># 入口，java项目的启动命令</span></span><br><span class="line"><span class="comment"># 启动应用固定命令</span></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;java&quot;</span> , <span class="string">&quot;-jar&quot;</span> ] </span><br><span class="line"><span class="comment"># 动态传递jar包名,启动容器内 /tmp 目录下的app.jar</span></span><br><span class="line">CMD [<span class="string">&quot;app.jar&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>通过dockerfile文件构建镜像</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f demo-df -t demo:1 .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>运行项目</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -<span class="built_in">id</span> --name demo1 -p 8080:8080 demo:1</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-基于Jdk8构建Java项目"><a href="#3-基于Jdk8构建Java项目" class="headerlink" title="3. 基于Jdk8构建Java项目"></a>3. 基于Jdk8构建Java项目</h2><p>虽然我们可以基于Centos基础镜像，添加任意自己需要的安装包，构建镜像，但是却比较麻烦。所以大多数情况下，我们都可以在一些安装了部分软件的基础镜像上做改造。</p>
+<p>例如，构建Java项目的镜像，可以在已经准备了JDK的基础镜像基础上构建。</p>
+<p>需求：基于<code>java:8-alpine</code>镜像，将一个Java项目构建为镜像。</p>
+<ul>
+<li><strong>编写 dockerfile 文件</strong> （此处我命名为 <code>demo-df2</code>）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定基础镜像</span></span><br><span class="line">FROM java:8-alpine ·</span><br><span class="line"><span class="comment"># 拷贝java项目的包，该文件在 demo-df2 同目录</span></span><br><span class="line"><span class="comment"># 拷贝到 /tmp/app.jar</span></span><br><span class="line">COPY ./springboot-demo.jar /tmp/app.jar</span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line">EXPOSE 8081</span><br><span class="line"><span class="comment"># 入口，java项目的启动命令,启动容器内 /tmp 目录下的app.jar</span></span><br><span class="line">ENTRYPOINT java -jar app.jar</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>通过dockerfile文件构建镜像</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f demo-df2 -t demo2:1 .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>运行项目</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -<span class="built_in">id</span> --name demo2 -p 8081:8081 demo2:1</span><br></pre></td></tr></table></figure>
+
+
+
+
+<hr>
+<h1 id="五、发布镜像到DockerHub"><a href="#五、发布镜像到DockerHub" class="headerlink" title="五、发布镜像到DockerHub"></a>五、发布镜像到DockerHub</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://hub.docker.com/">DockerHub</a>注册账号</p>
+</li>
+<li><p>确定账号可以登录</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u 账号名</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133108.png" alt="  "></p>
+<ul>
+<li>在服务器上提交自己的镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push 镜像名:tag</span><br></pre></td></tr></table></figure>
+
+<p><strong>例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处我将刚才制作的 Java项目 镜像推送上去</span></span><br><span class="line">docker push demo2:1</span><br><span class="line"></span><br><span class="line">但是报错</span><br><span class="line">[root@iZ2vc772r7963j25lx3cusZ <span class="built_in">test</span>]<span class="comment"># docker push demo2:1</span></span><br><span class="line">The push refers to repository [docker.io/library/demo2]</span><br><span class="line">3dba9e1d09df: Preparing </span><br><span class="line">35c20f26d188: Preparing </span><br><span class="line">c3fe59dd9556: Preparing </span><br><span class="line">6ed1a81ba5b6: Preparing </span><br><span class="line">a3483ce177ce: Preparing </span><br><span class="line">ce6c8756685b: Waiting </span><br><span class="line">30339f20ced0: Waiting </span><br><span class="line">0eb22bfb707d: Waiting </span><br><span class="line">a2ae92ffcd29: Waiting </span><br><span class="line">denied: requested access to the resource is denied <span class="comment"># 拒绝</span></span><br></pre></td></tr></table></figure>
+
+<p>这里大多数是两种原因</p>
+<p><strong>① docker未登录</strong></p>
+<p>解决方法：<code>docker login</code></p>
+<p><strong>②  如果已经登陆了还是报错，应将镜像改到自己账户名下</strong></p>
+<p>在上述制作 demo2 镜像中时，我指定的<code>MAINTAINER</code>为 <code>tyt</code> ，但是我的DockerHub的账号名为<code>tangyt6</code>。</p>
+<p>解决方法：</p>
+<ol>
+<li>将要发布的镜像改到自己账户名下</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag demo2:1 tangyt6/demo2:1</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>再次发布镜像</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker push tangyt6/demo2:1</span><br><span class="line"></span><br><span class="line">[root@iZ2vc772r7963j25lx3cusZ <span class="built_in">test</span>]<span class="comment"># docker push tangyt6/demo2:1</span></span><br><span class="line">The push refers to repository [docker.io/tangyt6/demo2]</span><br><span class="line">3dba9e1d09df: Pushed </span><br><span class="line">35c20f26d188: Pushed </span><br><span class="line">c3fe59dd9556: Pushed </span><br><span class="line">6ed1a81ba5b6: Pushed </span><br><span class="line">a3483ce177ce: Pushed </span><br><span class="line">ce6c8756685b: Pushed </span><br><span class="line">30339f20ced0: Pushed </span><br><span class="line">0eb22bfb707d: Pushed </span><br><span class="line">a2ae92ffcd29: Pushed </span><br><span class="line">1: digest: sha256:6cc28f078ab5f94d9c4178d2c985b402dc40b81d0c3df84a78cb2bda67b53aba size: 2212 </span><br><span class="line"><span class="comment"># 成功</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133112.png" alt="  "></p>
+<h1 id="六、发布镜像到阿里云"><a href="#六、发布镜像到阿里云" class="headerlink" title="六、发布镜像到阿里云"></a>六、发布镜像到阿里云</h1><ul>
+<li>登录<a target="_blank" rel="noopener" href="https://cn.aliyun.com/">阿里云</a></li>
+<li>找到容器镜像服务</li>
+<li>创建命名空间</li>
+</ul>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133123.png" alt="  "></p>
+<ul>
+<li>创建镜像仓库</li>
+</ul>
+<p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133115.png" alt="  "></p>
+<p> <img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133118.png" alt="  "></p>
+<ul>
+<li>参考官方文档操作即可<br><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133130.png" alt="  "></li>
+</ul>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="http://example.com/posts/e3a7e431.html">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "http://example.com/posts/e3a7e431.html");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=Docker-Dockerfile&amp;url=http://example.com/posts/e3a7e431.html&amp;pic=https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/docker/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                docker
+                                <span class="tagsPageCount">2</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AE%B9%E5%99%A8/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                容器
+                                <span class="tagsPageCount">2</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                运维
+                                <span class="tagsPageCount">3</span>
+                            </a>
+                        
+                            <a href="/tags/Linux/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                Linux
+                                <span class="tagsPageCount">3</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>Docker-Dockerfile</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/posts/e3a7e431.html">http://example.com/posts/e3a7e431.html</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">划水艺术家</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/posts/36b478da.html">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">Java经典排序</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/posts/fe26ac5e.html">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/acrylic.png" onerror="this.onerror=null;this.src='/img/acrylic.png'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                tangyitao
+            </div>
+            <div class="author-info__description">这有关于<b>开发</b>、<b>技术</b>相关的问题和看法。<br>相信你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/tang-yt" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:tangyt2406@163.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E5%85%A5"><span class="toc-text">一、引入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFDockerfile"><span class="toc-text">1. 什么是Dockerfile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%95%9C%E5%83%8F%E7%BB%93%E6%9E%84"><span class="toc-text">2. 镜像结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%BA%A6%E5%AE%9A"><span class="toc-text">3. 约定</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Dockerfile%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">二、Dockerfile常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-FROM"><span class="toc-text">1. FROM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-MAINTAINER"><span class="toc-text">2. MAINTAINER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-LABEL"><span class="toc-text">3. LABEL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-RUN"><span class="toc-text">4. RUN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-CMD"><span class="toc-text">5.  CMD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-ENTRYPOINT"><span class="toc-text">6. ENTRYPOINT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-COPY"><span class="toc-text">7. COPY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-ADD"><span class="toc-text">8. ADD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-ENV"><span class="toc-text">9. ENV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-EXPOSE"><span class="toc-text">10. EXPOSE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-VOLUME"><span class="toc-text">11. VOLUME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-WORKDIR"><span class="toc-text">12. WORKDIR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-USER"><span class="toc-text">13. USER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-ARG"><span class="toc-text">14. ARG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-ONBUILD"><span class="toc-text">15. ONBUILD</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-text">三、镜像制作步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E5%AE%9E%E6%88%98"><span class="toc-text">四、镜像构建实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%AA%8C%E8%AF%81CMD-%E5%92%8CENTRYPOINT%E5%8C%BA%E5%88%AB"><span class="toc-text">1. 验证CMD 和ENTRYPOINT区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8Ecentos%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE"><span class="toc-text">2. 基于centos构建Java项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9F%BA%E4%BA%8EJdk8%E6%9E%84%E5%BB%BAJava%E9%A1%B9%E7%9B%AE"><span class="toc-text">3. 基于Jdk8构建Java项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%91%E5%B8%83%E9%95%9C%E5%83%8F%E5%88%B0DockerHub"><span class="toc-text">五、发布镜像到DockerHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%8F%91%E5%B8%83%E9%95%9C%E5%83%8F%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91"><span class="toc-text">六、发布镜像到阿里云</span></a></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                    <img
+                        alt="DCL中COMMIT与ROLLBACK的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/b873a1b0.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                        DCL中COMMIT与ROLLBACK的使用
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                    <img
+                        alt="SpringBoot热部署"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815132418.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/75ee909c.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                        SpringBoot热部署
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/36b478da.html" title="Java经典排序">
+                    <img
+                        alt="Java经典排序"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143240.gif">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/36b478da.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/36b478da.html" title="Java经典排序">
+                        Java经典排序
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                    <img
+                        alt="Docker-Dockerfile"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/e3a7e431.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                        Docker-Dockerfile
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                    <img
+                        alt="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815125552.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/fe26ac5e.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                        谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/tang-yt" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="mailto:tangyt2406@163.com" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://music.163.com" rel="external nofollow noopener" title="网易云">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">服务</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://51.la/" title="51la统计" rel="noopener external nofollow noreferrer noopener">51la统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://tongji.baidu.com/" title="百度统计" rel="noopener external nofollow noreferrer noopener">百度统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://ql.tianli0.top/" title="TianliCDN" rel="noopener external nofollow noreferrer noopener">TianliCDN</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2021 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">tangyitao</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+    
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css">
+
+    
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script>
+
+    
+<script src="/lib/meting.min.js"></script>
+
+    <script>
+        var meting_api = "https://music.startly.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+    </script>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+    <div id="local-search">
+    <div class="search-dialog">
+        <nav class="search-nav">
+            <span class="search-dialog-title">搜索</span>
+            <button class="search-close-button">
+                <i class="fas fa-times"></i>
+            </button>
+        </nav>
+        <div id="loading-database">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <span>加载中</span>
+        </div>
+        <div class="search-wrap">
+            <div class="search-box">
+                <input class="search-box-input" placeholder="输入关键词快速查找" type="text" id="search-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+            </div>
+            <div id="loading-status"></div>
+            <div id="search-results"></div>
+        </div>
+    </div>
+    <div id="search-mask"></div>
+</div>
+    
+<link rel="stylesheet" href="/css/search/local-search.css">
+
+    
+<script src="/js/extend/search/local-search.js"></script>
+
+
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+</html>
+<script>const posts=["posts/b873a1b0.html","posts/75ee909c.html","posts/36b478da.html","posts/e3a7e431.html","posts/fe26ac5e.html","posts/d0edc1ed.html","posts/b6c3d8dd.html","posts/49fbbc1.html","posts/30ab1de7.html","posts/5696223f.html","posts/78beed92.html","posts/e770b956.html","posts/106f1f3a.html","posts/36b2021f.html","posts/442d16e2.html","posts/56431718.html","posts/72090044.html","posts/10c232a9.html","posts/7ec55fd4.html","posts/9acb5cb3.html","posts/689338cf.html","posts/78033e99.html","posts/7c236f69.html","posts/fdb654f7.html","posts/fde62576.html","posts/4906c062.html","posts/71d3dda2.html","posts/44d90ad5.html","posts/97b300c3.html","posts/2077d398.html","posts/b634f675.html","posts/5a112392.html","posts/d75d39a7.html","posts/6abf1536.html","posts/964f8f69.html","posts/dcd9e6db.html","posts/92a4644d.html","posts/1bdcf24b.html","posts/75330943.html","posts/f3c7bc8f.html","posts/839af433.html","posts/94962b3f.html","posts/7856357f.html","posts/2606c6a9.html","posts/91f012d1.html","posts/6c2ee665.html","posts/ee40a19d.html","posts/26f88c40.html","posts/a5005a49.html","posts/9542c7f4.html","posts/47d2f7a2.html","posts/bb085914.html","posts/4e57a7dc.html","posts/62f2aa05.html","posts/a6592200.html","posts/303fc3a3.html","posts/e15cda61.html","posts/917a39c3.html","posts/4369ac96.html","posts/7f6e5a2.html"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>

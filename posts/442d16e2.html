@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MySQL-存储过程与函数 | 划水艺术家</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="划水艺术家">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="划水艺术家 一个分享技术与生活的博客">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2021-12-12 00:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":false,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null},"localsearch":{"preload":true,"path":"/search.xml"}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/docker/" style="font-size: 0.8rem; color: #d3d3d3">docker<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">容器<sup>2</sup></a>
+                        
+                            <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 0.8rem; color: #d3d3d3">运维<sup>3</sup></a>
+                        
+                            <a href="/tags/Linux/" style="font-size: 0.8rem; color: #d3d3d3">Linux<sup>3</sup></a>
+                        
+                            <a href="/tags/Java/" style="font-size: 0.8rem; color: #d3d3d3">Java<sup>31</sup></a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">后端<sup>22</sup></a>
+                        
+                            <a href="/tags/JavaWeb/" style="font-size: 0.8rem; color: #d3d3d3">JavaWeb<sup>4</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.8rem; color: #d3d3d3">数据库<sup>14</sup></a>
+                        
+                            <a href="/tags/redis/" style="font-size: 0.8rem; color: #d3d3d3">redis<sup>1</sup></a>
+                        
+                            <a href="/tags/sql/" style="font-size: 0.8rem; color: #d3d3d3">sql<sup>10</sup></a>
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.8rem; color: #d3d3d3">前端<sup>6</sup></a>
+                        
+                            <a href="/tags/vue/" style="font-size: 0.8rem; color: #d3d3d3">vue<sup>5</sup></a>
+                        
+                            <a href="/tags/javascript/" style="font-size: 0.8rem; color: #d3d3d3">javascript<sup>7</sup></a>
+                        
+                            <a href="/tags/SpringBoot/" style="font-size: 0.8rem; color: #d3d3d3">SpringBoot<sup>2</sup></a>
+                        
+                            <a href="/tags/spring/" style="font-size: 0.8rem; color: #d3d3d3">spring<sup>15</sup></a>
+                        
+                            <a href="/tags/ajax/" style="font-size: 0.8rem; color: #d3d3d3">ajax<sup>1</sup></a>
+                        
+                            <a href="/tags/json/" style="font-size: 0.8rem; color: #d3d3d3">json<sup>1</sup></a>
+                        
+                            <a href="/tags/jdbc/" style="font-size: 0.8rem; color: #d3d3d3">jdbc<sup>1</sup></a>
+                        
+                            <a href="/tags/flask/" style="font-size: 0.8rem; color: #d3d3d3">flask<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 0.8rem; color: #d3d3d3">微服务<sup>2</sup></a>
+                        
+                            <a href="/tags/python/" style="font-size: 0.8rem; color: #d3d3d3">python<sup>1</sup></a>
+                        
+                            <a href="/tags/Nacos/" style="font-size: 0.8rem; color: #d3d3d3">Nacos<sup>1</sup></a>
+                        
+                            <a href="/tags/mybatis/" style="font-size: 0.8rem; color: #d3d3d3">mybatis<sup>1</sup></a>
+                        
+                            <a href="/tags/nginx/" style="font-size: 0.8rem; color: #d3d3d3">nginx<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.8rem; color: #d3d3d3">服务器<sup>2</sup></a>
+                        
+                            <a href="/tags/html/" style="font-size: 0.8rem; color: #d3d3d3">html<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 0.8rem; color: #d3d3d3">消息队列<sup>1</sup></a>
+                        
+                            <a href="/tags/RabbitMQ/" style="font-size: 0.8rem; color: #d3d3d3">RabbitMQ<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 0.8rem; color: #d3d3d3">分布式<sup>1</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/gitee/" style="font-size: 0.8rem; color: #d3d3d3">gitee<sup>1</sup></a>
+                        
+                            <a href="/tags/github/" style="font-size: 0.8rem; color: #d3d3d3">github<sup>1</sup></a>
+                        
+                            <a href="/tags/mysql/" style="font-size: 0.8rem; color: #d3d3d3">mysql<sup>5</sup></a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.8rem; color: #d3d3d3">数据结构<sup>9</sup></a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 0.8rem; color: #d3d3d3">网络<sup>1</sup></a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.8rem; color: #d3d3d3">算法<sup>3</sup></a>
+                        
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 0.8rem; color: #d3d3d3">排序<sup>2</sup></a>
+                        
+                            <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 0.8rem; color: #d3d3d3">图论<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/05/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/05</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/04/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/04</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/11/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/11</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">13</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2022/07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2022/07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">27</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+                    
+            <div class="console-btn-item" id="consoleMusic" onclick="acrylic.musicToggle()" title="音乐开关"><a class="music-switch"><i class="fas fa-music"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/docker/" style="font-size: 1em; color: #d3d3d3">docker
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">容器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1em; color: #d3d3d3">运维
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Linux/" style="font-size: 1em; color: #d3d3d3">Linux
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/Java/" style="font-size: 1em; color: #d3d3d3">Java
+                        <sup>31</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">后端
+                        <sup>22</sup>
+                    </a>
+                
+                    <a href="/tags/JavaWeb/" style="font-size: 1em; color: #d3d3d3">JavaWeb
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1em; color: #d3d3d3">数据库
+                        <sup>14</sup>
+                    </a>
+                
+                    <a href="/tags/redis/" style="font-size: 1em; color: #d3d3d3">redis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/sql/" style="font-size: 1em; color: #d3d3d3">sql
+                        <sup>10</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1em; color: #d3d3d3">前端
+                        <sup>6</sup>
+                    </a>
+                
+                    <a href="/tags/vue/" style="font-size: 1em; color: #d3d3d3">vue
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/javascript/" style="font-size: 1em; color: #d3d3d3">javascript
+                        <sup>7</sup>
+                    </a>
+                
+                    <a href="/tags/SpringBoot/" style="font-size: 1em; color: #d3d3d3">SpringBoot
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/spring/" style="font-size: 1em; color: #d3d3d3">spring
+                        <sup>15</sup>
+                    </a>
+                
+                    <a href="/tags/ajax/" style="font-size: 1em; color: #d3d3d3">ajax
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/json/" style="font-size: 1em; color: #d3d3d3">json
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/jdbc/" style="font-size: 1em; color: #d3d3d3">jdbc
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/flask/" style="font-size: 1em; color: #d3d3d3">flask
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 1em; color: #d3d3d3">微服务
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/python/" style="font-size: 1em; color: #d3d3d3">python
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Nacos/" style="font-size: 1em; color: #d3d3d3">Nacos
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mybatis/" style="font-size: 1em; color: #d3d3d3">mybatis
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/nginx/" style="font-size: 1em; color: #d3d3d3">nginx
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1em; color: #d3d3d3">服务器
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/html/" style="font-size: 1em; color: #d3d3d3">html
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 1em; color: #d3d3d3">消息队列
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/RabbitMQ/" style="font-size: 1em; color: #d3d3d3">RabbitMQ
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1em; color: #d3d3d3">分布式
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/gitee/" style="font-size: 1em; color: #d3d3d3">gitee
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/github/" style="font-size: 1em; color: #d3d3d3">github
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/mysql/" style="font-size: 1em; color: #d3d3d3">mysql
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1em; color: #d3d3d3">数据结构
+                        <sup>9</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1em; color: #d3d3d3">网络
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1em; color: #d3d3d3">算法
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 1em; color: #d3d3d3">排序
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1em; color: #d3d3d3">图论
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          我的
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="博客">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                博客
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" target="_blank" href="https://butterfly.zhheo.com" rel="external nofollow noopener" title="美化">
+              <img class="back-menu-item-icon" src="/img/avatar.webp" loading="lazy">
+              <span class="back-menu-item-text">
+                美化
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">TBlog</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">MySQL-存储过程与函数</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://gitee.com/tang-yitao">
+                                <i class="fas fa-code-compare"></i>
+                                <span> gitee</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" target="_blank" rel="noopener" href="https://github.com/tang-yt">
+                                <i class="fas fa-code-branch"></i>
+                                <span> github</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> TV</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/bangumis/index.html">
+                                <i class="fa-brands fa-bilibili"></i>
+                                <span> 追番</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/cinemas/index.html">
+                                <i class="fas fa-tv"></i>
+                                <span> 追剧</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/links/" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/about" rel="external nofollow">
+                    <span> 关于</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="search-button">
+        <a class="site-page social-icon search" title="站内搜索"
+            href="javascript:void(0);" rel="external nofollow">
+            <i class="fas fa-magnifying-glass" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815134238.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">数据库</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/sql/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">sql</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/mysql/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">mysql</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">MySQL-存储过程与函数</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2022-10-31T19:45:01+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为西安">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>西安</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <blockquote>
+<p>MySQL从5.0版本开始支持存储过程和函数。存储过程和函数能够将复杂的SQL逻辑封装在一起，应用程<br>序无须关注存储过程和函数内部复杂的SQL逻辑，而只需要简单地调用存储过程和函数即可。</p>
+</blockquote>
+<h1 id="一、存储过程概述"><a href="#一、存储过程概述" class="headerlink" title="一、存储过程概述"></a>一、存储过程概述</h1><h2 id="1-如何理解存储过程"><a href="#1-如何理解存储过程" class="headerlink" title="1. 如何理解存储过程"></a>1. 如何理解存储过程</h2><ul>
+<li><strong>含义</strong>：<br>存储过程的英文是 Stored Procedure 。它的思想很简单，就是一组经过 预先编译 的 SQL 的封装。<br>执行过程：存储过程预先存储在 MySQL 服务器上，需要执行的时候，客户端只需要向服务器端发出调用存储过程的命令，服务器端就可以把预先存储好的这一系列 SQL 语句全部执行。</li>
+<li><strong>好处</strong>：<ul>
+<li>简化操作，提高了sql语句的重用性，减少了开发程序员的压力 </li>
+<li>减少操作过程中的失误，提高效率</li>
+<li>减少网络传输量（客户端不需要把所有的 SQL 语句通过网络发给服务器） </li>
+<li>减少了 SQL 语句暴露在网上的风险，也提高了数据查询的安全性</li>
+</ul>
+</li>
+<li><strong>和视图、函数的对比</strong>：<br>它和视图有着同样的优点，清晰、安全，还可以减少网络传输量。不过它和视图不同，视图是 <strong>虚拟表</strong> ，通常不对底层数据表直接操作，而存储过程是程序化的 SQL，可以 <strong>直接操作底层数据表</strong> ，相比于面向集合的操作方式，能够实现一些更复杂的数据处理。<br>一旦存储过程被创建出来，使用它就像使用函数一样简单，我们直接通过调用存储过程名即可。相较于函数，存储过程是 <strong>没有返回值</strong> 的。</li>
+</ul>
+<h2 id="2-存储过程分类"><a href="#2-存储过程分类" class="headerlink" title="2. 存储过程分类"></a>2. 存储过程分类</h2><p>存储过程的参数类型可以是IN、OUT和INOUT。根据这点分类如下</p>
+<ul>
+<li>没有参数（<strong>无参数无返回</strong>） </li>
+<li>仅仅带 <code>IN</code> 类型（<strong>有参数无返回</strong>）</li>
+<li>仅仅带 <code>OUT</code> 类型（<strong>无参数有返回</strong>） </li>
+<li>既带 <code>IN</code> 又带 <code>OUT</code>（<strong>有参数有返回</strong>） </li>
+<li>带 <code>INOUT</code>（<strong>有参数有返回</strong>）</li>
+</ul>
+<p><strong>注意</strong>：<code>IN</code>、<code>OUT</code>、<code>INOUT</code> 都可以在一个存储过程中带多个。</p>
+<hr>
+<h1 id="二、创建存储过程"><a href="#二、创建存储过程" class="headerlink" title="二、创建存储过程"></a>二、创建存储过程</h1><h2 id="1-语法分析"><a href="#1-语法分析" class="headerlink" title="1. 语法分析"></a>1. 语法分析</h2><ul>
+<li>语法格式</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> 存储过程名(<span class="keyword">IN</span><span class="operator">|</span><span class="keyword">OUT</span><span class="operator">|</span><span class="keyword">INOUT</span> 参数名 参数类型,...)</span><br><span class="line">[characteristics ...]</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	存储过程体</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类似于Java中的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修饰符 返回类型 方法名(参数类型 参数名,...)&#123;</span><br><span class="line">	方法体;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>说明：</strong></p>
+<ol>
+<li>参数前面的符号的意思</li>
+</ol>
+<ul>
+<li><code>IN</code> ：当前参数为输入参数，也就是表示入参；存储过程只是读取这个参数的值。如果没有定义参数种类， <strong>默认就是 <code>IN</code></strong> ，表示输入参数。</li>
+<li><code>OUT</code> ：当前参数为输出参数，也就是表示出参；执行完成之后，调用这个存储过程的客户端或者应用程序就可以读取这个参数返回的值了。</li>
+<li><code>INOUT</code> ：当前参数既可以为输入参数，也可以为输出参数。</li>
+</ul>
+<ol start="2">
+<li>形参类型可以是 MySQL数据库中的任意类型。</li>
+<li><code>characteristics</code> 表示创建存储过程时指定的对存储过程的约束条件，其取值信息如下：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">LANGUAGE</span> <span class="keyword">SQL</span></span><br><span class="line"><span class="operator">|</span> [<span class="keyword">NOT</span>] <span class="keyword">DETERMINISTIC</span></span><br><span class="line"><span class="operator">|</span> &#123; <span class="keyword">CONTAINS</span> <span class="keyword">SQL</span> <span class="operator">|</span> <span class="keyword">NO</span> <span class="keyword">SQL</span> <span class="operator">|</span> <span class="keyword">READS</span> <span class="keyword">SQL</span> DATA <span class="operator">|</span> <span class="keyword">MODIFIES</span> <span class="keyword">SQL</span> DATA &#125;</span><br><span class="line"><span class="operator">|</span> <span class="keyword">SQL</span> SECURITY &#123; DEFINER <span class="operator">|</span> INVOKER &#125;</span><br><span class="line"><span class="operator">|</span> COMMENT <span class="string">&#x27;string&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>LANGUAGE SQL</code> ：说明存储过程执行体是由SQL语句组成的，当前系统支持的语言为SQL。</li>
+<li><code>[NOT] DETERMINISTIC</code> ：指明存储过程执行的结果是否确定。<code>DETERMINISTIC</code>表示结果是确定的。每次执行存储过程时，相同的输入会得到相同的输出。<code>NOT DETERMINISTIC</code>表示结果是不确定的，相同的输入可能得到不同的输出。如果没有指定任意一个值，**默认为<code>NOT DETERMINISTIC</code>**。</li>
+<li><code>&#123; CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA &#125;</code> ：<br>指明子程序使用SQL语句的限制。<ul>
+<li><code>CONTAINS SQL</code>表示当前存储过程的子程序包含SQL语句，但是并不包含读写数据的SQL语句；</li>
+<li><code>NO SQL</code>表示当前存储过程的子程序中不包含任何SQL语句；</li>
+<li><code>READS SQL DATA</code>表示当前存储过程的子程序中包含读数据的SQL语句；</li>
+<li><code>MODIFIES SQL DATA</code>表示当前存储过程的子程序中包含写数据的SQL语句。</li>
+<li><strong>默认情况下</strong>，系统会指定为<code>CONTAINS SQL</code>。</li>
+</ul>
+</li>
+<li><code>SQL SECURITY &#123; DEFINER | INVOKER &#125;</code> ：执行当前存储过程的权限，即指明哪些用户能够执<br>行当前存储过程。<ul>
+<li><code>DEFINER</code> 表示只有当前存储过程的创建者或者定义者才能执行当前存储过程；</li>
+<li><code>INVOKER</code> 表示拥有当前存储过程的访问权限的用户能够执行当前存储过程。</li>
+<li>如果没有设置相关的值，则MySQL**默认指定值为<code>DEFINER</code>**。</li>
+</ul>
+</li>
+<li><code>COMMENT &#39;string&#39;</code> ：注释信息，可以用来描述存储过程。</li>
+</ul>
+<ol start="4">
+<li>存储过程体中可以有多条 SQL 语句，如果仅仅一条SQL 语句，则可以省略 <code>BEGIN</code> 和 <code>END</code></li>
+</ol>
+<p>编写存储过程并不是一件简单的事情，可能存储过程中需要复杂的 SQL语句。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">BEGIN</span>…<span class="keyword">END</span>：<span class="keyword">BEGIN</span>…<span class="keyword">END</span> 中间包含了多个语句，每个语句都以（;）号为结束符。</span><br><span class="line"><span class="number">2.</span> <span class="keyword">DECLARE</span>：<span class="keyword">DECLARE</span> 用来声明变量，使用的位置在于 <span class="keyword">BEGIN</span>…<span class="keyword">END</span> 语句中间，而且需要在其他语句使用之前进</span><br><span class="line">行变量的声明。</span><br><span class="line"><span class="number">3.</span> <span class="keyword">SET</span>：赋值语句，用于对变量进行赋值。</span><br><span class="line"><span class="number">4.</span> <span class="keyword">SELECT</span>… <span class="keyword">INTO</span>：把从数据表中查询的结果存放到变量中，也就是为变量赋值。</span><br></pre></td></tr></table></figure>
+
+
+<ol start="5">
+<li>需要设置新的结束标记</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER 新的结束标记</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><p>因为MySQL默认的语句结束符号为分号<code>;</code>。</p>
+</li>
+<li><p>为了避免与存储过程中SQL语句结束符相冲突，需要使用 <code>DELIMITER</code>改变存储过程的结束符。 比如：<code>DELIMITER //</code>语句的作用是将MySQL的结束符设置为<code>//</code>，并以<code>END //</code>结束存储过程。存储过程定义完毕之后再使用<code>DELIMITER ;</code>恢复默认结束符。</p>
+</li>
+<li><p><code>DELIMITER</code>也可以指定其他符号作为结束符。当使用DELIMITER命令时，<strong>应该避免使用反斜杠<code>\</code>字符</strong>，因为反斜线是MySQL的转义字符。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER $</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> 存储过程名(<span class="keyword">IN</span><span class="operator">|</span><span class="keyword">OUT</span><span class="operator">|</span><span class="keyword">INOUT</span> 参数名 参数类型,...)</span><br><span class="line">[characteristics ...]</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	<span class="keyword">sql</span>语句<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">sql</span>语句<span class="number">2</span>;</span><br><span class="line"><span class="keyword">END</span> $</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="2-创建存储过程示例"><a href="#2-创建存储过程示例" class="headerlink" title="2. 创建存储过程示例"></a>2. 创建存储过程示例</h2><ul>
+<li><p><strong>类型1：无参数无返回值</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> # 举例<span class="number">1</span>：创建存储过程select_all_data()，查看 employees 表的所有数据</span><br><span class="line">mysql<span class="operator">&gt;</span></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER $</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> select_all_data()</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees;</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> $</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER ;</span><br><span class="line">mysql<span class="operator">&gt;</span> # 存储过程的调用 （以下有<span class="number">107</span>行数据，被我删减了只剩<span class="number">3</span>行）</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CALL</span> select_all_data();</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+</span></span><br><span class="line"><span class="operator">|</span> employee_id <span class="operator">|</span> first_name  <span class="operator">|</span> last_name   <span class="operator">|</span> email    <span class="operator">|</span> phone_number       <span class="operator">|</span> hire_date  <span class="operator">|</span> job_id     <span class="operator">|</span> salary   <span class="operator">|</span> commission_pct <span class="operator">|</span> manager_id <span class="operator">|</span> department_id <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+</span></span><br><span class="line"><span class="operator">|</span>         <span class="number">100</span> <span class="operator">|</span> Steven      <span class="operator">|</span> King        <span class="operator">|</span> SKING    <span class="operator">|</span> <span class="number">515.123</span><span class="number">.4567</span>       <span class="operator">|</span> <span class="number">1987</span><span class="number">-06</span><span class="number">-17</span> <span class="operator">|</span> AD_PRES    <span class="operator">|</span> <span class="number">24000.00</span> <span class="operator">|</span>           <span class="keyword">NULL</span> <span class="operator">|</span>       <span class="keyword">NULL</span> <span class="operator">|</span>            <span class="number">90</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>         <span class="number">205</span> <span class="operator">|</span> Shelley     <span class="operator">|</span> Higgins     <span class="operator">|</span> SHIGGINS <span class="operator">|</span> <span class="number">515.123</span><span class="number">.8080</span>       <span class="operator">|</span> <span class="number">1994</span><span class="number">-06</span><span class="number">-07</span> <span class="operator">|</span> AC_MGR     <span class="operator">|</span> <span class="number">12000.00</span> <span class="operator">|</span>           <span class="keyword">NULL</span> <span class="operator">|</span>        <span class="number">101</span> <span class="operator">|</span>           <span class="number">110</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>         <span class="number">206</span> <span class="operator">|</span> William     <span class="operator">|</span> Gietz       <span class="operator">|</span> WGIETZ   <span class="operator">|</span> <span class="number">515.123</span><span class="number">.8181</span>       <span class="operator">|</span> <span class="number">1994</span><span class="number">-06</span><span class="number">-07</span> <span class="operator">|</span> AC_ACCOUNT <span class="operator">|</span>  <span class="number">8300.00</span> <span class="operator">|</span>           <span class="keyword">NULL</span> <span class="operator">|</span>        <span class="number">205</span> <span class="operator">|</span>           <span class="number">110</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+</span></span><br><span class="line"><span class="number">107</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">-----------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> # 举例<span class="number">2</span>：创建存储过程avg_employee_salary()，返回所有员工的平均工资</span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> avg_employee_salary()</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(salary) <span class="keyword">FROM</span> employees;</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER ;</span><br><span class="line">mysql<span class="operator">&gt;</span> # 存储过程的调用</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CALL</span> avg_employee_salary();</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="built_in">AVG</span>(salary) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">6461.682243</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">1.54</span> sec)</span><br><span class="line"></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">1.54</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>类型2：带 <code>OUT</code></strong></p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> # 举例：创建存储过程show_min_salary()，查看“emps”表的最低薪资值。并将最低薪资通过<span class="keyword">OUT</span>参数“ms</span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> show_min_salary(<span class="keyword">OUT</span> ms <span class="keyword">DOUBLE</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">SELECT</span> <span class="built_in">MIN</span>(salary) <span class="keyword">INTO</span> ms</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">FROM</span> employees;</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER ;</span><br><span class="line">mysql<span class="operator">&gt;</span> # 存储过程的调用</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CALL</span> show_min_salary(<span class="variable">@ms</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> # 查看变量值</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="variable">@ms</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+</span></span><br><span class="line"><span class="operator">|</span> <span class="variable">@ms</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.95</span> sec)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>类型3：带 <code>IN</code></strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> # 举例：创建存储过程show_someone_salary()，查看“emps”表的某个员工的薪资，并用<span class="keyword">IN</span>参数empname输入员工姓名。</span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> show_someone_salary(<span class="keyword">IN</span> empname <span class="type">VARCHAR</span>(<span class="number">20</span>))</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> employees</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">WHERE</span> last_name <span class="operator">=</span> empname;</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER</span><br><span class="line">mysql<span class="operator">&gt;</span> # 调用方式<span class="number">1</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CALL</span> show_someone_salary(<span class="string">&#x27;Abel&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="operator">|</span> salary   <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">11000.00</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> # 调用方式<span class="number">2</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> <span class="variable">@empname</span> :<span class="operator">=</span> <span class="string">&#x27;Abel&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CALL</span> show_someone_salary(<span class="variable">@empname</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="operator">|</span> salary   <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">11000.00</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>类型4：带 <code>IN</code> 和 <code>OUT</code></strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> # 举例：创建存储过程show_someone_salary2()，查看“emps”表的某个员工的薪，并用<span class="keyword">IN</span>参数empname输入员工姓名，用<span class="keyword">OUT</span>参数empsalary输出员工薪资。</span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> show_someone_salary2(<span class="keyword">IN</span> empname <span class="type">VARCHAR</span>(<span class="number">20</span>),<span class="keyword">OUT</span> empsalary <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>))</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">SELECT</span> salary <span class="keyword">INTO</span> empsalary</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">FROM</span> employees</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">WHERE</span> last_name <span class="operator">=</span> empname;</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER ;</span><br><span class="line">mysql<span class="operator">&gt;</span> # 存储过程的调用</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> <span class="variable">@empname</span> <span class="operator">=</span> <span class="string">&#x27;Abel&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CALL</span> show_someone_salary2(<span class="variable">@empname</span>,<span class="variable">@empsalary</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="variable">@empsalary</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="variable">@empsalary</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+</span></span><br><span class="line"><span class="operator">|</span>   <span class="number">11000.00</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">1.36</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>类型5：带 <code>INOUT</code></strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> #举例<span class="number">7</span>：创建存储过程show_mgr_name()，查询某个员工领导的姓名，并用<span class="keyword">INOUT</span>参数“empname”输入员工姓名，输出领导的姓名。</span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER $</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> show_mgr_name(<span class="keyword">INOUT</span> empname <span class="type">VARCHAR</span>(<span class="number">25</span>))</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  <span class="keyword">SELECT</span> last_name <span class="keyword">INTO</span> empname</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  <span class="keyword">FROM</span> employees</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  <span class="keyword">WHERE</span> employee_id <span class="operator">=</span> (</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>                          <span class="keyword">SELECT</span> manager_id</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>                          <span class="keyword">FROM</span> employees</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>                          <span class="keyword">WHERE</span> last_name <span class="operator">=</span> empname</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>                          );</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> $</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">2.02</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER ;</span><br><span class="line">mysql<span class="operator">&gt;</span> # 存储过程的调用</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> <span class="variable">@empname</span> :<span class="operator">=</span> <span class="string">&#x27;Abel&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CALL</span> show_mgr_name(<span class="variable">@empname</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> <span class="variable">@empname</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="operator">|</span> <span class="variable">@empname</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="operator">|</span> Zlotkey  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="三、调用存储过程"><a href="#三、调用存储过程" class="headerlink" title="三、调用存储过程"></a>三、调用存储过程</h1><h2 id="1-调用格式"><a href="#1-调用格式" class="headerlink" title="1.  调用格式"></a>1.  调用格式</h2><p>存储过程有多种调用方法。存储过程必须使用<code>CALL</code>语句调用，并且存储过程和数据库相关，如果要执行其他数据库中的存储过程，需要指定数据库名称。<br>例如<code>CALL</code> <code>dbname.procname</code>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CALL</span> 存储过程名(实参列表)</span><br></pre></td></tr></table></figure>
+<p><strong>格式：</strong></p>
+<ul>
+<li><strong>调用<code>IN</code>模式的参数</strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CALL</span> 存储过程名(<span class="string">&#x27;值&#x27;</span>);</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line"># 调用方式<span class="number">1</span></span><br><span class="line"><span class="keyword">CALL</span> show_someone_salary(<span class="string">&#x27;Abel&#x27;</span>);</span><br><span class="line"># 调用方式<span class="number">2</span></span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@empname</span> :<span class="operator">=</span> <span class="string">&#x27;Abel&#x27;</span>;</span><br><span class="line"><span class="keyword">CALL</span> show_someone_salary(<span class="variable">@empname</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>调用<code>OUT</code>模式的参数</strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> @参数名;</span><br><span class="line"><span class="keyword">CALL</span> 存储过程名(@参数名);</span><br><span class="line"><span class="keyword">SELECT</span> @参数名;</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line"># 存储过程的调用</span><br><span class="line"><span class="keyword">CALL</span> show_min_salary(<span class="variable">@ms</span>);</span><br><span class="line"># 查看变量值</span><br><span class="line"><span class="keyword">SELECT</span> <span class="variable">@ms</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>调用<code>INOUT</code>模式的参数</strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> @参数名<span class="operator">=</span>值;</span><br><span class="line"><span class="keyword">CALL</span> 存储过程名(@参数名);</span><br><span class="line"><span class="keyword">SELECT</span> @参数名;</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line"># 存储过程的调用</span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@empname</span> :<span class="operator">=</span> <span class="string">&#x27;Abel&#x27;</span>;</span><br><span class="line"><span class="keyword">CALL</span> show_mgr_name(<span class="variable">@empname</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="variable">@empname</span>;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="四、存储函数的使用"><a href="#四、存储函数的使用" class="headerlink" title="四、存储函数的使用"></a>四、存储函数的使用</h1><p>MySQL自带很多函数，使用这些函数可以对数据进行的各种处理操作，极大地提高用户对数据库的管理效率。MySQL支持自定义函数，定义好之后，调用方式与调用MySQL预定义的系统函数一样。</p>
+<h2 id="1-语法分析-1"><a href="#1-语法分析-1" class="headerlink" title="1. 语法分析"></a>1. 语法分析</h2><p>MySQL中经常使用的函数：<code>LENGTH</code>、<code>SUBSTR</code>、<code>CONCAT</code>等</p>
+<p>自定义语法格式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> 函数名(参数名 参数类型,...)</span><br><span class="line"><span class="keyword">RETURNS</span> 返回值类型</span><br><span class="line">[characteristics ...]</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">	函数体 #函数体中肯定有 <span class="keyword">RETURN</span> 语句</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+<p><strong>说明：</strong></p>
+<ul>
+<li>参数列表：指定参数为<code>IN</code>、<code>OUT</code>或<code>INOUT</code>只对存储过程是合法的，函数中总是默认为<code>IN</code>参数。</li>
+<li><code>RETURNS type</code> 语句表示函数返回数据的类型；<code>RETURNS</code>子句只能对函数做指定，对函数而言这是 <strong>强制</strong> 的。它用来指定函数的返回类型，而且函数体必须包含一个 <code>RETURN value</code> 语句。</li>
+<li><code>characteristic</code> 创建函数时指定的对函数的约束。取值与创建存储过程时相同，这里不再赘述。</li>
+<li>函数体也可以用<code>BEGIN…END</code>来表示SQL代码的开始和结束。如果函数体只有一条语句，也可以省略<code>BEGIN…END</code>。</li>
+</ul>
+<h2 id="2-调用存储函数"><a href="#2-调用存储函数" class="headerlink" title="2. 调用存储函数"></a>2. 调用存储函数</h2><p>在MySQL中，存储函数的使用方法与MySQL内部函数的使用方法是一样的。换言之，用户自己定义的存储函数与MySQL内部函数是一个性质的。区别在于，存储函数是 <strong>用户自己定义</strong> 的，而内部函数是MySQL的 <strong>开发者定义</strong> 的。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 函数名(实参列表)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>若直接运行以下语句会出错</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> email_by_name2()</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">RETURNS</span> <span class="type">VARCHAR</span>(<span class="number">25</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  <span class="keyword">RETURN</span> (<span class="keyword">SELECT</span> email <span class="keyword">FROM</span> employees <span class="keyword">WHERE</span> last_name <span class="operator">=</span> <span class="string">&#x27;Abel&#x27;</span>);</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">you might want <span class="keyword">to</span> use the less safe log_bin_trust_function_creators variable</span><br></pre></td></tr></table></figure>
+
+<p>遇到该报错<code> you might want to use the less safe log_bin_trust_function_creators variable</code>，有两种解决方法：</p>
+<ul>
+<li><p>方法1：<br>加上必要的函数特性<code>[NOT] DETERMINISTIC</code>和<code>&#123;CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA&#125;</code></p>
+</li>
+<li><p>方法2：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> log_bin_trust_function_creators <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> # 举例<span class="number">1</span>：创建存储函数，名称为email_by_name()，参数定义为空，该函数查询Abel的email，并返回，数据类型为字符串型。</span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> email_by_name()</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">RETURNS</span> <span class="type">VARCHAR</span>(<span class="number">25</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">DETERMINISTIC</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">CONTAINS</span> <span class="keyword">SQL</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">READS</span> <span class="keyword">SQL</span> DATA</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  <span class="keyword">RETURN</span> (<span class="keyword">SELECT</span> email <span class="keyword">FROM</span> employees <span class="keyword">WHERE</span> last_name <span class="operator">=</span> <span class="string">&#x27;Abel&#x27;</span>);</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER ;</span><br><span class="line">mysql<span class="operator">&gt;</span> # 函数调用</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> email_by_name();</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="operator">|</span> email_by_name() <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="operator">|</span> EABEL           <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> # 举例<span class="number">2</span>：创建存储函数，名称为email_by_id()，参数传入emp_id，该函数查询emp_id的email，并返回，数据类型为字符串型。</span><br><span class="line">mysql<span class="operator">&gt;</span> # 创建函数前执行此语句，保证函数的创建会成功</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> <span class="keyword">GLOBAL</span> log_bin_trust_function_creators <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> # 声明函数</span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> email_by_id(emp_id <span class="type">INT</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">RETURNS</span> <span class="type">VARCHAR</span>(<span class="number">25</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">BEGIN</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span>  	<span class="keyword">RETURN</span> (<span class="keyword">SELECT</span> email <span class="keyword">FROM</span> employees <span class="keyword">WHERE</span> employee_id <span class="operator">=</span> emp_id);</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">END</span> <span class="operator">/</span><span class="operator">/</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> DELIMITER ;</span><br><span class="line">mysql<span class="operator">&gt;</span> # 调用</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> email_by_id(<span class="number">101</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="operator">|</span> email_by_id(<span class="number">101</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="operator">|</span> NKOCHHAR         <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> <span class="variable">@emp_id</span> :<span class="operator">=</span> <span class="number">102</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> email_by_id(<span class="variable">@emp_id</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">----------------------+</span></span><br><span class="line"><span class="operator">|</span> email_by_id(<span class="variable">@emp_id</span>) <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------------+</span></span><br><span class="line"><span class="operator">|</span> LDEHAAN              <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-对比存储函数和存储过程"><a href="#3-对比存储函数和存储过程" class="headerlink" title="3. 对比存储函数和存储过程"></a>3. 对比存储函数和存储过程</h2><p><img src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815134549.png" alt=" "></p>
+<p>此外，<strong>存储函数可以放在查询语句中使用，存储过程不行</strong>。反之，存储过程的功能更加强大，包括能够执行对表的操作（比如创建表，删除表等）和事务操作，这些功能是存储函数不具备的。</p>
+<hr>
+<h1 id="五、-存储过程和函数的查看、修改、删除"><a href="#五、-存储过程和函数的查看、修改、删除" class="headerlink" title="五、 存储过程和函数的查看、修改、删除"></a>五、 存储过程和函数的查看、修改、删除</h1><h2 id="1-查看"><a href="#1-查看" class="headerlink" title="1. 查看"></a>1. 查看</h2><p>创建完之后，怎么知道我们创建的存储过程、存储函数是否成功了呢？</p>
+<p>MySQL存储了存储过程和函数的状态信息，用户可以使用<code>SHOW STATUS</code>语句或<code>SHOW CREATE</code>语句来查看，也可直接从系统的<code>information_schema</code>数据库中查询。这里介绍3种方法。</p>
+<ul>
+<li><strong>使用<code>SHOW CREATE</code>语句查看存储过程和函数的创建信息</strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> &#123;<span class="keyword">PROCEDURE</span> <span class="operator">|</span> <span class="keyword">FUNCTION</span>&#125; 存储过程名或函数名</span><br></pre></td></tr></table></figure>
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> show_mgr_name;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> count_by_id;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>使用<code>SHOW STATUS</code>语句查看存储过程和函数的状态信息</strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> &#123;<span class="keyword">PROCEDURE</span> <span class="operator">|</span> <span class="keyword">FUNCTION</span>&#125; STATUS [<span class="keyword">LIKE</span> <span class="string">&#x27;pattern&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>这个语句返回子程序的特征，如数据库、名字、类型、创建者及创建和修改日期。</p>
+<p><code>[LIKE &#39;pattern&#39;]</code>：匹配存储过程或函数的名称，可以省略。当省略不写时，会列出MySQL数据库中存在的<strong>所有存储过程或函数</strong>的信息。</p>
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SHOW</span> <span class="keyword">PROCEDURE</span> STATUS <span class="keyword">LIKE</span> <span class="string">&#x27;SELECT%&#x27;</span> \G</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">1.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">					Db: test_db</span><br><span class="line">					Name: SelectAllData</span><br><span class="line">					Type: <span class="keyword">PROCEDURE</span></span><br><span class="line">					Definer: root<span class="variable">@localhost</span></span><br><span class="line">					Modified: <span class="number">2021</span><span class="number">-10</span><span class="number">-16</span> <span class="number">15</span>:<span class="number">55</span>:<span class="number">07</span></span><br><span class="line">					Created: <span class="number">2021</span><span class="number">-10</span><span class="number">-16</span> <span class="number">15</span>:<span class="number">55</span>:<span class="number">07</span></span><br><span class="line">					Security_type: DEFINER</span><br><span class="line">					Comment:</span><br><span class="line">					character_set_client: utf8mb4</span><br><span class="line">					collation_connection: utf8mb4_general_ci</span><br><span class="line">					Database <span class="keyword">Collation</span>: utf8mb4_general_ci</span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>从<code>information_schema.Routines</code>表中查看存储过程和函数的信息</strong></li>
+</ul>
+<p>MySQL中存储过程和函数的信息存储在information_schema数据库下的Routines表中。可以通过查询该表的记录来查询存储过程和函数的信息。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> information_schema.Routines</span><br><span class="line"><span class="keyword">WHERE</span> ROUTINE_NAME<span class="operator">=</span><span class="string">&#x27;存储过程或函数的名&#x27;</span> [<span class="keyword">AND</span> ROUTINE_TYPE <span class="operator">=</span> &#123;<span class="string">&#x27;PROCEDURE|FUNCTION&#x27;</span>&#125;];</span><br></pre></td></tr></table></figure>
+<p><strong>说明</strong>：如果在MySQL数据库中存在存储过程和函数名称相同的情况，最好指定<code>ROUTINE_TYPE</code>查询条件来指明查询的是存储过程还是函数。</p>
+<p><strong>举例</strong>：从Routines表中查询名称为CountProc的存储函数的信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> information_schema.Routines</span><br><span class="line"><span class="keyword">WHERE</span> ROUTINE_NAME<span class="operator">=</span><span class="string">&#x27;count_by_id&#x27;</span> <span class="keyword">AND</span> ROUTINE_TYPE <span class="operator">=</span> <span class="string">&#x27;FUNCTION&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-修改"><a href="#2-修改" class="headerlink" title="2. 修改"></a>2. 修改</h2><p>修改存储过程或函数，不影响存储过程或函数功能，只是修改相关特性。使用<code>ALTER</code>语句实现。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> &#123;<span class="keyword">PROCEDURE</span> <span class="operator">|</span> <span class="keyword">FUNCTION</span>&#125; 存储过程或函数的名 [characteristic ...]</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>characteristic</code>指定存储过程或函数的特性，其取值信息与创建存储过程、函数时的取值信息略有不同。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="keyword">CONTAINS</span> <span class="keyword">SQL</span> <span class="operator">|</span> <span class="keyword">NO</span> <span class="keyword">SQL</span> <span class="operator">|</span> <span class="keyword">READS</span> <span class="keyword">SQL</span> DATA <span class="operator">|</span> <span class="keyword">MODIFIES</span> <span class="keyword">SQL</span> DATA &#125;</span><br><span class="line"><span class="operator">|</span> <span class="keyword">SQL</span> SECURITY &#123; DEFINER <span class="operator">|</span> INVOKER &#125;</span><br><span class="line"><span class="operator">|</span> COMMENT <span class="string">&#x27;string&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><code>CONTAINS SQL</code> ，表示子程序包含SQL语句，但不包含读或写数据的语句。</li>
+<li><code>NO SQL</code> ，表示子程序中不包含SQL语句。</li>
+<li><code>READS SQL DATA</code> ，表示子程序中包含读数据的语句。</li>
+<li><code>MODIFIES SQL DATA</code> ，表示子程序中包含写数据的语句。</li>
+<li><code>SQL SECURITY &#123; DEFINER | INVOKER &#125;</code> ，指明谁有权限来执行。<ul>
+<li><code>DEFINER</code> ，表示只有定义者自己才能够执行。</li>
+<li><code>INVOKER</code> ，表示调用者可以执行。</li>
+</ul>
+</li>
+<li><code>COMMENT &#39;string&#39;</code> ，表示注释信息。</li>
+</ul>
+<blockquote>
+<p>修改存储过程使用<code>ALTER PROCEDURE</code>语句，修改存储函数使用<code>ALTER FUNCTION</code>语句。但是，这两个语句的结构是一样的，语句中的所有参数也是一样的。</p>
+</blockquote>
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 修改存储过程CountProc,将读写权限改为<span class="keyword">MODIFIES</span> <span class="keyword">SQL</span> DATA，并指明调用者可以执行</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">PROCEDURE</span> CountProc</span><br><span class="line"><span class="keyword">MODIFIES</span> <span class="keyword">SQL</span> DATA</span><br><span class="line"><span class="keyword">SQL</span> SECURITY INVOKER ;</span><br><span class="line"></span><br><span class="line"># 修改存储函数CountProc,将读写权限改为<span class="keyword">READS</span> <span class="keyword">SQL</span> DATA，并加上注释信息“FIND NAME”</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">FUNCTION</span> CountProc</span><br><span class="line"><span class="keyword">READS</span> <span class="keyword">SQL</span> DATA</span><br><span class="line">COMMENT <span class="string">&#x27;FIND NAME&#x27;</span> ;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-删除"><a href="#3-删除" class="headerlink" title="3. 删除"></a>3. 删除</h2><p>删除存储过程和函数，可以使用<code>DROP</code>语句，其语法结构如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> &#123;<span class="keyword">PROCEDURE</span> <span class="operator">|</span> <span class="keyword">FUNCTION</span>&#125; [IF <span class="keyword">EXISTS</span>] 存储过程或函数的名</span><br><span class="line"></span><br><span class="line"># IF <span class="keyword">EXISTS</span>：如果程序或函数不存储，它可以防止发生错误，产生一个用<span class="keyword">SHOW</span> WARNINGS查看的警告。</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>举例</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> CountProc;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">FUNCTION</span> CountProc;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="六、存储过程的优缺点"><a href="#六、存储过程的优缺点" class="headerlink" title="六、存储过程的优缺点"></a>六、存储过程的优缺点</h1><h2 id="1-优点"><a href="#1-优点" class="headerlink" title="1. 优点"></a>1. 优点</h2><ul>
+<li><strong>存储过程可以一次编译多次使用</strong>。存储过程只在创建时进行编译，之后的使用都不需要重新编译，这就提升了 SQL 的执行效率。</li>
+<li><strong>减少开发工作量</strong>。将代码 <strong>封装</strong> 成模块，这样可以把复杂的问题拆解成不同的模块，然后模块之间可以 <strong>重复使用</strong> ，在减少开发工作量的同时，还能保证代码的结构清晰。</li>
+<li><strong>存储过程的安全性强</strong>。我们在设定存储过程的时候可以 <strong>设置对用户的使用权限</strong> ，这样就和视图一样具有较强的安全性。</li>
+<li><strong>减少网络传输量</strong>。因为代码封装到存储过程中，每次使用只需要调用存储过程即可，这样就减少了网络传输量。</li>
+<li><strong>良好的封装性</strong>。在进行相对复杂的数据库操作时，原本需要使用一条一条的 SQL 语句，可能要连接多次数据库才能完成的操作，现在变成了一次存储过程，只需要 <strong>连接一次即可</strong> 。</li>
+</ul>
+<h2 id="2-缺点"><a href="#2-缺点" class="headerlink" title="2. 缺点"></a>2. 缺点</h2><ul>
+<li><strong>可移植性差</strong>。存储过程不能跨数据库移植，比如在 MySQL、Oracle 和 SQL Server 里编写的存储过程，在换成其他数据库时都需要重新编写。</li>
+<li><strong>调试困难</strong>。只有少数 DBMS 支持存储过程的调试。对于复杂的存储过程来说，开发和维护都不容易。虽然也有一些第三方工具可以对存储过程进行调试，但要收费。</li>
+<li><strong>存储过程的版本管理很困难</strong>。比如数据表索引发生变化了，可能会导致存储过程失效。我们在开发软件的时候往往需要进行版本管理，但是存储过程本身没有版本控制，版本迭代更新的时候很麻烦。</li>
+<li><strong>不适合高并发的场景</strong>。高并发的场景需要减少数据库的压力，有时数据库会采用分库分表的方式，而且对可扩展性要求很高，在这种情况下，存储过程会变得难以维护， 增加数据库的压力 ，显然就不适用了。</li>
+</ul>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="http://example.com/posts/442d16e2.html">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "http://example.com/posts/442d16e2.html");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=MySQL-存储过程与函数&amp;url=http://example.com/posts/442d16e2.html&amp;pic=https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815134238.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                数据库
+                                <span class="tagsPageCount">14</span>
+                            </a>
+                        
+                            <a href="/tags/sql/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                sql
+                                <span class="tagsPageCount">10</span>
+                            </a>
+                        
+                            <a href="/tags/mysql/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                mysql
+                                <span class="tagsPageCount">5</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>MySQL-存储过程与函数</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/posts/442d16e2.html">http://example.com/posts/442d16e2.html</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">划水艺术家</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/posts/36b2021f.html">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">SQL之玩转DML</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/posts/56431718.html">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">MySQL-视图</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/acrylic.png" onerror="this.onerror=null;this.src='/img/acrylic.png'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                tangyitao
+            </div>
+            <div class="author-info__description">这有关于<b>开发</b>、<b>技术</b>相关的问题和看法。<br>相信你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/tang-yt" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:tangyt2406@163.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-text">一、存储过程概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">1. 如何理解存储过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%88%86%E7%B1%BB"><span class="toc-text">2. 存储过程分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">二、创建存储过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-text">1. 语法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E7%A4%BA%E4%BE%8B"><span class="toc-text">2. 创建存储过程示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%B0%83%E7%94%A8%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">三、调用存储过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%B0%83%E7%94%A8%E6%A0%BC%E5%BC%8F"><span class="toc-text">1.  调用格式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">四、存储函数的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90-1"><span class="toc-text">1. 语法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B0%83%E7%94%A8%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0"><span class="toc-text">2. 调用存储函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AF%B9%E6%AF%94%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0%E5%92%8C%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">3. 对比存储函数和存储过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E5%87%BD%E6%95%B0%E7%9A%84%E6%9F%A5%E7%9C%8B%E3%80%81%E4%BF%AE%E6%94%B9%E3%80%81%E5%88%A0%E9%99%A4"><span class="toc-text">五、 存储过程和函数的查看、修改、删除</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9F%A5%E7%9C%8B"><span class="toc-text">1. 查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9"><span class="toc-text">2. 修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%A0%E9%99%A4"><span class="toc-text">3. 删除</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">六、存储过程的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BC%98%E7%82%B9"><span class="toc-text">1. 优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BC%BA%E7%82%B9"><span class="toc-text">2. 缺点</span></a></li></ol></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                    <img
+                        alt="DCL中COMMIT与ROLLBACK的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815135307.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/b873a1b0.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/b873a1b0.html" title="DCL中COMMIT与ROLLBACK的使用">
+                        DCL中COMMIT与ROLLBACK的使用
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                    <img
+                        alt="SpringBoot热部署"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815132418.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/75ee909c.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/75ee909c.html" title="SpringBoot热部署">
+                        SpringBoot热部署
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/36b478da.html" title="Java经典排序">
+                    <img
+                        alt="Java经典排序"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815143240.gif">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/36b478da.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/36b478da.html" title="Java经典排序">
+                        Java经典排序
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                    <img
+                        alt="Docker-Dockerfile"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815133723.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/e3a7e431.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/e3a7e431.html" title="Docker-Dockerfile">
+                        Docker-Dockerfile
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                    <img
+                        alt="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用"
+                        src="https://tang-yt-bucket.oss-cn-chengdu.aliyuncs.com/hexo/2023/08/15/20230815125552.png">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/posts/fe26ac5e.html">
+                            技术笔记
+                        </a>
+                    
+                    <a class="title" href="/posts/fe26ac5e.html" title="谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用">
+                        谈谈RabbitMQ的五种消息模型以及SpringAMQP的使用
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/tang-yt" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="mailto:tangyt2406@163.com" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://music.163.com" rel="external nofollow noopener" title="网易云">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">服务</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://51.la/" title="51la统计" rel="noopener external nofollow noreferrer noopener">51la统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://tongji.baidu.com/" title="百度统计" rel="noopener external nofollow noreferrer noopener">百度统计</a>
+                
+                    <a class="footer-item" target="_blank" href="https://ql.tianli0.top/" title="TianliCDN" rel="noopener external nofollow noreferrer noopener">TianliCDN</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2021 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">tangyitao</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+    
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css">
+
+    
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script>
+
+    
+<script src="/lib/meting.min.js"></script>
+
+    <script>
+        var meting_api = "https://music.startly.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r";
+    </script>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+    <div id="local-search">
+    <div class="search-dialog">
+        <nav class="search-nav">
+            <span class="search-dialog-title">搜索</span>
+            <button class="search-close-button">
+                <i class="fas fa-times"></i>
+            </button>
+        </nav>
+        <div id="loading-database">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <span>加载中</span>
+        </div>
+        <div class="search-wrap">
+            <div class="search-box">
+                <input class="search-box-input" placeholder="输入关键词快速查找" type="text" id="search-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off">
+            </div>
+            <div id="loading-status"></div>
+            <div id="search-results"></div>
+        </div>
+    </div>
+    <div id="search-mask"></div>
+</div>
+    
+<link rel="stylesheet" href="/css/search/local-search.css">
+
+    
+<script src="/js/extend/search/local-search.js"></script>
+
+
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+</html>
+<script>const posts=["posts/b873a1b0.html","posts/75ee909c.html","posts/36b478da.html","posts/e3a7e431.html","posts/fe26ac5e.html","posts/d0edc1ed.html","posts/b6c3d8dd.html","posts/49fbbc1.html","posts/30ab1de7.html","posts/5696223f.html","posts/78beed92.html","posts/e770b956.html","posts/106f1f3a.html","posts/36b2021f.html","posts/442d16e2.html","posts/56431718.html","posts/72090044.html","posts/10c232a9.html","posts/7ec55fd4.html","posts/9acb5cb3.html","posts/689338cf.html","posts/78033e99.html","posts/7c236f69.html","posts/fdb654f7.html","posts/fde62576.html","posts/4906c062.html","posts/71d3dda2.html","posts/44d90ad5.html","posts/97b300c3.html","posts/2077d398.html","posts/b634f675.html","posts/5a112392.html","posts/d75d39a7.html","posts/6abf1536.html","posts/964f8f69.html","posts/dcd9e6db.html","posts/92a4644d.html","posts/1bdcf24b.html","posts/75330943.html","posts/f3c7bc8f.html","posts/839af433.html","posts/94962b3f.html","posts/7856357f.html","posts/2606c6a9.html","posts/91f012d1.html","posts/6c2ee665.html","posts/ee40a19d.html","posts/26f88c40.html","posts/a5005a49.html","posts/9542c7f4.html","posts/47d2f7a2.html","posts/bb085914.html","posts/4e57a7dc.html","posts/62f2aa05.html","posts/a6592200.html","posts/303fc3a3.html","posts/e15cda61.html","posts/917a39c3.html","posts/4369ac96.html","posts/7f6e5a2.html"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
